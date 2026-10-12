@@ -98,9 +98,6 @@ h2 { margin: 0; font: 600 17px var(--display); }
 .segmented button + button { border-left: 1px solid var(--line); }
 .segmented button[aria-pressed='true'] { background: var(--brand); color: var(--bg); }
 
-.stepper { display: flex; align-items: center; gap: 10px; }
-.stepper button {
-  width: 60px; height: 60px; border-radius: 30px; border: 1px solid var(--line-strong);
 
 /* ---------- Coach: shared ---------- */
 .home-tiles { display: flex; flex-direction: column; gap: 10px; }
