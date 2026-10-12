@@ -1,0 +1,23 @@
+{
+  "card": {
+    "effect": "Was das mit deinem Ball macht",
+    "cause": "Warum es passiert",
+    "correction": "So korrigierst du es",
+    "drills": "Drills",
+    "train": "Das trainieren",
+    "show": "Im Video zeigen",
+    "measured": "Gemessen {v} · Grenze {t}"
+  },
+  "drills": {
+    "title": "Drills",
+    "feel": "Gefühl entwickeln",
+    "real": "Mit Ball umsetzen",
+    "goal": "Ziel",
+    "equipment": "Du brauchst",
+    "steps": "Schritte",
+    "reps": "Wiederholungen",
+    "placeholder": "Video / Tutorial folgt",
+    "draft": "Entwurf – Text noch nicht von unserem Golflehrer freigegeben",
+    "close": "Schließen"
+  }
+}

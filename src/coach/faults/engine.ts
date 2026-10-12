@@ -177,6 +177,30 @@ export function correctionFor(fault: Fault | string): Correction | undefined {
   return { faultId: id, text: def.correction, benefit: def.benefit, drillIds: def.drillIds };
 }
 
+export type ValueStatus = 'ok' | 'bad' | 'info' | 'uncertain';
+
+/**
+ * Status of every measured value for the "all measured values" list: bad = beyond the threshold of a detected fault,
+ * ok = checked by a fault rule and within tolerance, info = display only, uncertain = low confidence.
+ */
+export function classifyValues(swing: Pick<Swing, 'metrics' | 'faults' | 'shotType' | 'view'>): { value: MetricValue; status: ValueStatus }[] {
+  const ctx = { shotType: swing.shotType, view: swing.view, handedness: 'right' as const };
+  const ruled = new Set(applicableFaults(ctx).flatMap((f) => f.rules.map((r) => `${r.metric}@${r.at}`)));
+  const bad = new Set<string>();
+  for (const f of swing.faults) {
+    const def = getFaultDef(f.defId);
+    for (const m of f.measured) {
+      const rule = def?.rules.find((r) => r.metric === m.metric && r.at === m.at);
+      if (rule && ruleExcess(rule, m.value) > 0) bad.add(`${m.metric}@${m.at}`);
+    }
+  }
+  return swing.metrics.values.map((value) => {
+    const k = `${value.id}@${value.at}`;
+    const status: ValueStatus = bad.has(k) ? 'bad' : value.confidence < QUALITY_MIN ? 'uncertain' : ruled.has(k) ? 'ok' : 'info';
+    return { value, status };
+  });
+}
+
 // ------------------------------------------------------------------ skeleton colours (US-1.3)
 
 const TORSO = ['11-23', '12-24'];
