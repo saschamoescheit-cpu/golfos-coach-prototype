@@ -86,6 +86,11 @@ export interface PhaseKeyframe {
   confidence: number;
   /** how the frame was found, for debugging and the report (e.g. 'club-parallel', 'hands-height-proxy') */
   method: string;
+  /**
+   * Optional sub-frame time (ms, same clock as PoseFrame.t) of the detected event; used for tempo. For 'address' this is
+   * the moment the takeaway starts (the address frame itself is the last still frame before it). Added by phases-metrics.
+   */
+  tEvent?: number;
 }
 
 /**
