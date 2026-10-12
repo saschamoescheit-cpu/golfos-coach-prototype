@@ -46,6 +46,11 @@ const POSE_POINTS = [LM.LEFT_WRIST, LM.RIGHT_WRIST, LM.LEFT_ELBOW, LM.RIGHT_ELBO
 /** Face-on: time impact as the moment the hands pass their address position (else: hands lowest). */
 const IMPACT_HANDS_RETURN = false;
 
+/** Share of the motion used for the [onset, settle] fit (tuned on synthetic swings, see decisions). */
+const EDGE_FIT_SHARE = [0.12, 0.04];
+/** Exponents tried for the onset/settle fit (2 = smooth start/stop first; another one must fit clearly better). */
+const ONSET_POWERS = [2, 1, 3, 4];
+
 /** Precise event times (ms) found by detectPhases – useful for debugging and tempo. */
 export interface PhaseTiming {
   takeawayT?: number;
@@ -240,12 +245,18 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
       let ok = true;
       for (let i = a; i <= b && ok; i++) if (rmsPt(vecAt(pS, i), med) > rho) ok = false;
       if (!ok) continue;
-      // grow the window away from the swing while still (≤ 0.4 s)
+      // a slow start/end of the motion can look still in one window: keep sliding away from the swing while the
+      // windows stay still (≤ 0.6 s), so the region reaches into the real address / finish hold
       let a2 = a;
       let b2 = b;
-      const maxLen = F(0.4);
-      if (dir < 0) while (a2 > 0 && b2 - a2 < maxLen && rmsPt(vecAt(pS, a2 - 1), med) <= rho) a2--;
-      else while (b2 < n - 1 && b2 - a2 < maxLen && rmsPt(vecAt(pS, b2 + 1), med) <= rho) b2++;
+      const maxLen = F(0.6);
+      const stillAt = (x0: number, x1: number) => {
+        const m = pS.map((v) => median(v.slice(x0, x1 + 1)));
+        for (let i = x0; i <= x1; i++) if (rmsPt(vecAt(pS, i), m) > rho) return false;
+        return true;
+      };
+      if (dir < 0) while (a2 > 0 && b2 - a2 < maxLen && stillAt(a2 - 1, a2 + ww - 2)) a2--;
+      else while (b2 < n - 1 && b2 - a2 < maxLen && stillAt(b2 - ww + 2, b2 + 1)) b2++;
       return [a2, b2];
     }
     return null;
@@ -255,8 +266,12 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
    * still pose `ref`: project on the direction of motion and fit "constant + c·(t − t0)²" on the moving side.
    */
   const motionEdge = (ref: number[], still: [number, number], limit: number, dir: 1 | -1): { x: number; ok: boolean } => {
-    const [a0, e0] = still;
+    let [a0, e0] = still;
+    // trim the still region where it already drifts away from the reference pose (slow start / end of the motion)
+    if (dir === 1) while (e0 > a0 + 2 && rmsPt(vecAt(pS, e0), ref) > rho) e0--;
+    else while (a0 < e0 - 2 && rmsPt(vecAt(pS, a0), ref) > rho) a0++;
     const edge = dir === 1 ? e0 : a0;
+    // project the body vector on the direction of motion (taken at 25 % of the way to the top / from impact)
     const far = rmsPt(vecAt(pS, limit), ref);
     let j25 = edge;
     while (dir === 1 ? j25 < limit : j25 > limit) {
@@ -265,17 +280,19 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
     }
     const u = vecAt(pS, j25).map((x, k) => x - ref[k]);
     const ul = Math.hypot(...u) || 1;
-    const p: number[] = new Array(n).fill(0);
-    const lo0 = Math.max(0, Math.min(edge, j25) - F(0.35));
-    const hi0 = Math.min(n - 1, Math.max(edge, j25) + F(0.35));
-    for (let i = lo0; i <= hi0; i++) p[i] = pF.reduce((s, v, k) => s + (v[i] - ref[k]) * u[k], 0) / ul;
-    // j15 ≈ 15 % of the way (p(j25) ≈ ul ≈ 25 %)
+    const q: number[] = new Array(n);
+    for (let i = 0; i < n; i++) q[i] = pF.reduce((acc, v, k) => acc + (v[i] - ref[k]) * u[k], 0) / ul;
+    // fit only the first / last few percent of the motion (q(j25) ≈ ul ≈ 25 % of the way)
     let j15 = edge;
-    while (j15 !== j25 && p[j15] < 0.6 * ul) j15 += dir;
-    const lo = dir === 1 ? Math.max(a0, e0 - F(0.3)) : Math.min(j15, a0 - 2);
-    const hi = dir === 1 ? Math.max(j15, e0 + 2) : Math.min(e0, a0 + F(0.3));
-    const fit = kinkFit(p, lo, hi, { left: dir === -1, right: dir === 1, t0Lo: lo + 1, t0Hi: hi - 1 });
-    if (fit && (dir === 1 ? fit.cr > 0 : fit.cl > 0)) return { x: fit.t0, ok: true };
+    while (j15 !== j25 && q[j15] < EDGE_FIT_SHARE[dir === 1 ? 0 : 1] * 4 * ul) j15 += dir;
+    const lo = dir === 1 ? a0 : Math.min(j15, a0 - 2);
+    const hi = dir === 1 ? Math.max(j15, e0 + 2) : e0;
+    let fit: ReturnType<typeof kinkFit> = null;
+    for (const power of ONSET_POWERS) {
+      const f = kinkFit(q, lo, hi, { left: dir === -1, right: dir === 1, t0Lo: lo + 1, t0Hi: hi - 1, power });
+      if (f && (dir === 1 ? f.cr > 0 : f.cl > 0) && (!fit || f.rms < 0.9 * fit.rms)) fit = f;
+    }
+    if (fit) return { x: fit.t0, ok: true };
     return { x: dir === 1 ? e0 + 1 : a0, ok: false };
   };
   const addrWin = findStill(topI - 1, ww - 1, -1, hTop, 0.5 * ampTop);
@@ -285,7 +302,7 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
   if (addrWin) {
     const [a0, e0] = addrWin;
     hAddr = { x: median(sx.slice(a0, e0 + 1)), y: median(sy.slice(a0, e0 + 1)) };
-    const ref = pS.map((v) => median(v.slice(a0, e0 + 1)));
+    const ref = pS.map((v) => median(v.slice(a0, Math.max(a0 + ww, Math.round((a0 + e0) / 2)) + 1)));
     const r = motionEdge(ref, addrWin, topI, 1);
     takeX = r.x;
     addrConfBase = r.ok ? 0.9 : 0.6;
@@ -315,7 +332,7 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
   let finConfBase = 0;
   const finWin = findStill(Math.min(n - 1, impI + F(0.05)), n - ww, 1, hImp, 0.3 * ampTop);
   if (finWin) {
-    const ref = pS.map((v) => median(v.slice(finWin[0], finWin[1] + 1)));
+    const ref = pS.map((v) => median(v.slice(Math.min(finWin[1] - ww, Math.round((finWin[0] + finWin[1]) / 2)), finWin[1] + 1)));
     const r = motionEdge(ref, finWin, impI, -1);
     finX = r.x;
     finConfBase = r.ok ? 0.85 : 0.6;

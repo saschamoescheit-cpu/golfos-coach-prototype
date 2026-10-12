@@ -135,7 +135,7 @@ export function crossAt(v: number[], i: number, level = 0): number {
 
 /**
  * Piecewise-parabola ("kink") fit with a free break time t0, solved by grid search with linear least squares per t0:
- *   y(t) = p0 + cl·(t0 − t)²₊ + cr·(t − t0)²₊
+ *   y(t) = p0 + cl·(t0 − t)^k₊ + cr·(t − t0)^k₊   (k = opts.power, default 2)
  * `left` / `right` switch the two halves on or off (onset: right only; settle: left only; peak/valley: both).
  * Returns the best t0 (in sample units, sub-frame) and the rms residual. Robust to noise because it uses many samples
  * on both sides of the event instead of a single noisy extremum.
@@ -144,7 +144,7 @@ export function kinkFit(
   y: number[],
   lo: number,
   hi: number,
-  opts: { left: boolean; right: boolean; t0Lo?: number; t0Hi?: number; step?: number },
+  opts: { left: boolean; right: boolean; t0Lo?: number; t0Hi?: number; step?: number; power?: number },
 ): { t0: number; rms: number; cl: number; cr: number; p0: number } | null {
   lo = Math.max(0, Math.floor(lo));
   hi = Math.min(y.length - 1, Math.ceil(hi));
@@ -152,13 +152,15 @@ export function kinkFit(
   const t0Lo = opts.t0Lo ?? lo;
   const t0Hi = opts.t0Hi ?? hi;
   const step = opts.step ?? 0.1;
+  const pw = opts.power ?? 2;
+  const pow = (d: number) => (pw === 2 ? d * d : Math.pow(d, pw));
   let best: { t0: number; rms: number; cl: number; cr: number; p0: number } | null = null;
   for (let t0 = t0Lo; t0 <= t0Hi + 1e-9; t0 += step) {
     // basis: 1, L = (t0-t)^2 for t<t0, R = (t-t0)^2 for t>t0
     let s11 = 0, s1l = 0, s1r = 0, sll = 0, srr = 0, sy = 0, sly = 0, sry = 0;
     for (let i = lo; i <= hi; i++) {
-      const L = opts.left && i < t0 ? (t0 - i) * (t0 - i) : 0;
-      const R = opts.right && i > t0 ? (i - t0) * (i - t0) : 0;
+      const L = opts.left && i < t0 ? pow(t0 - i) : 0;
+      const R = opts.right && i > t0 ? pow(i - t0) : 0;
       const v = y[i];
       s11 += 1; s1l += L; s1r += R; sll += L * L; srr += R * R; sy += v; sly += L * v; sry += R * v;
     }
@@ -172,8 +174,8 @@ export function kinkFit(
     const [p0, cl, cr] = sol;
     let e = 0;
     for (let i = lo; i <= hi; i++) {
-      const L = opts.left && i < t0 ? (t0 - i) * (t0 - i) : 0;
-      const R = opts.right && i > t0 ? (i - t0) * (i - t0) : 0;
+      const L = opts.left && i < t0 ? pow(t0 - i) : 0;
+      const R = opts.right && i > t0 ? pow(i - t0) : 0;
       const d = y[i] - (p0 + cl * L + cr * R);
       e += d * d;
     }
