@@ -305,7 +305,7 @@ export interface ScoreCriterion {
   reason?: 'view' | 'missing' | 'low_confidence' | 'below_measurement_floor';
   /** additive detail for rescore: base tolerance, comparison mode, measurement-error floor, metric confidence */
   baseTolerance?: number;
-  mode?: 'abs' | 'min' | 'signed';
+  mode?: 'abs' | 'min' | 'max';
   floor?: number;
   confidence?: number;
 }
