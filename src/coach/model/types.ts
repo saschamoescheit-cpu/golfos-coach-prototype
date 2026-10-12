@@ -121,7 +121,9 @@ export type MetricId =
   | 'downswing_ms'
   | 'putter_wrist_change' // putt: change of lead-forearm-to-shaft angle during the stroke (deg)
   | 'body_motion' // putt/chip: max shoulder-mid movement during the stroke (pct_torso)
-  | 'swing_length'; // how far back the hands go (deg of arm rotation, 0 = address, 90 = lead arm parallel)
+  | 'swing_length' // how far back the hands go (deg of arm rotation, 0 = address, 90 = lead arm parallel)
+  | 'lead_arm_post_impact' // lead elbow angle shortly after impact (face-on, deg, 180 = straight; small = chicken wing)
+  | 'hand_path_shift'; // DTL: hand_depth at downswing9 − hand_depth at backswing9 (pct_torso, + = hands further out coming down = over the top)
 
 export interface MetricValue {
   id: MetricId;
