@@ -1,0 +1,31 @@
+{
+  "name": "golfos-coach-prototype",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "GolfOS – Prototyp Modul Coach (Schwunganalyse mit Korrektur). Ideengebung für die Produktentwicklung.",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host",
+    "test": "vitest run",
+    "assets": "node scripts/fetch-assets.mjs"
+  },
+  "dependencies": {
+    "@fontsource/figtree": "^5.3.0",
+    "@fontsource/lexend": "^5.3.0",
+    "@mediapipe/tasks-vision": "^1.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "fake-indexeddb": "^6.2.5",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-pwa": "^0.21.1",
+    "vitest": "^2.1.8"
+  }
+}

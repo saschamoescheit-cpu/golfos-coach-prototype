@@ -1,0 +1,118 @@
+/* Look follows the GolfOS UI mockups v1: navy ground, brand green for actions,
+   status green/red always paired with ✓/✕ text. Large tap targets for gloves and sun. */
+:root {
+  --bg: #0e1418;
+  --surface: #18222a;
+  --surface-2: #222d35;
+  --line: #2c3943;
+  --line-strong: #3a4954;
+  --text: #eef2ec;
+  --text-2: #c9d3cc;
+  --muted: #9faea6;
+  --brand: #79a128;
+  --brand-text: #9bc53d;
+  --brand-soft: #24331b;
+  --ok: #46c46e;
+  --bad: #ff6b5e;
+  --warn: #f2b53d;
+  --display: Lexend, 'Segoe UI', system-ui, sans-serif;
+  --body: Figtree, 'Segoe UI', system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.45 var(--body);
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: 0.45; }
+:focus-visible { outline: 2px solid var(--brand-text); outline-offset: 2px; }
+
+.screen {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: calc(env(safe-area-inset-top) + 16px) 16px calc(env(safe-area-inset-bottom) + 16px);
+  max-width: 560px;
+  margin: 0 auto;
+}
+.topbar { display: flex; align-items: center; gap: 8px; min-height: 44px; }
+.topbar h1 { margin: 0; font: 600 21px var(--display); flex: 1; }
+.icon-btn {
+  width: 44px; height: 44px; border-radius: 22px; border: 1px solid var(--line);
+  background: transparent; display: flex; align-items: center; justify-content: center; flex: none;
+}
+.brand { font: 700 22px var(--display); letter-spacing: 0.5px; }
+.brand span { color: var(--brand); }
+h2 { margin: 0; font: 600 17px var(--display); }
+.eyebrow { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+.spacer { flex: 1; }
+
+.btn-primary, .btn-secondary {
+  min-height: 58px; border-radius: 16px; border: 0; width: 100%;
+  font: 600 18px var(--display); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 0 16px;
+}
+.btn-primary { background: var(--brand); color: var(--bg); }
+.btn-secondary { background: transparent; border: 1px solid var(--line-strong); color: var(--text); font-size: 16px; min-height: 52px; }
+.btn-ghost { background: none; border: 0; color: var(--text-2); font: 600 15px var(--body); min-height: 44px; text-decoration: underline; text-underline-offset: 3px; }
+.btn-danger { color: var(--bad); border-color: #5a2a26; }
+
+.card { background: var(--surface); border-radius: 14px; padding: 14px 16px; }
+.list { display: flex; flex-direction: column; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.list-item {
+  width: 100%; min-height: 60px; background: var(--surface); border: 0; border-radius: 12px; padding: 10px 14px;
+  display: flex; align-items: center; gap: 12px; text-align: left;
+}
+.list-item .grow { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.list-item .title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.input {
+  width: 100%; min-height: 50px; border-radius: 12px; border: 1px solid var(--line-strong);
+  background: var(--bg); padding: 0 14px; font-size: 17px;
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 13px; color: var(--muted); font-weight: 600; }
+
+.choice-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.choice {
+  min-height: 52px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  padding: 8px 12px; text-align: left; font-weight: 600;
+}
+.choice[aria-pressed='true'] { border: 2px solid var(--brand); background: var(--brand-soft); }
+.choice small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+
+.segmented { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.segmented button { min-height: 52px; border: 0; background: var(--surface); font: 600 16px var(--display); padding: 0 2px; overflow: hidden; text-overflow: ellipsis; }
+/* five choices (lie, shot type) on a phone: smaller type so that 'Abschlag' fits */
+.segmented:has(> button:nth-child(5)) button { font-size: clamp(12px, 3.5vw, 16px); }
+.segmented button + button { border-left: 1px solid var(--line); }
+.segmented button[aria-pressed='true'] { background: var(--brand); color: var(--bg); }
+
+.stepper { display: flex; align-items: center; gap: 10px; }
+.stepper button {
+  width: 60px; height: 60px; border-radius: 30px; border: 1px solid var(--line-strong);
+
+/* ---------- Coach: shared ---------- */
+.home-tiles { display: flex; flex-direction: column; gap: 10px; }
+.home-tile {
+  width: 100%; min-height: 76px; border-radius: 16px; border: 1px solid var(--line); background: var(--surface);
+  display: flex; align-items: center; gap: 14px; padding: 12px 16px; text-align: left;
+}
+.home-tile.primary { background: var(--brand); color: var(--bg); border: 0; }
+.home-tile .ico { font-size: 28px; width: 36px; text-align: center; flex: none; }
+.home-tile .t { font: 600 18px var(--display); display: block; }
+.home-tile .s { font-size: 13px; opacity: 0.8; display: block; }
+.status-ok { color: var(--ok); }
+.status-bad { color: var(--bad); }
+.status-warn { color: var(--warn); }
+.placeholder-note { border: 1px dashed var(--line-strong); border-radius: 12px; padding: 16px; color: var(--muted); }

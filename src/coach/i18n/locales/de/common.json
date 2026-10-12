@@ -1,0 +1,17 @@
+{
+  "appName": "{app} Coach",
+  "back": "Zurück",
+  "cancel": "Abbrechen",
+  "save": "Speichern",
+  "delete": "Löschen",
+  "close": "Schließen",
+  "next": "Weiter",
+  "done": "Fertig",
+  "loading": "Lädt …",
+  "notReliable": "Nicht sicher erkennbar",
+  "shot": { "driver": "Driver", "iron": "Eisen", "pitch": "Pitch", "chip": "Chip", "bunker": "Bunker", "putt": "Putt" },
+  "view": { "face_on": "Von vorne (Face-on)", "down_the_line": "Von hinten (Down-the-line)" },
+  "hand": { "right": "Rechtshänder", "left": "Linkshänder" },
+  "pos": { "address": "Ansprechen", "backswing9": "9 Uhr Aufschwung", "top": "Top", "downswing9": "9 Uhr Abschwung", "impact": "Treffmoment", "finish": "Finish" },
+  "home": { "analyze": "Schwung analysieren", "analyzeSub": "Video aufnehmen oder hochladen", "train": "Trainieren", "trainSub": "Spiegel-Modus und Ball-Serie mit Ton", "history": "Meine Schwünge", "historySub": "Verlauf, Vergleich, Fortschritt", "diagnose": "Mein Fehlschlag", "diagnoseSub": "Ball geht links? Ursache finden", "settings": "Einstellungen", "prototype": "Prototyp – Ideengebung für die Produktentwicklung" }
+}
