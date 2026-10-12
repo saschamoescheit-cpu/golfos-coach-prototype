@@ -1,5 +1,5 @@
 import { QUALITY_MIN } from '../model/constants';
-import type { AnalysisQuality, ClubEstimate, Fault, Line2, PhaseKeyframe, PoseSequence, SwingMetrics, SwingScore } from '../model/types';
+import type { AnalysisQuality, ClubEstimate, Fault, Line2, PhaseKeyframe, PoseSequence, Swing, SwingMetrics, SwingScore } from '../model/types';
 import type { GrayImage } from '../club/ClubProvider';
 import { mirrorGray } from '../club/image';
 import { trackClub } from '../club/track';
@@ -32,6 +32,34 @@ export interface AnalysisResult {
   checkedFaultIds: string[];
   uncertainFaultIds: string[];
   score: SwingScore | null;
+}
+
+/** Turn an analysis result into a storable Swing. */
+export function buildSwing(
+  r: AnalysisResult,
+  meta: { id: string; sessionId: string; ctx: AnalysisContext; source: Swing['source']; createdAt?: number },
+): Swing {
+  const frames = r.pose.frames;
+  return {
+    id: meta.id,
+    sessionId: meta.sessionId,
+    createdAt: meta.createdAt ?? Date.now(),
+    shotType: meta.ctx.shotType,
+    view: meta.ctx.view,
+    handedness: meta.ctx.handedness,
+    source: meta.source,
+    durationMs: frames.length ? frames[frames.length - 1].t - frames[0].t : 0,
+    pose: r.pose,
+    club: r.club,
+    neutralLine: r.neutralLine,
+    keyframes: r.keyframes,
+    metrics: r.metrics,
+    quality: r.quality,
+    faults: r.faults,
+    checkedFaultIds: r.checkedFaultIds,
+    uncertainFaultIds: r.uncertainFaultIds,
+    score: r.score,
+  };
 }
 
 /**
