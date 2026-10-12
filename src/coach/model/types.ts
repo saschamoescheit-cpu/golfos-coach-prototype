@@ -53,6 +53,11 @@ export interface PoseSequence {
   mirrored: boolean;
   /** share of frames (0..1) in which more than one person was detected (set by the video pipeline; added by capture-pose) */
   multiPersonRatio?: number;
+  /**
+   * frame t × videoTimeScale = time in the stored video (ms). 1 / absent for normal videos; 8 for an 8× slow-motion
+   * video whose timestamps were converted back to real time (added by capture-pose).
+   */
+  videoTimeScale?: number;
 }
 
 // ---------------------------------------------------------------- club

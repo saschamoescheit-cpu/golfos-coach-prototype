@@ -190,7 +190,12 @@ export function findSwingWindow(
 /** Divide all timestamps by `factor` (a ×factor slow-motion video played at normal speed → real time). */
 export function retimeSequence(seq: PoseSequence, factor: number): PoseSequence {
   if (!(factor > 0) || factor === 1) return seq;
-  return { ...seq, fps: seq.fps * factor, frames: seq.frames.map((f) => ({ ...f, t: f.t / factor })) };
+  return {
+    ...seq,
+    fps: seq.fps * factor,
+    videoTimeScale: (seq.videoTimeScale ?? 1) * factor,
+    frames: seq.frames.map((f) => ({ ...f, t: f.t / factor })),
+  };
 }
 
 /**
