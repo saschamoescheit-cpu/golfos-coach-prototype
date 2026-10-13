@@ -44,7 +44,7 @@ describe('training UI (static render)', () => {
     );
     expect(html).toContain('Mirror');
     expect(html).toContain('Ball series');
-    expect(html).toContain('170');
+    expect(html).toContain('175');
     expect(html).toContain('Tolerance');
   });
 

@@ -6,7 +6,7 @@
     "view": "face_on",
     "position": "top",
     "criteria": [
-      { "metric": "lead_arm_angle", "at": "top", "target": 170, "tolerance": 10, "review": "REVIEW(golf): 170° ± 10° = 'fairly straight, not locked'; catalog bent_lead_arm uses 168 ± 10" }
+      { "metric": "lead_arm_angle", "at": "top", "target": 175, "tolerance": 10, "review": "REVIEW(golf): 175° ± 10° = straight or nearly straight (165–185°); synthetic ideal face-on 179° (PM3); catalog bent_lead_arm uses 168 ± 10" }
     ]
   },
   {
@@ -16,8 +16,8 @@
     "view": "face_on",
     "position": "top",
     "criteria": [
-      { "metric": "shoulder_turn", "at": "top", "target": 75, "tolerance": 12, "review": "REVIEW(golf): 2D 'image' shoulder turn proxy; catalog short_shoulder_turn uses 64 ± 8 as the minimum – 75 ± 12 is a guess for a full turn" },
-      { "metric": "head_shift_x", "at": "top", "target": 0, "tolerance": 10, "review": "REVIEW(golf): turn without swaying, same as catalog head_sway (0 ± 10 % torso)" }
+      { "metric": "shoulder_turn", "at": "top", "target": 85, "tolerance": 15, "review": "REVIEW(golf): 2D image shoulder-turn proxy; synthetic 90° turn measures 88 face-on / 76 DTL (PM3); catalog short_shoulder_turn uses 64 ± 8 as the minimum" },
+      { "metric": "head_shift_x", "at": "top", "target": -10, "tolerance": 12, "review": "REVIEW(golf): head may drift a little away from the target while turning (synthetic ideal −18 % torso face-on, PM3/PM4); beyond ≈ −22 % = sway" }
     ]
   },
   {
@@ -79,7 +79,7 @@
     "view": "down_the_line",
     "position": "address",
     "criteria": [
-      { "metric": "spine_angle", "at": "address", "target": 32, "tolerance": 6, "review": "REVIEW(golf): forward bend ~30–35° for irons; catalog setup_upright/crouched uses 30 ± 5" },
+      { "metric": "spine_angle", "at": "address", "target": 35, "tolerance": 7, "review": "REVIEW(golf): forward bend ~30–40° for irons (synthetic iron 38°, driver 32°, PM3); catalog setup_upright/crouched uses 30 ± 5" },
       { "metric": "knee_flex", "at": "address", "target": 25, "tolerance": 10, "review": "REVIEW(golf): 'soft knees' ~20–30° flex – guess" }
     ]
   }

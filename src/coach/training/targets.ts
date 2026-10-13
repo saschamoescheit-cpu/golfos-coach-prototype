@@ -1,5 +1,4 @@
 import { t } from '../i18n/i18n';
-import { SHOT_TYPES } from '../model/constants';
 import type {
   CameraView,
   FaultDef,
@@ -14,8 +13,8 @@ import type {
 } from '../model/types';
 import { newId } from '../storage/save';
 import { getStore } from '../storage';
-import { synthSwing } from '../testing/synth';
 import { DEFAULT_TOLERANCE, MAX_REFERENCE_CRITERIA, TRAINABLE_METRICS, unitOf } from './metricInfo';
+import { modelGhost } from './modelGhost';
 import templatesJson from './templates.json';
 
 /**
@@ -144,12 +143,9 @@ export function targetFromReference(swing: Swing, position: KeyPosition, metrics
 
 // ------------------------------------------------------------------ helpers
 
-/** Ghost from the synthetic model swing (canonical landmarks), null when the shot has no such position. */
+/** Ghost from the model swing (canonical landmarks, precomputed in ghosts.json), null when the shot has no such position. */
 export function synthGhost(shotType: ShotType, view: CameraView, position: KeyPosition): Landmark[] | null {
-  if (!SHOT_TYPES[shotType].positions.includes(position)) return null;
-  const { seq, truth } = synthSwing({ shotType, view, fps: 30 });
-  const i = truth.keyframes[position];
-  return i == null ? null : (seq.frames[i]?.lm ?? null);
+  return modelGhost(shotType, view, position);
 }
 
 /** Can the mirror mode judge this target? (Needs at least one criterion at the trained position.) */
