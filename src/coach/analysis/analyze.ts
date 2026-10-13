@@ -1,5 +1,4 @@
-import { QUALITY_MIN } from '../model/constants';
-import type { AnalysisQuality, ClubEstimate, Fault, Line2, PhaseKeyframe, PoseSequence, Swing, SwingMetrics, SwingScore } from '../model/types';
+import type { AnalysisQuality, ClubEstimate, Fault, Line2, PhaseKeyframe, PoseSequence, ScoreLevel, Swing, SwingMetrics, SwingScore } from '../model/types';
 import type { GrayImage } from '../club/ClubProvider';
 import { mirrorGray } from '../club/image';
 import { trackClub } from '../club/track';
@@ -18,6 +17,8 @@ export interface AnalysisInput {
   /** optional grayscale frames of the original video (same length as raw.frames) for the club detector */
   images?: (GrayImage | undefined)[];
   ctx: AnalysisContext;
+  /** player level for the swing score (1 = strict … 5 = beginner); default from score.json (level 3) */
+  scoreLevel?: ScoreLevel;
 }
 
 export interface AnalysisResult {
@@ -66,7 +67,7 @@ export function buildSwing(
  * The whole analysis without camera or DOM: pose sequence (+ optional pixels) in, diagnosis out.
  * Pure function → fully testable in Node with the synthetic generator.
  */
-export function analyzeSequence({ raw, images, ctx }: AnalysisInput): AnalysisResult {
+export function analyzeSequence({ raw, images, ctx, scoreLevel }: AnalysisInput): AnalysisResult {
   const canonical = toCanonical(raw, ctx.handedness);
   const pose = smoothSequence(canonical);
   const canonImages = images && ctx.handedness === 'left' ? images.map((im) => (im ? mirrorGray(im) : undefined)) : images;
@@ -76,11 +77,9 @@ export function analyzeSequence({ raw, images, ctx }: AnalysisInput): AnalysisRe
   const metrics = computeMetrics(pose, club, keyframes, neutralLine, ctx);
   const quality = assessQuality(pose, ctx, { keyframes, club });
 
-  const evaluation =
-    quality.score >= QUALITY_MIN
-      ? evaluateFaults(metrics, keyframes, quality, ctx)
-      : { faults: [], checked: [], uncertain: [] as string[] };
-  const score = quality.score >= QUALITY_MIN ? computeSwingScore(metrics, ctx) : null;
+  // the engine handles low quality itself (everything 'uncertain' → shown as "not reliably detectable")
+  const evaluation = evaluateFaults(metrics, keyframes, quality, ctx);
+  const score = computeSwingScore(metrics, ctx, { fps: pose.fps, level: scoreLevel, quality: quality.score });
 
   return {
     pose,

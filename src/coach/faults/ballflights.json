@@ -1,0 +1,353 @@
+[
+  {
+    "id": "slice", "group": "direction",
+    "name": { "en": "Slice", "de": "Slice" },
+    "what": { "en": "Starts straight or left, then curves hard to the right.", "de": "Startet gerade oder links und kurvt dann stark nach rechts." },
+    "physics": { "en": "The clubface is clearly open to the swing path, which usually comes from outside to inside.", "de": "Die Schlagfläche ist deutlich offen zum Schwungpfad, der meist von außen nach innen verläuft." },
+    "causes": [
+      { "faultId": "over_the_top", "measurable": true, "text": { "en": "Over the top: the downswing starts with shoulders and arms", "de": "Over the Top: Abschwung startet mit Schultern und Armen" } },
+      { "faultId": "shaft_steep_downswing9", "measurable": true, "text": { "en": "Shaft steep at 9 o'clock down", "de": "Schaft steil bei 9 Uhr im Abschwung" } },
+      { "faultId": "chicken_wing", "measurable": true, "text": { "en": "Chicken wing – no release of the forearms", "de": "Chicken Wing – keine Unterarmrotation" } },
+      { "faultId": "reverse_pivot", "measurable": true, "text": { "en": "Reverse pivot – weight goes the wrong way", "de": "Reverse Pivot – Gewicht falsch herum" } },
+      { "faultId": "shaft_steep_backswing9", "measurable": true, "text": { "en": "Shaft steep at 9 o'clock back", "de": "Schaft steil bei 9 Uhr im Aufschwung" } },
+      { "measurable": false, "text": { "en": "Weak grip or grip pressure too tight", "de": "Schwacher Griff oder zu fester Griffdruck" } },
+      { "measurable": false, "text": { "en": "Open shoulders/stance, aiming left", "de": "Offene Schultern bzw. offener Stand, Ausrichtung nach links" } },
+      { "measurable": false, "text": { "en": "Clubface open at impact (not measurable with a phone camera yet)", "de": "Schlagfläche im Treffmoment offen (mit der Handykamera noch nicht messbar)" } }
+    ]
+  },
+  {
+    "id": "pull", "group": "direction",
+    "name": { "en": "Pull", "de": "Pull" },
+    "what": { "en": "Starts left and flies straight left.", "de": "Startet links und fliegt gerade weiter nach links." },
+    "physics": { "en": "Out-to-in path with the face square to that path.", "de": "Pfad von außen nach innen, die Schlagfläche steht square zu diesem Pfad." },
+    "causes": [
+      { "faultId": "over_the_top", "measurable": true, "text": { "en": "Over the top", "de": "Over the Top" } },
+      { "faultId": "shaft_steep_downswing9", "measurable": true, "text": { "en": "Shaft steep at 9 o'clock down", "de": "Schaft steil bei 9 Uhr im Abschwung" } },
+      { "faultId": "flying_elbow", "measurable": true, "text": { "en": "Flying trail elbow at the top", "de": "Fliegender rechter Ellbogen im Top" } },
+      { "faultId": "short_shoulder_turn", "measurable": true, "text": { "en": "Too little turn – arms take over", "de": "Zu wenig Drehung – die Arme übernehmen" } },
+      { "measurable": false, "text": { "en": "Ball too far forward in the stance", "de": "Ball zu weit vorne im Stand" } },
+      { "measurable": false, "text": { "en": "Open shoulder line / aiming left", "de": "Offene Schulterlinie / Ausrichtung nach links" } }
+    ]
+  },
+  {
+    "id": "pull_hook", "group": "direction",
+    "name": { "en": "Pull hook", "de": "Pull-Hook" },
+    "what": { "en": "Starts left and keeps curving further left.", "de": "Startet links und kurvt weiter nach links." },
+    "physics": { "en": "Out-to-in path with the face closed to the path.", "de": "Pfad von außen nach innen, Schlagfläche geschlossen zum Pfad." },
+    "causes": [
+      { "faultId": "over_the_top", "measurable": true, "text": { "en": "Over the top combined with active hands", "de": "Over the Top kombiniert mit aktiven Händen" } },
+      { "faultId": "shaft_steep_downswing9", "measurable": true, "text": { "en": "Shaft steep at 9 o'clock down", "de": "Schaft steil bei 9 Uhr im Abschwung" } },
+      { "measurable": false, "text": { "en": "Strong grip, hands roll over too early (overrelease)", "de": "Starker Griff, Hände rollen zu früh über (Overrelease)" } },
+      { "measurable": false, "text": { "en": "Ball too far forward; shaft too soft or lie too upright", "de": "Ball zu weit vorne; Schaft zu weich oder Lie zu steil" } }
+    ]
+  },
+  {
+    "id": "push", "group": "direction",
+    "name": { "en": "Push", "de": "Push" },
+    "what": { "en": "Starts right and flies straight right.", "de": "Startet rechts und fliegt gerade weiter nach rechts." },
+    "physics": { "en": "In-to-out path with the face square to that path.", "de": "Pfad von innen nach außen, Schlagfläche square zu diesem Pfad." },
+    "causes": [
+      { "faultId": "shaft_flat_downswing9", "measurable": true, "text": { "en": "Club stuck behind the body (shaft flat at 9 o'clock down)", "de": "Schläger bleibt hinter dem Körper stecken (Schaft flach bei 9 Uhr im Abschwung)" } },
+      { "faultId": "shaft_flat_backswing9", "measurable": true, "text": { "en": "Takeaway too far inside", "de": "Rückschwung zu weit innen" } },
+      { "faultId": "hip_sway", "measurable": true, "text": { "en": "Hip sway – lower body slides", "de": "Hüft-Sway – Unterkörper rutscht" } },
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Early extension – hips move to the ball", "de": "Early Extension – Becken schiebt Richtung Ball" } },
+      { "measurable": false, "text": { "en": "Ball too far back; closed alignment (feet, shoulders right)", "de": "Ball zu weit hinten; geschlossene Ausrichtung (Füße, Schultern nach rechts)" } }
+    ]
+  },
+  {
+    "id": "push_slice", "group": "direction",
+    "name": { "en": "Push slice", "de": "Push-Slice" },
+    "what": { "en": "Starts right and curves even further right.", "de": "Startet rechts und kurvt noch weiter nach rechts." },
+    "physics": { "en": "In-to-out path with the face open even to that path.", "de": "Pfad von innen nach außen, die Schlagfläche ist sogar zu diesem Pfad offen." },
+    "causes": [
+      { "faultId": "shaft_flat_downswing9", "measurable": true, "text": { "en": "Club stuck behind the body", "de": "Schläger bleibt hinter dem Körper stecken" } },
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays on the trail side", "de": "Gewicht bleibt rechts" } },
+      { "faultId": "chicken_wing", "measurable": true, "text": { "en": "No forearm release (chicken wing)", "de": "Keine Unterarmrotation (Chicken Wing)" } },
+      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Club decelerates into the ball", "de": "Schläger bremst zum Ball hin ab" } },
+      { "measurable": false, "text": { "en": "Weak grip, clubface open in the backswing", "de": "Schwacher Griff, Schlagfläche im Rückschwung geöffnet" } }
+    ]
+  },
+  {
+    "id": "hook", "group": "direction",
+    "name": { "en": "Hook", "de": "Hook" },
+    "what": { "en": "Starts straight or right, then curves hard to the left.", "de": "Startet gerade oder rechts und kurvt dann stark nach links." },
+    "physics": { "en": "The clubface is clearly closed to the swing path.", "de": "Die Schlagfläche ist deutlich geschlossen zum Schwungpfad." },
+    "causes": [
+      { "faultId": "shaft_flat_downswing9", "measurable": true, "text": { "en": "Strong in-to-out path from a flat downswing", "de": "Starker Pfad von innen aus einem flachen Abschwung" } },
+      { "faultId": "shaft_flat_backswing9", "measurable": true, "text": { "en": "Takeaway too far inside", "de": "Rückschwung zu weit innen" } },
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Body stops, hands flip over", "de": "Körper stoppt, Hände klappen über" } },
+      { "measurable": false, "text": { "en": "Grip too strong; hands roll over too early", "de": "Zu starker Griff; Hände rollen zu früh" } },
+      { "measurable": false, "text": { "en": "Bowed lead wrist or club across the line at the top", "de": "Linkes Handgelenk im Top gebeugt (bowed) oder Schläger across the line" } },
+      { "measurable": false, "text": { "en": "Closed stance; toe strikes with woods; soft shaft or draw-bias club", "de": "Geschlossener Stand; Spitzentreffer mit Hölzern; weicher Schaft oder Draw-Schläger" } }
+    ]
+  },
+  {
+    "id": "duck_hook", "group": "direction",
+    "name": { "en": "Duck hook (snap hook)", "de": "Duck Hook (Snap Hook)" },
+    "what": { "en": "Starts left, dives low and turns hard left immediately.", "de": "Startet links, taucht flach ab und dreht sofort stark nach links." },
+    "physics": { "en": "Strongly closed face with very little loft, often with an out-to-in path.", "de": "Stark geschlossene Fläche mit wenig Loft, oft mit Pfad von außen nach innen." },
+    "causes": [
+      { "faultId": "flip_at_impact", "measurable": true, "text": { "en": "Flip: the wrists snap over at impact", "de": "Flip: Handgelenke klappen im Treffmoment um" } },
+      { "faultId": "shaft_flat_downswing9", "measurable": true, "text": { "en": "Extreme in-to-out path from a stuck position", "de": "Extremer Pfad von innen aus der Stuck-Position" } },
+      { "measurable": false, "text": { "en": "Very strong grip", "de": "Sehr starker Griff" } },
+      { "measurable": false, "text": { "en": "Tension under pressure, over-correcting a slice", "de": "Verkrampfung unter Druck, Überkorrektur eines Slices" } }
+    ]
+  },
+  {
+    "id": "top", "group": "contact",
+    "name": { "en": "Topped shot", "de": "Getoppt" },
+    "what": { "en": "The ball rolls or bounces along the ground.", "de": "Der Ball rollt oder hüpft flach über den Boden." },
+    "physics": { "en": "The club strikes above the ball's equator.", "de": "Der Schläger trifft oberhalb des Ball-Äquators." },
+    "causes": [
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Standing up at impact (early extension)", "de": "Aufrichten im Treffmoment (Early Extension)" } },
+      { "faultId": "head_lift", "measurable": true, "text": { "en": "Head and eyes come up too early", "de": "Kopf und Blick heben zu früh ab" } },
+      { "faultId": "head_sway", "measurable": true, "text": { "en": "Head and body sway sideways", "de": "Kopf und Körper weichen seitlich aus" } },
+      { "faultId": "setup_upright", "measurable": true, "text": { "en": "Setup too upright", "de": "Ansprechhaltung zu aufrecht" } },
+      { "faultId": "bent_lead_arm", "measurable": true, "text": { "en": "Arms bend – the arc gets shorter", "de": "Arme beugen sich – der Bogen wird kürzer" } },
+      { "measurable": false, "text": { "en": "Ball too far forward; standing too far from the ball", "de": "Ball zu weit vorne; zu weit vom Ball entfernt" } }
+    ]
+  },
+  {
+    "id": "fat", "group": "contact",
+    "name": { "en": "Fat shot", "de": "Fett" },
+    "what": { "en": "The club hits the ground before the ball – the shot is much too short.", "de": "Der Schläger trifft vor dem Ball den Boden – der Schlag ist deutlich zu kurz." },
+    "physics": { "en": "The low point of the swing is behind the ball.", "de": "Der tiefste Punkt des Schwungs liegt hinter dem Ball." },
+    "causes": [
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays on the trail leg", "de": "Gewicht bleibt auf dem rechten Bein" } },
+      { "faultId": "casting", "measurable": true, "text": { "en": "Casting – the wrist angle is released too early", "de": "Casting – Handgelenkwinkel löst sich zu früh" } },
+      { "faultId": "head_dip", "measurable": true, "text": { "en": "Body and head sink in the downswing", "de": "Körper und Kopf sacken im Abschwung ab" } },
+      { "faultId": "hip_sway", "measurable": true, "text": { "en": "Sway away from the target in the backswing", "de": "Sway nach rechts im Rückschwung" } },
+      { "faultId": "flip_at_impact", "measurable": true, "text": { "en": "Scooping at impact", "de": "Löffeln im Treffmoment" } },
+      { "faultId": "chicken_wing", "measurable": true, "text": { "en": "Arms fold (chicken wing)", "de": "Arme ziehen sich zusammen (Chicken Wing)" } },
+      { "measurable": false, "text": { "en": "Ball too far back; tension in arms and shoulders", "de": "Ball zu weit hinten; zu viel Spannung in Armen und Schultern" } }
+    ]
+  },
+  {
+    "id": "thin", "group": "contact",
+    "name": { "en": "Thin shot", "de": "Dünn" },
+    "what": { "en": "Low, hard flight, often too long; feels harsh in the hands.", "de": "Flacher, harter Ballflug, oft zu lang; fühlt sich hart in den Händen an." },
+    "physics": { "en": "The leading edge strikes just below the equator – too little ball compression.", "de": "Die Vorderkante trifft knapp unter dem Äquator – zu wenig Kompression." },
+    "causes": [
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Standing up or extending at impact", "de": "Aufrichten oder Strecken im Treffmoment" } },
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight back, hands behind the ball", "de": "Gewicht hinten, Hände hinter dem Ball" } },
+      { "faultId": "head_lift", "measurable": true, "text": { "en": "Head lifts early", "de": "Kopf hebt sich früh" } },
+      { "faultId": "casting", "measurable": true, "text": { "en": "Casting", "de": "Casting" } },
+      { "faultId": "bent_lead_arm", "measurable": true, "text": { "en": "Shorter radius from bent arms", "de": "Kürzerer Schwungradius durch gebeugte Arme" } },
+      { "measurable": false, "text": { "en": "Ball too far forward; fear of hitting the ground", "de": "Ball zu weit vorne; Angst vor Bodenkontakt" } }
+    ]
+  },
+  {
+    "id": "shank", "group": "contact",
+    "name": { "en": "Shank", "de": "Shank (Socket)" },
+    "what": { "en": "The ball shoots off almost at a right angle to the right.", "de": "Der Ball schießt fast rechtwinklig nach rechts weg." },
+    "physics": { "en": "The ball is struck on the hosel (where the shaft joins the head).", "de": "Der Ball wird am Hosel getroffen (Übergang zum Schaft)." },
+    "causes": [
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Early extension – hips move towards the ball", "de": "Early Extension – Becken bewegt sich Richtung Ball" } },
+      { "faultId": "over_the_top", "measurable": true, "text": { "en": "Hands move away from the body in the downswing", "de": "Hände entfernen sich im Abschwung vom Körper" } },
+      { "faultId": "shaft_steep_downswing9", "measurable": true, "text": { "en": "Inside takeaway with an outside downswing", "de": "Rückschwung innen, Abschwung weit außen" } },
+      { "measurable": false, "text": { "en": "Weight on the toes; standing too close to the ball", "de": "Gewicht auf den Zehen; zu nah am Ball" } },
+      { "measurable": false, "text": { "en": "Tension and fear after the first shank", "de": "Verspannung und Angst nach dem ersten Shank" } }
+    ]
+  },
+  {
+    "id": "toe_heel", "group": "contact",
+    "name": { "en": "Toe or heel strike", "de": "Spitzen- oder Fersentreffer" },
+    "what": { "en": "Loss of distance; woods curve because of the gear effect.", "de": "Längenverlust; Hölzer kurven durch den Gear-Effekt." },
+    "physics": { "en": "The ball is struck outside the sweet spot.", "de": "Der Treffpunkt liegt außerhalb des Sweetspots." },
+    "causes": [
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Heel: early extension, hands away from the body", "de": "Ferse: Early Extension, Hände weg vom Körper" } },
+      { "faultId": "setup_upright", "measurable": true, "text": { "en": "Toe: standing up, arms pull in", "de": "Spitze: Aufrichten, Arme ziehen sich ein" } },
+      { "faultId": "head_dip", "measurable": true, "text": { "en": "Distance to the ball changes between address and impact", "de": "Ungleicher Abstand zwischen Ansprechen und Treffmoment" } },
+      { "measurable": false, "text": { "en": "Weight on heels or toes; club length or lie does not fit", "de": "Gewicht auf Fersen oder Zehen; Schlägerlänge oder Lie passt nicht" } }
+    ]
+  },
+  {
+    "id": "whiff", "group": "contact",
+    "name": { "en": "Air shot (whiff)", "de": "Luftschlag" },
+    "what": { "en": "The ball is missed completely.", "de": "Der Ball wird komplett verfehlt." },
+    "physics": { "en": "The swing arc does not reach the ball.", "de": "Der Schwungbogen erreicht den Ball nicht." },
+    "causes": [
+      { "faultId": "head_lift", "measurable": true, "text": { "en": "Head lifts or the body stands up", "de": "Kopf hebt sich bzw. Aufrichten" } },
+      { "faultId": "hip_sway", "measurable": true, "text": { "en": "Strong sway", "de": "Starker Sway" } },
+      { "faultId": "tempo_fast", "measurable": true, "text": { "en": "Tension, too much speed", "de": "Verkrampfung, zu hohes Tempo" } },
+      { "measurable": false, "text": { "en": "Eyes not on the ball", "de": "Blick nicht auf dem Ball" } }
+    ]
+  },
+  {
+    "id": "skyball", "group": "height",
+    "name": { "en": "Skyball (pop-up)", "de": "Skyball (Pop-up)" },
+    "what": { "en": "The driver shot climbs almost vertically and lands very short.", "de": "Der Drive steigt fast senkrecht und landet sehr kurz." },
+    "physics": { "en": "The top edge of the club hits the ball – the angle of attack is too steep.", "de": "Die Oberkante trifft den Ball – der Angriffswinkel ist zu steil." },
+    "causes": [
+      { "faultId": "over_the_top", "measurable": true, "text": { "en": "Steep downswing from outside (over the top)", "de": "Zu steiler Abschwung von außen (Over the Top)" } },
+      { "faultId": "shaft_steep_downswing9", "measurable": true, "text": { "en": "Shaft steep at 9 o'clock down", "de": "Schaft steil bei 9 Uhr im Abschwung" } },
+      { "faultId": "reverse_pivot", "measurable": true, "text": { "en": "Reverse pivot – upper body tilts to the target", "de": "Reverse Pivot – Oberkörper zum Ziel geneigt" } },
+      { "faultId": "flying_elbow", "measurable": true, "text": { "en": "Flying trail elbow makes the downswing steep", "de": "Fliegender rechter Ellbogen macht den Abschwung steil" } },
+      { "faultId": "head_sway", "measurable": true, "text": { "en": "Head and upper body ahead of the ball at impact", "de": "Kopf und Oberkörper im Treffmoment vor dem Ball" } },
+      { "measurable": false, "text": { "en": "Tee too high; ball too far back", "de": "Tee zu hoch; Ball zu weit hinten" } }
+    ]
+  },
+  {
+    "id": "ballooning", "group": "height",
+    "name": { "en": "Ballooning", "de": "Ballonierung" },
+    "what": { "en": "The ball climbs too high, drops steeply and loses distance, especially into the wind.", "de": "Der Ball steigt übermäßig, fällt steil herunter und verliert Länge, vor allem bei Gegenwind." },
+    "physics": { "en": "Too much backspin or too much dynamic loft at impact.", "de": "Zu viel Backspin oder zu viel dynamischer Loft im Treffmoment." },
+    "causes": [
+      { "faultId": "flip_at_impact", "measurable": true, "text": { "en": "Scooping – wrists flip up", "de": "Löffeln – Handgelenke klappen nach oben" } },
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays back", "de": "Gewicht bleibt hinten" } },
+      { "faultId": "casting", "measurable": true, "text": { "en": "Hands behind the ball from an early release", "de": "Hände hinter dem Ball durch frühes Lösen" } },
+      { "faultId": "over_the_top", "measurable": true, "text": { "en": "Steep, out-to-in strike with open face", "de": "Steiler Schlag von außen mit offener Fläche" } },
+      { "measurable": false, "text": { "en": "Too much loft, soft shaft, high-spin ball; headwind", "de": "Zu viel Loft, weicher Schaft, Ball mit hohem Spin; Gegenwind" } }
+    ]
+  },
+  {
+    "id": "too_low", "group": "height",
+    "name": { "en": "Too low (unwanted knockdown)", "de": "Zu flacher Flug (ungewollter Knockdown)" },
+    "what": { "en": "The ball hardly rises, lands hard and won't stop on the green.", "de": "Der Ball steigt kaum, landet hart und lässt sich auf dem Grün nicht stoppen." },
+    "physics": { "en": "Too little dynamic loft at impact.", "de": "Zu wenig dynamischer Loft im Treffmoment." },
+    "causes": [
+      { "faultId": "head_sway", "measurable": true, "text": { "en": "Upper body pushes forward past the ball", "de": "Oberkörper drückt nach vorne über den Ball" } },
+      { "measurable": false, "text": { "en": "Too much forward shaft lean (the app only checks too little)", "de": "Zu starker Handvorlauf (die App prüft bisher nur zu wenig)" } },
+      { "measurable": false, "text": { "en": "Ball too far back; closed clubface", "de": "Ball zu weit hinten; geschlossene Schlagfläche" } },
+      { "measurable": false, "text": { "en": "Too little loft for your swing speed, stiff shaft", "de": "Zu wenig Loft für deine Schwunggeschwindigkeit, steifer Schaft" } }
+    ]
+  },
+  {
+    "id": "scoop", "group": "height",
+    "name": { "en": "Scoop / flip", "de": "Scoop / Flip (Löffeln)" },
+    "what": { "en": "Inconsistent height, often thin or fat; no divot after the ball.", "de": "Wechselnde Höhe, oft dünn oder fett; kein Divot nach dem Ball." },
+    "physics": { "en": "At impact the hands are behind the club head – loft changes from shot to shot.", "de": "Im Treffmoment sind die Hände hinter dem Schlägerkopf – der Loft ändert sich von Schlag zu Schlag." },
+    "causes": [
+      { "faultId": "flip_at_impact", "measurable": true, "text": { "en": "No shaft lean at impact", "de": "Fehlender Handvorlauf im Treffmoment" } },
+      { "faultId": "chip_scoop", "measurable": true, "text": { "en": "Short game: hands behind the ball", "de": "Kurzes Spiel: Hände hinter dem Ball" } },
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays back", "de": "Gewicht bleibt hinten" } },
+      { "faultId": "casting", "measurable": true, "text": { "en": "Casting from the top", "de": "Casting aus dem Top" } },
+      { "measurable": false, "text": { "en": "Wrong picture: wanting to lift the ball up", "de": "Falsches Bild: den Ball hochschlagen wollen" } }
+    ]
+  },
+  {
+    "id": "chili_dip", "group": "short_game",
+    "name": { "en": "Chili dip (chunked chip)", "de": "Chili Dip" },
+    "what": { "en": "A chip or pitch hit fat – the ball only goes a few metres.", "de": "Ein fett getroffener Chip oder Pitch – der Ball fliegt nur wenige Meter." },
+    "physics": { "en": "The club digs into the ground before the ball – low point too early.", "de": "Der Schläger gräbt vor dem Ball in den Boden – tiefster Punkt zu früh." },
+    "causes": [
+      { "faultId": "chip_weight_back", "measurable": true, "text": { "en": "Weight on the back foot", "de": "Gewicht hinten" } },
+      { "faultId": "chip_scoop", "measurable": true, "text": { "en": "Too much wrist action, flip", "de": "Zu viel Handgelenkeinsatz, Flip" } },
+      { "faultId": "chip_backswing_long", "measurable": true, "text": { "en": "Backswing too long, then braking", "de": "Zu langer Rückschwung, dann Abbremsen" } },
+      { "faultId": "short_game_tempo", "measurable": true, "text": { "en": "Decelerating before the ball", "de": "Abbremsen vor dem Ball" } },
+      { "faultId": "head_dip", "measurable": true, "text": { "en": "Head moves down", "de": "Kopf bewegt sich nach unten" } },
+      { "measurable": false, "text": { "en": "Ball too far forward, stance too wide; tension, tight grip", "de": "Ball zu weit vorne, zu breiter Stand; Verspannung, zu fester Griff" } },
+      { "measurable": false, "text": { "en": "Too little bounce; soft or wet lie; wrong club", "de": "Zu wenig Bounce; weiche oder nasse Lage; falscher Schläger" } }
+    ]
+  },
+  {
+    "id": "skull", "group": "short_game",
+    "name": { "en": "Skull (bladed)", "de": "Skull (Bladed)" },
+    "what": { "en": "The leading edge hits the ball – it shoots low and fast across the green.", "de": "Die Vorderkante trifft den Ball – er schießt flach und schnell über das Grün." },
+    "physics": { "en": "The leading edge strikes the ball at or above its equator.", "de": "Die Vorderkante trifft den Ball auf oder über dem Äquator." },
+    "causes": [
+      { "faultId": "chip_scoop", "measurable": true, "text": { "en": "Scooping", "de": "Löffeln" } },
+      { "faultId": "chip_weight_back", "measurable": true, "text": { "en": "Weight back – low point too early", "de": "Gewicht hinten – tiefster Punkt zu früh" } },
+      { "faultId": "head_lift", "measurable": true, "text": { "en": "Standing up at impact to see the ball fly", "de": "Aufrichten im Treffmoment, um den Ball fliegen zu sehen" } },
+      { "faultId": "chip_backswing_long", "measurable": true, "text": { "en": "Long backswing with a braking downswing", "de": "Langer Rückschwung mit abgebremstem Abschwung" } },
+      { "faultId": "setup_upright", "measurable": true, "text": { "en": "Setup too upright", "de": "Zu aufrechte Haltung" } },
+      { "measurable": false, "text": { "en": "Reaction after a chili dip; hard or bare lie", "de": "Gegenreaktion nach einem Chili Dip; harte oder kahle Lage" } }
+    ]
+  },
+  {
+    "id": "bunker_fat", "group": "short_game",
+    "name": { "en": "Bunker: too much sand", "de": "Bunker zu fett" },
+    "what": { "en": "The ball stays in the bunker or ends at the lip.", "de": "Der Ball bleibt im Bunker oder landet an der Kante." },
+    "physics": { "en": "Too much sand or too little speed – the bounce of the wedge is not used.", "de": "Zu viel Sand oder zu wenig Tempo – der Bounce des Wedges wird nicht genutzt." },
+    "causes": [
+      { "faultId": "bunker_short_backswing", "measurable": true, "text": { "en": "Backswing too short – not enough speed", "de": "Zu kurzer Rückschwung – nicht genug Tempo" } },
+      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Decelerating, follow-through cut short", "de": "Abbremsen, Durchschwung abgebrochen" } },
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight too far right – entry too far behind the ball", "de": "Gewicht zu weit rechts – Eintritt zu weit hinter dem Ball" } },
+      { "faultId": "head_dip", "measurable": true, "text": { "en": "Body sinks – the club digs", "de": "Körper sackt ab – der Schläger gräbt sich ein" } },
+      { "measurable": false, "text": { "en": "Entry point in the sand (not visible to the app)", "de": "Eintrittspunkt im Sand (für die App nicht sichtbar)" } },
+      { "measurable": false, "text": { "en": "Clubface closed or square – bounce not used", "de": "Schlagfläche geschlossen oder square – Bounce nicht genutzt" } },
+      { "measurable": false, "text": { "en": "Wet/heavy sand, buried lie, too little bounce; fear of the bunker", "de": "Nasser/schwerer Sand, Spiegelei, zu wenig Bounce; Angst vor dem Bunker" } }
+    ]
+  },
+  {
+    "id": "yips", "group": "putting",
+    "name": { "en": "Yips", "de": "Yips" },
+    "what": { "en": "Twitchy, uncontrolled hand movement at impact, mostly on short putts.", "de": "Zuckende, unkontrollierte Bewegung der Hände im Treffmoment, vor allem bei kurzen Putts." },
+    "physics": { "en": "The fine motor control of the stroke is disturbed – face and speed become random.", "de": "Die Feinmotorik des Strokes ist gestört – Fläche und Tempo werden zufällig." },
+    "causes": [
+      { "faultId": "putt_wrist_break", "measurable": true, "text": { "en": "Wrists too active", "de": "Handgelenke zu aktiv" } },
+      { "faultId": "putt_tempo", "measurable": true, "text": { "en": "Short, jerky stroke without rhythm", "de": "Zu kurzer, ruckartiger Schwung ohne Rhythmus" } },
+      { "measurable": false, "text": { "en": "Pressure and fear, negative experiences, over-control", "de": "Leistungsdruck und Angst, negative Erfahrungen, Überkontrolle" } },
+      { "measurable": false, "text": { "en": "Focal dystonia (neurological) – see a specialist if it also happens in practice", "de": "Fokale Dystonie (neurologisch) – zum Spezialisten, wenn es auch im Training auftritt" } },
+      { "measurable": false, "text": { "en": "Grip too tight; putter too light or grip too thin", "de": "Zu fester Griff; Putter zu leicht oder Griff zu dünn" } }
+    ]
+  },
+  {
+    "id": "putt_pull", "group": "putting",
+    "name": { "en": "Putt misses left", "de": "Putt läuft links vorbei" },
+    "what": { "en": "The putt starts left of your line.", "de": "Der Putt startet links von deiner Linie." },
+    "physics": { "en": "The putter face is closed at impact – the face decides almost all of the start direction.", "de": "Die Putterfläche ist im Treffmoment geschlossen – sie bestimmt fast die ganze Startrichtung." },
+    "causes": [
+      { "faultId": "putt_wrist_break", "measurable": true, "text": { "en": "Wrists turn the face", "de": "Handgelenke drehen die Fläche" } },
+      { "faultId": "putt_head_movement", "measurable": true, "text": { "en": "Head moves – looking up too early", "de": "Kopf bewegt sich – zu früh nachgeschaut" } },
+      { "faultId": "putt_body_movement", "measurable": true, "text": { "en": "Body moves during the stroke", "de": "Körper bewegt sich im Stroke" } },
+      { "measurable": false, "text": { "en": "Face closed at impact, out-to-in putter path", "de": "Fläche im Treffmoment geschlossen, Putterpfad außen-innen" } },
+      { "measurable": false, "text": { "en": "Aim, eyes not over the ball, ball position, green reading", "de": "Ausrichtung, Augen nicht über dem Ball, Ballposition, Grünlesen" } }
+    ]
+  },
+  {
+    "id": "putt_push", "group": "putting",
+    "name": { "en": "Putt misses right", "de": "Putt läuft rechts vorbei" },
+    "what": { "en": "The putt starts right of your line.", "de": "Der Putt startet rechts von deiner Linie." },
+    "physics": { "en": "The putter face is open at impact.", "de": "Die Putterfläche ist im Treffmoment offen." },
+    "causes": [
+      { "faultId": "putt_wrist_break", "measurable": true, "text": { "en": "Wrists hold the face open", "de": "Handgelenke halten die Fläche offen" } },
+      { "faultId": "putt_head_movement", "measurable": true, "text": { "en": "Head moves", "de": "Kopf bewegt sich" } },
+      { "faultId": "putt_body_movement", "measurable": true, "text": { "en": "Body moves during the stroke", "de": "Körper bewegt sich im Stroke" } },
+      { "measurable": false, "text": { "en": "Face open at impact, in-to-out putter path", "de": "Fläche im Treffmoment offen, Putterpfad innen-außen" } },
+      { "measurable": false, "text": { "en": "Aim, shoulders open or closed, lie of the putter", "de": "Ausrichtung, Schultern offen oder geschlossen, Lie des Putters" } }
+    ]
+  },
+  {
+    "id": "putt_distance", "group": "putting",
+    "name": { "en": "Putt too short or too long", "de": "Putt zu kurz oder zu lang" },
+    "what": { "en": "Direction is fine but the length varies a lot.", "de": "Die Richtung passt, aber die Länge schwankt stark." },
+    "physics": { "en": "Ball speed depends on stroke tempo and on hitting the sweet spot.", "de": "Die Ballgeschwindigkeit hängt vom Tempo des Strokes und vom Treffpunkt ab." },
+    "causes": [
+      { "faultId": "putt_tempo", "measurable": true, "text": { "en": "Uneven tempo – jabbing or braking", "de": "Unruhiges Tempo – Zustoßen oder Abbremsen" } },
+      { "faultId": "putt_body_movement", "measurable": true, "text": { "en": "Off-centre strikes from body movement", "de": "Nicht mittige Treffer durch Körperbewegung" } },
+      { "faultId": "putt_wrist_break", "measurable": true, "text": { "en": "Wrists change the loft", "de": "Handgelenke ändern den Loft" } },
+      { "faultId": "chip_backswing_long", "measurable": true, "text": { "en": "Chips: backswing too long, then braking", "de": "Chips: Rückschwung zu lang, dann Abbremsen" } },
+      { "measurable": false, "text": { "en": "Green speed, grain and wind; lack of distance practice", "de": "Grüngeschwindigkeit, Graswuchs und Wind; zu wenig Längentraining" } }
+    ]
+  },
+  {
+    "id": "inconsistent_contact", "group": "contact",
+    "name": { "en": "Inconsistent contact", "de": "Wechselnde Treffer" },
+    "what": { "en": "One shot fat, the next thin – you never know what comes.", "de": "Mal fett, mal dünn – du weißt nie, was kommt." },
+    "physics": { "en": "The low point and the distance to the ball change from swing to swing.", "de": "Der tiefste Punkt und der Abstand zum Ball ändern sich von Schwung zu Schwung." },
+    "causes": [
+      { "faultId": "head_sway", "measurable": true, "text": { "en": "Head moves sideways", "de": "Kopf bewegt sich seitlich" } },
+      { "faultId": "hip_sway", "measurable": true, "text": { "en": "Hip sway", "de": "Hüft-Sway" } },
+      { "faultId": "early_extension", "measurable": true, "text": { "en": "Early extension", "de": "Early Extension" } },
+      { "faultId": "tempo_fast", "measurable": true, "text": { "en": "Rushed tempo", "de": "Hastiges Tempo" } },
+      { "faultId": "bent_lead_arm", "measurable": true, "text": { "en": "Changing swing radius", "de": "Wechselnder Schwungradius" } },
+      { "measurable": false, "text": { "en": "Ball position and distance to the ball change", "de": "Ballposition und Abstand zum Ball wechseln" } }
+    ]
+  },
+  {
+    "id": "loss_of_distance", "group": "contact",
+    "name": { "en": "Loss of distance", "de": "Zu wenig Länge" },
+    "what": { "en": "Solid-looking shots that simply don't go as far as they should.", "de": "Bälle, die ordentlich aussehen, aber einfach nicht so weit fliegen, wie sie sollten." },
+    "physics": { "en": "Too little club speed at the ball or energy lost through poor strike and spin.", "de": "Zu wenig Schlägertempo am Ball oder Energieverlust durch schlechten Treffer und Spin." },
+    "causes": [
+      { "faultId": "casting", "measurable": true, "text": { "en": "Casting – speed released before the ball", "de": "Casting – Tempo vor dem Ball verbraucht" } },
+      { "faultId": "short_shoulder_turn", "measurable": true, "text": { "en": "Too little shoulder turn", "de": "Zu wenig Schulterdrehung" } },
+      { "faultId": "chicken_wing", "measurable": true, "text": { "en": "Chicken wing", "de": "Chicken Wing" } },
+      { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays back", "de": "Gewicht bleibt hinten" } },
+      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Decelerating downswing", "de": "Bremsender Abschwung" } },
+      { "faultId": "flip_at_impact", "measurable": true, "text": { "en": "Flip – too much loft at impact", "de": "Flip – zu viel Loft im Treffmoment" } },
+      { "measurable": false, "text": { "en": "Off-centre strikes on the face; equipment (loft, shaft)", "de": "Treffer außerhalb der Mitte; Ausrüstung (Loft, Schaft)" } }
+    ]
+  }
+]

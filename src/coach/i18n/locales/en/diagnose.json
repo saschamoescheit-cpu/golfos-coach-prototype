@@ -1,0 +1,25 @@
+{
+  "title": "My miss",
+  "intro": "What does your ball do most often? We look for the cause in your recorded swings.",
+  "group": {
+    "direction": "Direction & curve",
+    "contact": "Contact",
+    "height": "Height",
+    "short_game": "Short game",
+    "putting": "Putting"
+  },
+  "change": "Choose another miss",
+  "causesTitle": "Likely causes in your swing",
+  "noData": "Analyse at least {n} swings for a personal ranking. Until then, these are the typical causes:",
+  "basedOn": "Based on {n} analysed swings.",
+  "frequency": "In {d} of {c} swings",
+  "notFound": "Not found in your swings",
+  "notChecked": "Not checked yet – film {view}",
+  "showCorrection": "Show correction",
+  "hideCorrection": "Hide correction",
+  "train": "Train this",
+  "noneOccurring": "None of the measurable causes showed up in your swings. Check the causes below that the camera cannot see.",
+  "unmeasurableTitle": "Causes the camera can't see",
+  "unmeasurableIntro": "Grip, clubface, alignment, equipment and the mind – check these yourself or with your pro:",
+  "physics": "Why the ball does this"
+}

@@ -1,0 +1,15 @@
+{
+  "play": "Play",
+  "pause": "Pause",
+  "prevFrame": "One frame back",
+  "nextFrame": "One frame forward",
+  "speed": "Speed",
+  "frame": "Frame",
+  "time": "{s} s",
+  "skeleton": "Body lines",
+  "neutralLine": "Club line",
+  "resetLine": "Back to the app's line",
+  "dragHint": "Drag the blue line or its round handles if it is not on your club at address. This only changes the picture, not the analysis.",
+  "clubEstimated": "Dashed club = estimated from your hands (club not clearly visible).",
+  "noVideo": "No video saved – body lines only"
+}

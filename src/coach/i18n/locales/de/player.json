@@ -1,0 +1,15 @@
+{
+  "play": "Abspielen",
+  "pause": "Pause",
+  "prevFrame": "Ein Bild zurück",
+  "nextFrame": "Ein Bild vor",
+  "speed": "Tempo",
+  "frame": "Bild",
+  "time": "{s} s",
+  "skeleton": "Körperlinien",
+  "neutralLine": "Schlägerlinie",
+  "resetLine": "Linie der App wiederherstellen",
+  "dragHint": "Liegt die blaue Linie beim Ansprechen nicht auf deinem Schläger, zieh sie oder ihre runden Griffe mit dem Finger. Das ändert nur das Bild, nicht die Analyse.",
+  "clubEstimated": "Gestrichelter Schläger = aus deinen Händen geschätzt (Schläger nicht gut sichtbar).",
+  "noVideo": "Kein Video gespeichert – nur Körperlinien"
+}

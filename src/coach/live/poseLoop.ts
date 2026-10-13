@@ -10,6 +10,10 @@ import type { PoseProvider } from '../pose/PoseProvider';
 export interface LiveFrame {
   raw: PoseFrame;
   canonical: PoseFrame;
+  /** (additive) number of people the provider saw (MediaPipe provider only; undefined otherwise) */
+  people?: number;
+  /** (additive) performance.now() when the frame was processed (to align with MediaRecorder) */
+  wallMs?: number;
 }
 
 export function startPoseLoop(
@@ -25,11 +29,12 @@ export function startPoseLoop(
   const step = () => {
     if (stopped) return;
     if (video.readyState >= 2) {
-      const t = performance.now() - t0;
+      const now = performance.now();
+      const t = now - t0;
       try {
-        const d = provider.detect(video, t);
+        const d = provider.detect(video, t) as ReturnType<PoseProvider['detect']> & { people?: number };
         const raw: PoseFrame = { t, lm: d.lm, world: d.world };
-        onFrame({ raw, canonical: handedness === 'left' ? mirrorFrame(raw) : raw });
+        onFrame({ raw, canonical: handedness === 'left' ? mirrorFrame(raw) : raw, people: d.people, wallMs: now });
       } catch {
         // a single failed frame is not fatal
       }
