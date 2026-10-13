@@ -50,7 +50,7 @@ describe('training targets', () => {
     expect(t.view).toBe('down_the_line'); // over the top is only measurable DTL
     expect(t.shotType).toBe('driver');
     expect(t.position).toBe('downswing9');
-    expect(t.criteria).toEqual([{ metric: 'hand_path_shift', at: 'downswing9', target: -4, tolerance: 6, unit: 'pct_torso' }]);
+    expect(t.criteria).toEqual([{ metric: 'hand_path_shift', at: 'downswing9', target: 0, tolerance: 6, unit: 'pct_torso' }]);
     expect(supportsMirror(t)).toBe(true);
   });
 

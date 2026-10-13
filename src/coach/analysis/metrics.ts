@@ -467,6 +467,19 @@ export function computeMetrics(
       c = interpClub(club, x) ?? c;
       if (k.position === 'impact') F = interpLandmarks(seq, x) ?? F;
     }
+    // Down-the-line at 9 o'clock the shaft points almost into the camera and is too short in the picture for a few
+    // frames. The plane offset hardly changes within ±50 ms (the shaft turns IN its plane), so use the nearest frame
+    // where the shaft was found in the image, with a little less confidence (lead decision L5).
+    if ((!c || c.source === 'hands') && (k.position === 'backswing9' || k.position === 'downswing9' || k.position === 'top')) {
+      const win = Math.max(1, Math.round(0.05 * fps));
+      for (let d = 1; d <= win; d++) {
+        const near = [club[k.frameIndex - d], club[k.frameIndex + d]].find((x) => x && x.source !== 'hands' && x.confidence >= 0.45);
+        if (near) {
+          c = { ...near, confidence: near.confidence * (1 - 0.05 * d) };
+          break;
+        }
+      }
+    }
     values.push(...positionMetrics(F, k.position, ref, c, ctx, kfFactor(k) * (s.widened ? 0.8 : 1)));
   }
 
