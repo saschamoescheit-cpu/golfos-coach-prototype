@@ -29,6 +29,11 @@ export interface ClubFrameInput {
   prev?: ClubEstimate | null;
   view: CameraView;
   shotType: ShotType;
+  /**
+   * Additive (club agent): shaft angle (deg, pixel space) the tracker expects in this frame, e.g. the previous angle
+   * plus the angular velocity of the last frames. Soft prior next to `prev`; providers may ignore it.
+   */
+  predictedAngleDeg?: number;
 }
 
 export interface ClubProvider {
