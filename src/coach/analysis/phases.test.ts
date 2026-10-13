@@ -18,7 +18,7 @@ function tolMs(pos: KeyPosition, view: CameraView, shot: ShotType): number {
     case 'address':
       return view === 'face_on' ? 70 : depth ? 140 : 105;
     case 'finish':
-      return 70;
+      return depth ? 160 : shot === 'putt' || shot === 'chip' ? 105 : 70;
     default:
       return 50; // 9 o'clock
   }
