@@ -1,0 +1,79 @@
+{
+  "title": "Schwung aufnehmen",
+  "shotType": "Was schlägst du?",
+  "view": "Wo steht das Handy?",
+  "puttFaceOn": "Putts bitte von vorne filmen (Face-on): Von hinten bewegt sich der Putter auf die Kamera zu, der Schlag lässt sich dann nicht messen.",
+  "viewHint": {
+    "face_on": "Vor dir",
+    "down_the_line": "Hinter dir, Blick zum Ziel"
+  },
+  "hand": "Du spielst",
+  "guideTitle": "So stellst du das Handy auf",
+  "guide": {
+    "common": {
+      "upright": "Handy hochkant auf ein Stativ oder an die Tasche gelehnt – nicht in der Hand.",
+      "height": "Kamera auf Hüfthöhe.",
+      "distance": "Etwa 3–4 m Abstand (4–5 große Schritte).",
+      "whole": "Dein ganzer Körper muss im Bild sein – und oben im Schwung auch der Schläger über dem Kopf."
+    },
+    "face_on": "Stell dich mit dem Gesicht zum Handy, das Handy gegenüber deiner Brust.",
+    "down_the_line": "Handy hinter deinen Händen, auf einer Linie parallel zu deiner Ziellinie. Du stehst links im Bild."
+  },
+  "startCamera": "Kamera starten",
+  "upload": "Video hochladen",
+  "uploadSub": "Aus deinen Fotos – auch Zeitlupe",
+  "noCamera": "Die Kamera geht nur über eine sichere Verbindung (https) oder ist gesperrt. Du kannst trotzdem ein Video hochladen.",
+  "auto": "Automatisch aufnehmen",
+  "autoOn": "✓ Automatisch an",
+  "autoOff": "✕ Automatisch aus",
+  "practiceIgnore": "✓ Probeschwünge überspringen",
+  "practiceKeep": "✕ Probeschwünge behalten",
+  "record": "Aufnahme",
+  "stop": "Stopp",
+  "switchCamera": "Kamera wechseln",
+  "close": "Schließen",
+  "status": {
+    "starting": "Kamera startet…",
+    "loadingModel": "Körpererkennung lädt…",
+    "lookingForPlayer": "Stell dich ins Bild",
+    "playerDetected": "Spieler erkannt – geh in die Ansprechposition",
+    "ready": "Bereit für den Schwung",
+    "readyFull": "Spieler erkannt · Bereit für den Schwung",
+    "swinging": "Schwung erkannt…",
+    "recording": "Aufnahme läuft",
+    "manual": "Aufnahme läuft – zum Beenden Stopp tippen",
+    "practiceSkipped": "Probeschwung übersprungen",
+    "analyseAnyway": "Trotzdem analysieren"
+  },
+  "issue": {
+    "no_person": "Niemand im Bild",
+    "multiple_people": "Mehrere Personen im Bild – bitte nur du",
+    "body_cut_off": "Kopf oder Füße nicht im Bild – geh weiter weg oder richte das Handy tiefer",
+    "too_far": "Du bist zu klein im Bild – komm näher",
+    "no_headroom": "Lass über dem Kopf Platz für den Schläger",
+    "camera_tilted": "Handy schief – bitte gerade und hochkant aufstellen"
+  },
+  "analysing": "Dein Schwung wird analysiert…",
+  "stage": {
+    "load": "Video wird geöffnet",
+    "model": "Körpererkennung lädt",
+    "scan": "Schwung im Video wird gesucht",
+    "pose": "Dein Körper wird in jedem Bild gesucht",
+    "analyse": "Messen und prüfen"
+  },
+  "cancel": "Abbrechen",
+  "slowmo": {
+    "title": "Zeitlupen-Video?",
+    "text": "Dieser Schwung wirkt etwa {f}-mal langsamer als ein echter Schwung. Wurde er in Zeitlupe gefilmt?",
+    "yes": "Ja, Zeitlupe",
+    "no": "Nein, normales Tempo"
+  },
+  "error": {
+    "load_failed": "Dieses Video lässt sich nicht öffnen. Versuch ein anderes (MP4 oder MOV).",
+    "no_frames": "Aus diesem Video konnten keine Bilder gelesen werden.",
+    "camera": "Die Kamera ließ sich nicht starten. Erlaube den Kamerazugriff in den Einstellungen oder lade ein Video hoch.",
+    "generic": "Etwas ist schiefgegangen: {msg}",
+    "noRecorder": "Dieser Browser kann kein Video aufnehmen. Bitte lade ein Video hoch."
+  },
+  "tryAgain": "Nochmal versuchen"
+}

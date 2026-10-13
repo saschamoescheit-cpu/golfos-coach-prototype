@@ -1,0 +1,2009 @@
+[
+  {
+    "id": "early_extension",
+    "name": {
+      "en": "Early extension (standing up)",
+      "de": "Aufrichten im Abschwung (Early Extension)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "hip_depth_change",
+        "at": "impact",
+        "op": ">",
+        "threshold": 8,
+        "fullSeverityAt": 12,
+        "review": "REVIEW(golf): hips move ≥ 8 % torso (≈ 4 cm) towards the ball by impact. Sportsbox/TPI treat any forward hip thrust as early extension; 4 cm leaves room for 2D noise. Full severity at 20 % (≈ 10 cm)."
+      },
+      {
+        "metric": "spine_angle_change",
+        "at": "impact",
+        "op": "<",
+        "threshold": -6,
+        "fullSeverityAt": 9,
+        "review": "REVIEW(golf): forward bend lost by more than 6° at impact (Swing-Score concept: hold spine angle, T = 5°). Full severity at −15°."
+      }
+    ],
+    "marker": "impact",
+    "importance": 5,
+    "ballFlights": [
+      "top",
+      "thin",
+      "shank",
+      "toe_heel",
+      "push",
+      "hook",
+      "skull",
+      "inconsistent_contact"
+    ],
+    "ballEffect": {
+      "en": "Your hips push towards the ball, so the club has no room: thin, topped and heel or shank strikes, and the face flips to rescue it.",
+      "de": "Dein Becken schiebt Richtung Ball, der Schläger hat keinen Platz mehr: dünne und getoppte Bälle, Treffer an der Ferse bis zum Shank – und die Hände retten mit Umklappen."
+    },
+    "cause": {
+      "en": "You stand up through the ball instead of turning – often from limited hip mobility or trying to help the ball up.",
+      "de": "Du richtest dich durch den Ball auf, statt zu drehen – oft wegen wenig Hüftbeweglichkeit oder weil du den Ball hochhelfen willst."
+    },
+    "correction": {
+      "en": "Keep your backside back on the line it had at address and turn your belt buckle to the target while staying bent over.",
+      "de": "Lass dein Gesäß auf der Linie vom Ansprechen und dreh die Gürtelschnalle zum Ziel, während du die Vorneigung hältst."
+    },
+    "benefit": {
+      "en": "The club keeps its path and bottoms out in the same place – more solid, centred strikes and far fewer thin shots.",
+      "de": "Der Schläger behält seine Bahn und den gleichen tiefsten Punkt – sattere Treffer in der Mitte und viel weniger dünne Bälle."
+    },
+    "drillIds": [
+      "wall_butt",
+      "stick_behind_hips"
+    ],
+    "trainingTarget": {
+      "metric": "hip_depth_change",
+      "at": "impact",
+      "target": 0,
+      "tolerance": 6
+    }
+  },
+  {
+    "id": "head_sway",
+    "name": {
+      "en": "Head moves sideways",
+      "de": "Kopf bewegt sich seitlich"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch",
+      "bunker"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "head_shift_x",
+        "at": "top",
+        "op": "<",
+        "threshold": -25,
+        "fullSeverityAt": 15,
+        "review": "REVIEW(golf): head moving away from the target at the top by more than 25 % of the torso (~13 cm). Calibrated on the synthetic swing (ideal −17 … −19 %, sway knob −33 %, see decisions/phases-metrics.md PM4); some head movement away from the target is normal. Check with real swings."
+      },
+      {
+        "metric": "head_shift_x",
+        "at": "impact",
+        "op": ">",
+        "threshold": 10,
+        "fullSeverityAt": 15,
+        "review": "REVIEW(golf): head ahead of its address position by > 10 % torso (≈ 5 cm) at impact = upper body gets in front of the ball. Tour heads stay at or behind address at impact. Full at 25 %."
+      }
+    ],
+    "marker": "top",
+    "importance": 3,
+    "ballFlights": [
+      "fat",
+      "thin",
+      "top",
+      "skyball",
+      "inconsistent_contact"
+    ],
+    "ballEffect": {
+      "en": "Your swing centre moves, so the low point moves too: one shot fat, the next one thin.",
+      "de": "Dein Schwungzentrum wandert, also wandert auch der tiefste Punkt: mal fett, mal dünn."
+    },
+    "cause": {
+      "en": "You slide your upper body away from the target in the backswing (or towards it in the downswing) instead of turning around your spine.",
+      "de": "Du schiebst den Oberkörper im Rückschwung vom Ziel weg (oder im Abschwung hin), statt dich um die Wirbelsäule zu drehen."
+    },
+    "correction": {
+      "en": "Turn your chest around a steady head – the head may turn a little, but stays roughly over the ball until after impact.",
+      "de": "Dreh die Brust um einen ruhigen Kopf – er darf sich etwas mitdrehen, bleibt aber bis nach dem Treffmoment ungefähr über dem Ball."
+    },
+    "benefit": {
+      "en": "A steady centre means the club comes back to the same spot every time – crisper contact and more consistent distances.",
+      "de": "Ein ruhiges Zentrum bringt den Schläger jedes Mal an dieselbe Stelle zurück – sauberere Treffer und gleichmäßigere Längen."
+    },
+    "drillIds": [
+      "head_shadow",
+      "eyes_on_spot"
+    ],
+    "trainingTarget": {
+      "metric": "head_shift_x",
+      "at": "top",
+      "target": -10,
+      "tolerance": 12
+    }
+  },
+  {
+    "id": "head_lift",
+    "name": {
+      "en": "Head lifts before impact",
+      "de": "Kopf hebt sich vor dem Treffmoment"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch",
+      "chip",
+      "bunker"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "head_shift_y",
+        "at": "impact",
+        "op": ">",
+        "threshold": 8,
+        "fullSeverityAt": 12,
+        "review": "REVIEW(golf): head ≥ 8 % torso (≈ 4 cm) higher at impact than at address. Source: 'Kopf und Blick heben zu früh ab' (top, thin, whiff). Full at 20 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 3,
+    "ballFlights": [
+      "top",
+      "thin",
+      "whiff",
+      "skull",
+      "skyball"
+    ],
+    "ballEffect": {
+      "en": "The whole swing arc rises, so the club catches the top half of the ball: topped and thin shots.",
+      "de": "Der ganze Schwungbogen steigt mit, der Schläger erwischt die obere Ballhälfte: getoppte und dünne Bälle."
+    },
+    "cause": {
+      "en": "You look up to see where the ball goes before you have hit it.",
+      "de": "Du schaust nach dem Ball, bevor du ihn getroffen hast."
+    },
+    "correction": {
+      "en": "Keep your eyes on the back of the ball until it is gone; let the turn of your body pull your head up after impact.",
+      "de": "Lass den Blick auf der Rückseite des Balls, bis er weg ist; die Drehung des Körpers nimmt den Kopf erst nach dem Treffmoment mit."
+    },
+    "benefit": {
+      "en": "The club reaches the bottom of the ball every time – no more embarrassing tops, more height and distance.",
+      "de": "Der Schläger kommt zuverlässig unten am Ball an – keine peinlichen Toppers mehr, mehr Höhe und Länge."
+    },
+    "drillIds": [
+      "eyes_on_spot",
+      "head_shadow"
+    ],
+    "trainingTarget": {
+      "metric": "head_shift_y",
+      "at": "impact",
+      "target": 0,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "head_dip",
+    "name": {
+      "en": "Head drops in the downswing",
+      "de": "Kopf sackt im Abschwung ab"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch",
+      "chip",
+      "bunker"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "head_shift_y",
+        "at": "impact",
+        "op": "<",
+        "threshold": -8,
+        "fullSeverityAt": 12,
+        "review": "REVIEW(golf): head ≥ 8 % torso (≈ 4 cm) lower at impact than at address. Source: 'Körper sackt im Abschwung ab, Knie beugen sich stärker' and 'Kopf bewegt sich nach unten' (fat, chili dip). Full at 20 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 3,
+    "ballFlights": [
+      "fat",
+      "chili_dip",
+      "bunker_fat",
+      "toe_heel"
+    ],
+    "ballEffect": {
+      "en": "Your swing arc gets lower, so the club digs into the ground before the ball: fat shots.",
+      "de": "Dein Schwungbogen wird tiefer, der Schläger gräbt vor dem Ball in den Boden: fette Schläge."
+    },
+    "cause": {
+      "en": "You squat into the downswing or try to hit down hard, and the knees and upper body sink.",
+      "de": "Du gehst im Abschwung in die Knie oder willst hart nach unten schlagen – Knie und Oberkörper sacken ab."
+    },
+    "correction": {
+      "en": "Keep the height you had at address: your head stays at the same level until after impact while you turn through.",
+      "de": "Behalte die Höhe vom Ansprechen: der Kopf bleibt bis nach dem Treffmoment auf gleicher Höhe, während du durchdrehst."
+    },
+    "benefit": {
+      "en": "Ball first, then turf – crisp contact and no more shots that die in front of you.",
+      "de": "Erst der Ball, dann der Rasen – satter Kontakt und keine Bälle mehr, die nach ein paar Metern liegen bleiben."
+    },
+    "drillIds": [
+      "head_shadow",
+      "towel_behind_ball"
+    ],
+    "trainingTarget": {
+      "metric": "head_shift_y",
+      "at": "impact",
+      "target": 0,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "hip_sway",
+    "name": {
+      "en": "Hip sway in the backswing",
+      "de": "Hüft-Sway im Rückschwung"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch",
+      "bunker"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "hip_shift_x",
+        "at": "top",
+        "op": "<",
+        "threshold": -12,
+        "fullSeverityAt": 18,
+        "review": "REVIEW(golf): hip centre slides > 12 % torso (≈ 6 cm) away from the target at the top. Swing-Score concept: sway target 0 cm, T = 4 cm (≈ 8 %); the fault fires at 1.5 T to avoid noise. Full at 30 %."
+      }
+    ],
+    "marker": "top",
+    "importance": 4,
+    "ballFlights": [
+      "fat",
+      "thin",
+      "push",
+      "skyball",
+      "inconsistent_contact"
+    ],
+    "ballEffect": {
+      "en": "You have to slide back to the ball in the downswing – if you don't make it, the shot is fat; if you overdo it, it is thin or pushed.",
+      "de": "Im Abschwung musst du zurück zum Ball rutschen – schaffst du es nicht, wird der Schlag fett, übertreibst du, wird er dünn oder geht rechts raus."
+    },
+    "cause": {
+      "en": "Your hips slide sideways away from the target instead of turning; often the trail knee straightens or gives way outwards.",
+      "de": "Dein Becken rutscht seitlich vom Ziel weg, statt sich zu drehen; oft gibt das rechte Knie nach außen nach oder streckt sich."
+    },
+    "correction": {
+      "en": "Turn your trail hip back behind you while the trail knee stays flexed and the pressure stays on the inside of your trail foot.",
+      "de": "Dreh die rechte Hüfte nach hinten, während das rechte Knie gebeugt bleibt und der Druck auf der Innenseite des rechten Fußes."
+    },
+    "benefit": {
+      "en": "You load against your trail leg instead of drifting – more power from the turn and a much more reliable strike.",
+      "de": "Du baust Spannung gegen das rechte Bein auf, statt wegzurutschen – mehr Kraft aus der Drehung und ein viel verlässlicherer Treffer."
+    },
+    "drillIds": [
+      "sway_stick",
+      "sway_stick_ball"
+    ],
+    "trainingTarget": {
+      "metric": "hip_shift_x",
+      "at": "top",
+      "target": 0,
+      "tolerance": 8
+    }
+  },
+  {
+    "id": "reverse_pivot",
+    "name": {
+      "en": "Reverse pivot",
+      "de": "Reverse Pivot (Gewicht falsch herum)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "side_bend",
+        "at": "top",
+        "op": "<",
+        "threshold": -3,
+        "fullSeverityAt": 12,
+        "review": "REVIEW(golf): upper body leans towards the target at the top (side_bend is + away from the target per types.ts, so < −3° = leaning towards the target). Source: 'Oberkörper zum Ziel geneigt im Top'. Full at −15°. Sign convention must match metrics.ts (synth uses the opposite sign – see decisions)."
+      },
+      {
+        "metric": "hip_shift_x",
+        "at": "top",
+        "op": ">",
+        "threshold": 8,
+        "fullSeverityAt": 12,
+        "review": "REVIEW(golf): hips move > 8 % torso (≈ 4 cm) towards the target during the backswing = weight goes to the lead side at the top. Full at 20 %."
+      }
+    ],
+    "marker": "top",
+    "importance": 4,
+    "ballFlights": [
+      "fat",
+      "skyball",
+      "slice",
+      "pull",
+      "loss_of_distance"
+    ],
+    "ballEffect": {
+      "en": "Your weight goes the wrong way: forward in the backswing, back in the downswing – weak, high slices, pop-ups and fat shots.",
+      "de": "Dein Gewicht geht falsch herum: im Rückschwung nach vorne, im Abschwung nach hinten – schwache, hohe Slices, Skyballs und fette Schläge."
+    },
+    "cause": {
+      "en": "You tilt your upper body towards the target at the top instead of turning behind the ball.",
+      "de": "Du neigst den Oberkörper im Top zum Ziel, statt dich hinter den Ball zu drehen."
+    },
+    "correction": {
+      "en": "Turn behind the ball: at the top your back faces the target and your upper body tilts slightly away from the target, not towards it.",
+      "de": "Im Top zeigt dein Rücken zum Ziel und der Oberkörper ist leicht vom Ziel weg geneigt – nicht zum Ziel hin."
+    },
+    "benefit": {
+      "en": "Your weight moves with the swing instead of against it – more distance with less effort and a strike that goes forwards, not up.",
+      "de": "Dein Gewicht arbeitet mit dem Schwung statt dagegen – mehr Länge mit weniger Kraft und ein Treffer, der nach vorne geht statt nach oben."
+    },
+    "drillIds": [
+      "tilt_check",
+      "step_through"
+    ],
+    "trainingTarget": {
+      "metric": "side_bend",
+      "at": "top",
+      "target": 5,
+      "tolerance": 6
+    }
+  },
+  {
+    "id": "weight_back",
+    "name": {
+      "en": "Weight stays back",
+      "de": "Gewicht bleibt hinten"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "bunker"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "hip_shift_x",
+        "at": "impact",
+        "op": "<",
+        "threshold": 3,
+        "fullSeverityAt": 13,
+        "review": "REVIEW(golf): hip centre less than 3 % torso (≈ 1.5 cm) towards the target at impact. A good weight shift moves the hips ~5–8 cm (≈ 10–15 %) towards the target. Source: 'Gewicht bleibt auf dem rechten Bein' (fat, thin, slice, push). Bunker: same threshold, needs a check by Chris. Full at −10 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 4,
+    "ballFlights": [
+      "fat",
+      "thin",
+      "push_slice",
+      "ballooning",
+      "scoop",
+      "bunker_fat",
+      "loss_of_distance"
+    ],
+    "ballEffect": {
+      "en": "The low point of your swing stays behind the ball: fat or thin, high and weak shots.",
+      "de": "Der tiefste Punkt deines Schwungs bleibt hinter dem Ball: fett oder dünn, hohe und kraftlose Bälle."
+    },
+    "cause": {
+      "en": "Your weight stays on the trail foot – often because you try to lift the ball into the air.",
+      "de": "Dein Gewicht bleibt auf dem rechten Fuß – oft, weil du den Ball in die Luft heben willst."
+    },
+    "correction": {
+      "en": "Start the downswing by shifting pressure into your lead foot, then turn; finish with almost all weight on the lead foot and the trail heel up.",
+      "de": "Beginne den Abschwung mit Druck auf den linken Fuß, dann drehen; im Finish steht fast dein ganzes Gewicht links, die rechte Ferse ist oben."
+    },
+    "benefit": {
+      "en": "Ball first, then turf: compressed iron shots that fly further and hold their line.",
+      "de": "Erst der Ball, dann der Rasen: komprimierte Eisenschläge, die weiter fliegen und ihre Linie halten."
+    },
+    "drillIds": [
+      "step_through",
+      "towel_behind_ball"
+    ],
+    "trainingTarget": {
+      "metric": "hip_shift_x",
+      "at": "impact",
+      "target": 12,
+      "tolerance": 6
+    }
+  },
+  {
+    "id": "over_the_top",
+    "name": {
+      "en": "Over the top",
+      "de": "Over the Top (Abschwung von außen)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "hand_path_shift",
+        "at": "downswing9",
+        "op": ">",
+        "threshold": 8,
+        "fullSeverityAt": 17,
+        "review": "REVIEW(golf): hands are > 8 % torso (≈ 4 cm) further from the body at 9 o'clock down than at 9 o'clock back. Good players drop the hands inside the backswing path (negative value). Source: 'Over the top: Abschwung mit Schultern und Armen eingeleitet'. Full at 25 %."
+      }
+    ],
+    "marker": "downswing9",
+    "importance": 5,
+    "ballFlights": [
+      "slice",
+      "pull",
+      "pull_hook",
+      "skyball",
+      "shank",
+      "ballooning"
+    ],
+    "ballEffect": {
+      "en": "The club comes from outside across the ball: pulls left or slices that curve hard right.",
+      "de": "Der Schläger kommt von außen quer über den Ball: Bälle links raus (Pull) oder Slices mit starker Rechtskurve."
+    },
+    "cause": {
+      "en": "Your shoulders and arms start the downswing and throw the club outwards, instead of the lower body leading.",
+      "de": "Schultern und Arme starten den Abschwung und werfen den Schläger nach außen, statt dass der Unterkörper führt."
+    },
+    "correction": {
+      "en": "Start down with your lower body and let your trail elbow drop towards your hip – the hands come down inside the line they went up.",
+      "de": "Starte den Abschwung mit dem Unterkörper und lass den rechten Ellbogen Richtung Hüfte fallen – die Hände kommen innerhalb ihrer Aufschwung-Linie herunter."
+    },
+    "benefit": {
+      "en": "The club approaches from the inside – the slice turns into a straight shot or a gentle draw, and you gain real distance.",
+      "de": "Der Schläger kommt von innen – aus dem Slice wird ein gerader Ball oder ein leichter Draw, und du gewinnst echte Länge."
+    },
+    "drillIds": [
+      "elbow_drop",
+      "headcover_outside"
+    ],
+    "trainingTarget": {
+      "metric": "hand_path_shift",
+      "at": "downswing9",
+      "target": -4,
+      "tolerance": 6
+    }
+  },
+  {
+    "id": "chicken_wing",
+    "name": {
+      "en": "Chicken wing",
+      "de": "Chicken Wing (linker Ellbogen knickt)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "lead_arm_post_impact",
+        "at": "swing",
+        "op": "<",
+        "threshold": 150,
+        "fullSeverityAt": 30,
+        "review": "REVIEW(golf): lead elbow angle shortly after impact below 150° (180 = straight). In good swings both arms are long after impact (~165–180°); 2D foreshortening costs ~10°. Full at 120°."
+      }
+    ],
+    "marker": "impact",
+    "importance": 3,
+    "ballFlights": [
+      "slice",
+      "push_slice",
+      "thin",
+      "fat",
+      "loss_of_distance"
+    ],
+    "ballEffect": {
+      "en": "The lead arm folds and the face stays open: weak slices, thin shots and lost distance.",
+      "de": "Der linke Arm knickt ein und die Schlagfläche bleibt offen: schwache Slices, dünne Bälle und weniger Länge."
+    },
+    "cause": {
+      "en": "Your body stops turning through the ball, so the arms have nowhere to go and the lead elbow bends away.",
+      "de": "Dein Körper hört im Treffmoment auf zu drehen, die Arme haben keinen Platz mehr und der linke Ellbogen knickt weg."
+    },
+    "correction": {
+      "en": "Keep turning your chest to the target and let both arms extend long after the ball, the forearms rotating over.",
+      "de": "Dreh die Brust weiter zum Ziel und lass beide Arme nach dem Ball lang werden, die Unterarme drehen über."
+    },
+    "benefit": {
+      "en": "Full extension through the ball – the face squares up, the slice weakens and you get the distance you deserve.",
+      "de": "Volle Streckung durch den Ball – die Schlagfläche schließt sich, der Slice wird schwächer und du bekommst die Länge, die du verdienst."
+    },
+    "drillIds": [
+      "towel_armpits",
+      "long_arms_finish"
+    ],
+    "trainingTarget": {
+      "metric": "lead_arm_post_impact",
+      "at": "swing",
+      "target": 170,
+      "tolerance": 12
+    }
+  },
+  {
+    "id": "short_shoulder_turn",
+    "name": {
+      "en": "Too little shoulder turn",
+      "de": "Zu wenig Schulterdrehung"
+    },
+    "shotTypes": [
+      "driver",
+      "iron"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "shoulder_turn",
+        "at": "top",
+        "op": "<",
+        "threshold": 50,
+        "fullSeverityAt": 20,
+        "review": "REVIEW(golf): 2D proxy – a real 90° shoulder turn reads ~64° in the image (Ben). < 50° image ≈ < 70° real turn. Swing-Score concept: chest turn ≥ 85° real. Full at 30° image (≈ 45° real)."
+      }
+    ],
+    "marker": "top",
+    "importance": 3,
+    "ballFlights": [
+      "loss_of_distance",
+      "slice",
+      "pull"
+    ],
+    "ballEffect": {
+      "en": "Without a full turn the arms do all the work: less speed and a tendency to swing across the ball.",
+      "de": "Ohne volle Drehung machen die Arme die ganze Arbeit: weniger Tempo und die Neigung, quer über den Ball zu schwingen."
+    },
+    "cause": {
+      "en": "You lift the arms instead of turning the chest – often from tight hips or upper back, or from rushing the backswing.",
+      "de": "Du hebst die Arme, statt die Brust zu drehen – oft wegen fester Hüfte oder Brustwirbelsäule, oder weil der Rückschwung zu eilig ist."
+    },
+    "correction": {
+      "en": "Turn your back to the target until your lead shoulder is under your chin; let the lead heel come up slightly if you need more turn.",
+      "de": "Dreh den Rücken zum Ziel, bis die linke Schulter unter dem Kinn ist; wenn nötig, darf die linke Ferse leicht abheben."
+    },
+    "benefit": {
+      "en": "A full turn stores energy like a spring – more clubhead speed and distance without swinging harder.",
+      "de": "Eine volle Drehung speichert Energie wie eine Feder – mehr Schlägerkopftempo und Länge, ohne härter zu schlagen."
+    },
+    "drillIds": [
+      "cross_arms_turn",
+      "back_to_target"
+    ],
+    "trainingTarget": {
+      "metric": "shoulder_turn",
+      "at": "top",
+      "target": 64,
+      "tolerance": 8
+    }
+  },
+  {
+    "id": "casting",
+    "name": {
+      "en": "Casting (early release)",
+      "de": "Casting (Winkel löst sich zu früh)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "lead_wrist_hinge",
+        "at": "downswing9",
+        "op": "<",
+        "threshold": 28,
+        "fullSeverityAt": 15,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): wrist hinge at 9 o'clock down below 28° = angle released early. Face-on only (from behind forearm and shaft are foreshortened, 2D angle 20–95°). Synthetic: ideal 35–45°, casting 17–22° (PM4). Needs the club found in the image."
+      }
+    ],
+    "marker": "downswing9",
+    "importance": 4,
+    "ballFlights": [
+      "fat",
+      "thin",
+      "scoop",
+      "ballooning",
+      "loss_of_distance",
+      "slice"
+    ],
+    "ballEffect": {
+      "en": "The club head overtakes the hands too early: fat and thin shots, high and weak flight, lost distance.",
+      "de": "Der Schlägerkopf überholt die Hände zu früh: fette und dünne Bälle, hoher und schwacher Flug, weniger Länge."
+    },
+    "cause": {
+      "en": "You throw the club from the top with your hands and wrists – usually because the body does not lead the downswing.",
+      "de": "Du wirfst den Schläger mit Händen und Handgelenken aus dem Top – meist, weil der Körper den Abschwung nicht anführt."
+    },
+    "correction": {
+      "en": "Keep the angle between lead arm and shaft until your hands are at hip height; let the body turn pull the club down.",
+      "de": "Halte den Winkel zwischen linkem Arm und Schaft, bis die Hände auf Hüfthöhe sind; die Körperdrehung zieht den Schläger nach unten."
+    },
+    "benefit": {
+      "en": "You release the energy at the ball instead of before it – crisp ball-then-turf contact and noticeably more distance.",
+      "de": "Du gibst die Energie am Ball ab statt davor – satter Ball-dann-Rasen-Kontakt und spürbar mehr Länge."
+    },
+    "drillIds": [
+      "lag_pump",
+      "half_swing_lag"
+    ],
+    "trainingTarget": {
+      "metric": "lead_wrist_hinge",
+      "at": "downswing9",
+      "target": 40,
+      "tolerance": 10
+    }
+  },
+  {
+    "id": "tempo_fast",
+    "name": {
+      "en": "Rushed backswing (tempo too fast)",
+      "de": "Hastiger Aufschwung (Tempo zu schnell)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "bunker"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "tempo_ratio",
+        "at": "swing",
+        "op": "<",
+        "threshold": 2.4,
+        "fullSeverityAt": 0.6,
+        "review": "REVIEW(golf): backswing:downswing below 2.4 : 1. Tour tempo ≈ 3 : 1 (Swing-Score concept, T = 0.3 → 2.4 = edge of yellow/red). Full at 1.8 : 1."
+      }
+    ],
+    "marker": "top",
+    "importance": 3,
+    "ballFlights": [
+      "inconsistent_contact",
+      "pull",
+      "slice",
+      "skyball",
+      "loss_of_distance"
+    ],
+    "ballEffect": {
+      "en": "A rushed backswing leaves no time to set the club: the transition gets jerky and the arms take over.",
+      "de": "Ein hastiger Aufschwung lässt keine Zeit, den Schläger zu setzen: der Übergang wird ruckartig und die Arme übernehmen."
+    },
+    "cause": {
+      "en": "You snatch the club back quickly, often from tension or wanting to hit hard.",
+      "de": "Du reißt den Schläger schnell nach hinten, oft aus Anspannung oder weil du hart schlagen willst."
+    },
+    "correction": {
+      "en": "Take the club back smoothly – about three counts back, one count down (\"one-two-three – hit\").",
+      "de": "Nimm den Schläger ruhig zurück – etwa drei Zählzeiten hoch, eine runter („eins-zwei-drei – Schlag“)."
+    },
+    "benefit": {
+      "en": "A calm backswing gives your body time to load – more consistent contact and speed exactly where it counts, at the ball.",
+      "de": "Ein ruhiger Aufschwung gibt deinem Körper Zeit, Spannung aufzubauen – konstantere Treffer und Tempo genau dort, wo es zählt: am Ball."
+    },
+    "drillIds": [
+      "count_tempo",
+      "tempo_ladder"
+    ],
+    "trainingTarget": {
+      "metric": "tempo_ratio",
+      "at": "swing",
+      "target": 3,
+      "tolerance": 0.3
+    }
+  },
+  {
+    "id": "tempo_slow",
+    "name": {
+      "en": "Slow downswing (tempo too slow)",
+      "de": "Zu langsamer Abschwung (Tempo zu träge)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "bunker"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "tempo_ratio",
+        "at": "swing",
+        "op": ">",
+        "threshold": 3.6,
+        "fullSeverityAt": 0.9,
+        "review": "REVIEW(golf): backswing:downswing above 3.6 : 1 = downswing relatively slow / decelerating. Tour ≈ 3 : 1, T = 0.3 → 3.6 = edge of yellow/red. Full at 4.5 : 1."
+      }
+    ],
+    "marker": "impact",
+    "importance": 2,
+    "ballFlights": [
+      "loss_of_distance",
+      "push_slice",
+      "bunker_fat",
+      "fat"
+    ],
+    "ballEffect": {
+      "en": "The club slows down before the ball: short, weak shots that often drift right; in the bunker the ball stays in the sand.",
+      "de": "Der Schläger wird vor dem Ball langsamer: kurze, schwache Bälle, die oft nach rechts abdriften; im Bunker bleibt der Ball im Sand."
+    },
+    "cause": {
+      "en": "You hesitate at the top or ease off in the downswing – often from fear of hitting it too far or too hard.",
+      "de": "Du zögerst im Top oder bremst im Abschwung – oft aus Angst, zu weit oder zu hart zu schlagen."
+    },
+    "correction": {
+      "en": "Let the downswing accelerate all the way to the finish – the fastest point is just after the ball.",
+      "de": "Lass den Abschwung bis ins Finish beschleunigen – der schnellste Punkt liegt kurz nach dem Ball."
+    },
+    "benefit": {
+      "en": "Acceleration through the ball means full distance and a stable clubface – the shots stop dying to the right.",
+      "de": "Beschleunigung durch den Ball heißt volle Länge und eine stabile Schlagfläche – die Bälle hören auf, rechts wegzusterben."
+    },
+    "drillIds": [
+      "count_tempo",
+      "swoosh_drill"
+    ],
+    "trainingTarget": {
+      "metric": "tempo_ratio",
+      "at": "swing",
+      "target": 3,
+      "tolerance": 0.3
+    }
+  },
+  {
+    "id": "shaft_flat_backswing9",
+    "name": {
+      "en": "9 o'clock back: shaft flat",
+      "de": "9 Uhr Aufschwung: Schaft flach"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "shaft_plane_dev",
+        "at": "backswing9",
+        "op": "<",
+        "threshold": -7,
+        "fullSeverityAt": 14,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): shaft more than 7° flat (left of the neutral line) at 9 o'clock back. Swing-Score concept T = 7° (placeholder until Chris measures 10–20 reference swings). Full at 3 T = 21°. Hand-estimated club (confidence ≤ 0.4) is never judged."
+      }
+    ],
+    "marker": "backswing9",
+    "importance": 3,
+    "ballFlights": [
+      "push",
+      "hook",
+      "fat",
+      "push_slice"
+    ],
+    "ballEffect": {
+      "en": "The club goes back too far inside and behind you: pushes, hooks and fat shots when you try to bring it back.",
+      "de": "Der Schläger geht zu weit nach innen hinter dich: Pushes, Hooks und fette Schläge beim Versuch, ihn zurückzubringen."
+    },
+    "cause": {
+      "en": "You roll the forearms and pull the club inside right at the start of the backswing.",
+      "de": "Du rollst gleich zu Beginn des Rückschwungs die Unterarme und ziehst den Schläger nach innen."
+    },
+    "correction": {
+      "en": "Take the club back from flat to neutral: at 9 o'clock the shaft is parallel to your toe line and the club head is in line with or just outside the hands.",
+      "de": "Schaft im Aufschwung von flach zu neutral: bei 9 Uhr liegt der Schaft parallel zur Fußlinie und der Schlägerkopf ist auf Höhe der Hände oder knapp außerhalb."
+    },
+    "benefit": {
+      "en": "A neutral takeaway sets up the whole swing – better low point, more solid contact and fewer two-way misses.",
+      "de": "Ein neutraler Rückschwung legt den ganzen Schwung fest – besserer tiefster Punkt, sattere Treffer und weniger Fehler in beide Richtungen."
+    },
+    "drillIds": [
+      "stick_takeaway",
+      "takeaway_checkpoint"
+    ],
+    "trainingTarget": {
+      "metric": "shaft_plane_dev",
+      "at": "backswing9",
+      "target": 0,
+      "tolerance": 7
+    }
+  },
+  {
+    "id": "shaft_steep_backswing9",
+    "name": {
+      "en": "9 o'clock back: shaft steep",
+      "de": "9 Uhr Aufschwung: Schaft steil"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "shaft_plane_dev",
+        "at": "backswing9",
+        "op": ">",
+        "threshold": 7,
+        "fullSeverityAt": 14,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): shaft more than 7° steep (right of the neutral line) at 9 o'clock back. Swing-Score concept T = 7° (placeholder). Full at 21°. Hand-estimated club is never judged."
+      }
+    ],
+    "marker": "backswing9",
+    "importance": 3,
+    "ballFlights": [
+      "slice",
+      "pull",
+      "fat",
+      "skyball"
+    ],
+    "ballEffect": {
+      "en": "The club goes up too steeply and outside: steep downswing, pulls, slices and deep divots.",
+      "de": "Der Schläger geht zu steil und nach außen hoch: steiler Abschwung, Pulls, Slices und tiefe Divots."
+    },
+    "cause": {
+      "en": "You pick the club up with the hands and arms instead of turning the body away.",
+      "de": "Du hebst den Schläger mit Händen und Armen an, statt den Körper wegzudrehen."
+    },
+    "correction": {
+      "en": "Take the club back from steep to neutral: turn chest and arms together so the shaft is parallel to your toe line at 9 o'clock.",
+      "de": "Schaft im Aufschwung von steil zu neutral: Brust und Arme drehen gemeinsam, sodass der Schaft bei 9 Uhr parallel zur Fußlinie liegt."
+    },
+    "benefit": {
+      "en": "From a neutral backswing the club can drop into the slot – straighter shots and shallower, cleaner divots.",
+      "de": "Aus einem neutralen Aufschwung fällt der Schläger in die richtige Bahn – geradere Bälle und flachere, saubere Divots."
+    },
+    "drillIds": [
+      "stick_takeaway",
+      "takeaway_checkpoint"
+    ],
+    "trainingTarget": {
+      "metric": "shaft_plane_dev",
+      "at": "backswing9",
+      "target": 0,
+      "tolerance": 7
+    }
+  },
+  {
+    "id": "shaft_steep_downswing9",
+    "name": {
+      "en": "9 o'clock down: shaft steep",
+      "de": "9 Uhr Abschwung: Schaft steil"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "shaft_plane_dev",
+        "at": "downswing9",
+        "op": ">",
+        "threshold": 5,
+        "fullSeverityAt": 10,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): shaft more than 5° steep (right of the neutral line) at 9 o'clock down – the most important position (US-1.1). Swing-Score concept T = 5° (placeholder). Full at 15°. Hand-estimated club is never judged."
+      }
+    ],
+    "marker": "downswing9",
+    "importance": 5,
+    "ballFlights": [
+      "slice",
+      "pull",
+      "pull_hook",
+      "skyball",
+      "fat",
+      "shank"
+    ],
+    "ballEffect": {
+      "en": "The club comes down steep from outside: slices, pulls, pop-ups with the driver and deep divots with irons.",
+      "de": "Der Schläger kommt steil von außen: Slices, Pulls, Skyballs mit dem Driver und tiefe Divots mit den Eisen."
+    },
+    "cause": {
+      "en": "The club stays on or above your backswing line in transition, usually because the arms and shoulders start down first.",
+      "de": "Der Schläger bleibt im Übergang auf oder über deiner Aufschwung-Linie, meist weil Arme und Schultern zuerst nach unten starten."
+    },
+    "correction": {
+      "en": "Shaft from steep to neutral in the downswing: let the club drop behind you so that at 9 o'clock it points along your toe line.",
+      "de": "Schaft im Abschwung von steil zu neutral: lass den Schläger hinter dir abfallen, sodass er bei 9 Uhr entlang der Fußlinie zeigt."
+    },
+    "benefit": {
+      "en": "The club attacks from the inside on a shallower path – the slice disappears, contact gets solid and the ball flies longer.",
+      "de": "Der Schläger kommt flacher von innen – der Slice verschwindet, die Treffer werden satt und der Ball fliegt weiter."
+    },
+    "drillIds": [
+      "elbow_drop",
+      "gate_drill"
+    ],
+    "trainingTarget": {
+      "metric": "shaft_plane_dev",
+      "at": "downswing9",
+      "target": 0,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "shaft_flat_downswing9",
+    "name": {
+      "en": "9 o'clock down: shaft flat (stuck)",
+      "de": "9 Uhr Abschwung: Schaft flach (stuck)"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "shaft_plane_dev",
+        "at": "downswing9",
+        "op": "<",
+        "threshold": -5,
+        "fullSeverityAt": 10,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): shaft more than 5° flat (left of the neutral line) at 9 o'clock down = club gets stuck behind the body. Swing-Score concept T = 5° (placeholder). Full at 15°. Hand-estimated club is never judged."
+      }
+    ],
+    "marker": "downswing9",
+    "importance": 4,
+    "ballFlights": [
+      "push",
+      "push_slice",
+      "hook",
+      "duck_hook",
+      "fat"
+    ],
+    "ballEffect": {
+      "en": "The club gets stuck behind you and comes too much from the inside: pushes right – or hooks when the hands flip to save it.",
+      "de": "Der Schläger bleibt hinter dir stecken und kommt zu sehr von innen: Pushes nach rechts – oder Hooks, wenn die Hände ihn retten."
+    },
+    "cause": {
+      "en": "Your hips turn fast while the arms stay passive behind you, so the club drops too far under the plane.",
+      "de": "Deine Hüfte dreht schnell, während die Arme passiv hinter dir bleiben – der Schläger fällt zu weit unter die Ebene."
+    },
+    "correction": {
+      "en": "Shaft from flat to neutral in the downswing: keep the hands in front of your chest as you turn, so the shaft points along your toe line at 9 o'clock.",
+      "de": "Schaft im Abschwung von flach zu neutral: halte die Hände beim Drehen vor der Brust, sodass der Schaft bei 9 Uhr entlang der Fußlinie zeigt."
+    },
+    "benefit": {
+      "en": "Arms and body arrive together – straighter starts, fewer blocks and fewer hooks under pressure.",
+      "de": "Arme und Körper kommen gemeinsam am Ball an – geradere Starts, weniger Blocks und weniger Hooks unter Druck."
+    },
+    "drillIds": [
+      "hands_in_front",
+      "gate_drill"
+    ],
+    "trainingTarget": {
+      "metric": "shaft_plane_dev",
+      "at": "downswing9",
+      "target": 0,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "bent_lead_arm",
+    "name": {
+      "en": "Bent lead arm at the top",
+      "de": "Gebeugter linker Arm im Top"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "lead_arm_angle",
+        "at": "top",
+        "op": "<",
+        "threshold": 150,
+        "fullSeverityAt": 30,
+        "review": "REVIEW(golf): lead elbow angle below 150° at the top (180 = straight). Tour players are ~165–175°; a slight bend is fine, 2D costs some degrees. Full at 120°. Face-on only: from behind the lead arm is foreshortened (pitch read 145° on an ideal swing, PM4)."
+      }
+    ],
+    "marker": "top",
+    "importance": 2,
+    "ballFlights": [
+      "thin",
+      "top",
+      "loss_of_distance",
+      "inconsistent_contact"
+    ],
+    "ballEffect": {
+      "en": "Your swing arc gets shorter and changes from swing to swing: thin shots and lost distance.",
+      "de": "Dein Schwungbogen wird kürzer und ändert sich von Schwung zu Schwung: dünne Bälle und weniger Länge."
+    },
+    "cause": {
+      "en": "You try to make a longer backswing with the arms instead of the turn, and the lead elbow folds.",
+      "de": "Du willst mit den Armen einen längeren Rückschwung machen statt mit der Drehung, und der linke Ellbogen knickt ein."
+    },
+    "correction": {
+      "en": "Keep the lead arm comfortably long and stop the backswing when the turn stops – a shorter, wider top is better.",
+      "de": "Halte den linken Arm angenehm lang und beende den Rückschwung, wenn die Drehung aufhört – lieber kürzer und breiter."
+    },
+    "benefit": {
+      "en": "A wide, constant arc returns the club to the ball the same way every time – more consistent contact.",
+      "de": "Ein breiter, gleichbleibender Bogen bringt den Schläger jedes Mal gleich zum Ball – konstantere Treffer."
+    },
+    "drillIds": [
+      "wide_takeaway",
+      "cross_arms_turn"
+    ],
+    "trainingTarget": {
+      "metric": "lead_arm_angle",
+      "at": "top",
+      "target": 168,
+      "tolerance": 10
+    }
+  },
+  {
+    "id": "flying_elbow",
+    "name": {
+      "en": "Flying trail elbow",
+      "de": "Fliegender rechter Ellbogen"
+    },
+    "shotTypes": [
+      "driver",
+      "iron"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "trail_arm_angle",
+        "at": "top",
+        "op": ">",
+        "threshold": 120,
+        "fullSeverityAt": 30,
+        "minConfidence": 1,
+        "review": "REVIEW(golf): NOT RELIABLY MEASURABLE IN 2D YET – a bent trail arm looks straight from behind (ideal swing reads 157–176°, PM4). minConfidence 1 keeps it in \"not checked reliably\" until a 3D/elbow-direction metric exists."
+      }
+    ],
+    "marker": "top",
+    "importance": 2,
+    "ballFlights": [
+      "slice",
+      "pull",
+      "skyball"
+    ],
+    "ballEffect": {
+      "en": "The club gets steep and outside at the top: a steep downswing with pulls and slices.",
+      "de": "Der Schläger steht im Top steil und außen: steiler Abschwung mit Pulls und Slices."
+    },
+    "cause": {
+      "en": "You lift the club with the trail arm and the elbow moves away from the body.",
+      "de": "Du hebst den Schläger mit dem rechten Arm, und der Ellbogen entfernt sich vom Körper."
+    },
+    "correction": {
+      "en": "Let the trail elbow fold and point roughly at the ground at the top, as if you were carrying a tray.",
+      "de": "Lass den rechten Ellbogen im Top einknicken und ungefähr zum Boden zeigen – wie beim Tragen eines Tabletts."
+    },
+    "benefit": {
+      "en": "A compact top lets the club drop onto the right path by itself – straighter shots with less effort.",
+      "de": "Ein kompaktes Top lässt den Schläger von selbst in die richtige Bahn fallen – geradere Bälle mit weniger Aufwand."
+    },
+    "drillIds": [
+      "towel_armpits",
+      "elbow_drop"
+    ],
+    "trainingTarget": {
+      "metric": "trail_arm_angle",
+      "at": "top",
+      "target": 90,
+      "tolerance": 15
+    }
+  },
+  {
+    "id": "setup_upright",
+    "name": {
+      "en": "Setup too upright",
+      "de": "Ansprechhaltung zu aufrecht"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch",
+      "chip",
+      "bunker"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "spine_angle",
+        "at": "address",
+        "op": "<",
+        "threshold": 24,
+        "fullSeverityAt": 10,
+        "review": "REVIEW(golf): forward bend below 24° at address. Swing-Score concept: ≈ 30°, T = 5° (Tour ≈ 30°; irons tend to be a bit more bent). Full at 14°."
+      },
+      {
+        "metric": "knee_flex",
+        "at": "address",
+        "op": "<",
+        "threshold": 10,
+        "fullSeverityAt": 8,
+        "review": "REVIEW(golf): trail knee bent less than 10° from straight at address (typical ≈ 20–25°). Full at 2° (locked)."
+      }
+    ],
+    "marker": "address",
+    "importance": 2,
+    "ballFlights": [
+      "top",
+      "thin",
+      "skull",
+      "toe_heel"
+    ],
+    "ballEffect": {
+      "en": "Standing too tall means you have to dip to reach the ball – or you don't, and catch it thin.",
+      "de": "Stehst du zu aufrecht, musst du zum Ball abtauchen – oder du kommst nicht hin und triffst ihn dünn."
+    },
+    "cause": {
+      "en": "You bend from the waist too little and keep your legs almost straight.",
+      "de": "Du beugst dich zu wenig aus der Hüfte und lässt die Beine fast gestreckt."
+    },
+    "correction": {
+      "en": "Hinge forward from the hips until your arms hang freely below your shoulders, then flex the knees slightly.",
+      "de": "Kipp aus der Hüfte nach vorne, bis die Arme frei unter den Schultern hängen, dann die Knie leicht beugen."
+    },
+    "benefit": {
+      "en": "A good athletic posture gives your body room to turn – more consistent strikes from the first swing on.",
+      "de": "Eine gute, sportliche Haltung gibt deinem Körper Platz zum Drehen – konstantere Treffer vom ersten Schwung an."
+    },
+    "drillIds": [
+      "posture_routine"
+    ],
+    "trainingTarget": {
+      "metric": "spine_angle",
+      "at": "address",
+      "target": 30,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "setup_crouched",
+    "name": {
+      "en": "Setup too crouched",
+      "de": "Ansprechhaltung zu gebückt"
+    },
+    "shotTypes": [
+      "driver",
+      "iron",
+      "pitch",
+      "chip",
+      "bunker"
+    ],
+    "views": [
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "spine_angle",
+        "at": "address",
+        "op": ">",
+        "threshold": 46,
+        "fullSeverityAt": 10,
+        "review": "REVIEW(golf): forward bend above 46° at address (concept ≈ 30°, T = 5°; irons/wedges more bent, so a wide margin). Full at 56°."
+      },
+      {
+        "metric": "knee_flex",
+        "at": "address",
+        "op": ">",
+        "threshold": 45,
+        "fullSeverityAt": 15,
+        "review": "REVIEW(golf): trail knee bent more than 45° at address – sitting too low (typical ≈ 20–25°). Full at 60°."
+      }
+    ],
+    "marker": "address",
+    "importance": 2,
+    "ballFlights": [
+      "fat",
+      "toe_heel",
+      "chili_dip"
+    ],
+    "ballEffect": {
+      "en": "A crouched setup blocks your turn and makes you stand up in the swing: heel strikes and fat shots.",
+      "de": "Eine gebückte Haltung blockiert die Drehung und lässt dich im Schwung hochkommen: Fersentreffer und fette Schläge."
+    },
+    "cause": {
+      "en": "You bend too much at the waist or sit too deep in the knees.",
+      "de": "Du beugst dich zu stark nach vorne oder sitzt zu tief in den Knien."
+    },
+    "correction": {
+      "en": "Stand a bit taller: hinge from the hips only until your arms hang below your shoulders, knees just softly flexed.",
+      "de": "Steh etwas größer: aus der Hüfte nur so weit kippen, bis die Arme unter den Schultern hängen, Knie nur leicht gebeugt."
+    },
+    "benefit": {
+      "en": "Freedom to turn – a freer swing with more speed and fewer compensations.",
+      "de": "Freiheit zum Drehen – ein freierer Schwung mit mehr Tempo und weniger Ausgleichsbewegungen."
+    },
+    "drillIds": [
+      "posture_routine"
+    ],
+    "trainingTarget": {
+      "metric": "spine_angle",
+      "at": "address",
+      "target": 30,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "flip_at_impact",
+    "name": {
+      "en": "Flip at impact (no shaft lean)",
+      "de": "Flip im Treffmoment (Schaft ohne Vorlage)"
+    },
+    "shotTypes": [
+      "iron"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "shaft_lean",
+        "at": "impact",
+        "op": "<",
+        "threshold": 0,
+        "fullSeverityAt": 12,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): shaft leans backwards (handle behind the club head) at impact with an iron. Good iron players have ~5–10° forward lean. Source: 'Scoop/Flip: Hände hinter dem Schlägerkopf'. Needs the club; at 30–60 fps impact is blurred → often uncertain. Full at −12°."
+      },
+      {
+        "metric": "hands_ahead",
+        "at": "impact",
+        "op": "<",
+        "threshold": -3,
+        "fullSeverityAt": 10,
+        "review": "REVIEW(golf): hands more than 3 % torso behind the ball/club head along the target line at impact. Full at −13 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 4,
+    "ballFlights": [
+      "scoop",
+      "fat",
+      "thin",
+      "ballooning",
+      "loss_of_distance",
+      "duck_hook"
+    ],
+    "ballEffect": {
+      "en": "The club head passes your hands before the ball: high, weak shots and fat or thin contact.",
+      "de": "Der Schlägerkopf überholt deine Hände vor dem Ball: hohe, schwache Bälle und fette oder dünne Treffer."
+    },
+    "cause": {
+      "en": "You try to lift the ball into the air with your wrists instead of letting the loft do it.",
+      "de": "Du willst den Ball mit den Handgelenken in die Luft heben, statt das dem Loft zu überlassen."
+    },
+    "correction": {
+      "en": "At impact your hands are slightly ahead of the ball and the lead wrist is flat – hit down, the loft sends the ball up.",
+      "de": "Im Treffmoment sind deine Hände leicht vor dem Ball und das linke Handgelenk ist flach – schlag nach unten, der Loft bringt den Ball nach oben."
+    },
+    "benefit": {
+      "en": "Real compression: the ball flies further, flatter and with spin you can stop on the green.",
+      "de": "Echte Kompression: der Ball fliegt weiter, flacher und mit Spin, der ihn auf dem Grün stoppt."
+    },
+    "drillIds": [
+      "impact_hold",
+      "towel_behind_ball"
+    ],
+    "trainingTarget": {
+      "metric": "shaft_lean",
+      "at": "impact",
+      "target": 6,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "chip_weight_back",
+    "name": {
+      "en": "Chip: weight on the back foot",
+      "de": "Chip: Gewicht auf dem hinteren Fuß"
+    },
+    "shotTypes": [
+      "chip"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "hip_shift_x",
+        "at": "impact",
+        "op": "<",
+        "threshold": -3,
+        "fullSeverityAt": 9,
+        "review": "REVIEW(golf): hips more than 3 % torso (≈ 1.5 cm) away from the target at impact. In a chip the weight stays on the lead side (~60–70 %) throughout. Source Chili Dip: 'Gewicht hinten'. Full at −12 %."
+      },
+      {
+        "metric": "hip_shift_x",
+        "at": "top",
+        "op": "<",
+        "threshold": -6,
+        "fullSeverityAt": 9,
+        "review": "REVIEW(golf): hips slide more than 6 % torso (≈ 3 cm) away from the target in the chip backswing. Full at −15 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 4,
+    "ballFlights": [
+      "chili_dip",
+      "skull",
+      "scoop"
+    ],
+    "ballEffect": {
+      "en": "The low point moves behind the ball: the club hits the ground first (chili dip) or bounces into the ball's equator (skull).",
+      "de": "Der tiefste Punkt wandert hinter den Ball: der Schläger trifft erst den Boden (Chili Dip) oder springt in den Ball (Skull)."
+    },
+    "cause": {
+      "en": "You lean back to help the ball up.",
+      "de": "Du lehnst dich zurück, um den Ball hochzuhelfen."
+    },
+    "correction": {
+      "en": "Set up with about two thirds of your weight on the lead foot and keep it there – just rock the shoulders.",
+      "de": "Steh mit etwa zwei Dritteln des Gewichts auf dem linken Fuß und bleib dort – nur die Schultern schaukeln."
+    },
+    "benefit": {
+      "en": "Ball first, every time – chips that land where you want and roll out like a putt.",
+      "de": "Jedes Mal zuerst der Ball – Chips, die dort landen, wo du willst, und ausrollen wie ein Putt."
+    },
+    "drillIds": [
+      "chip_trail_toe",
+      "towel_behind_ball"
+    ],
+    "trainingTarget": {
+      "metric": "hip_shift_x",
+      "at": "impact",
+      "target": 3,
+      "tolerance": 4
+    }
+  },
+  {
+    "id": "chip_scoop",
+    "name": {
+      "en": "Short game: hands behind the ball (scoop)",
+      "de": "Kurzes Spiel: Hände hinter dem Ball (Löffeln)"
+    },
+    "shotTypes": [
+      "chip",
+      "pitch"
+    ],
+    "views": [
+      "face_on"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "hands_ahead",
+        "at": "impact",
+        "op": "<",
+        "threshold": 0,
+        "fullSeverityAt": 12,
+        "review": "REVIEW(golf): hands behind the ball/club head at impact (should be slightly ahead for a standard chip). Source Scoop/Flip and Skull: 'Löffeln'. Full at −12 %."
+      },
+      {
+        "metric": "shaft_lean",
+        "at": "impact",
+        "op": "<",
+        "threshold": -3,
+        "fullSeverityAt": 10,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): shaft leans backwards by more than 3° at impact. Lob shots with deliberately neutral shaft are not separated yet (open question). Full at −13°."
+      }
+    ],
+    "marker": "impact",
+    "importance": 4,
+    "ballFlights": [
+      "scoop",
+      "chili_dip",
+      "skull"
+    ],
+    "ballEffect": {
+      "en": "Your wrists flip the club under the ball: chunked chips that go nowhere and skulled ones that race across the green.",
+      "de": "Deine Handgelenke klappen den Schläger unter den Ball: Chips, die liegen bleiben, und Skulls, die übers Grün schießen."
+    },
+    "cause": {
+      "en": "You try to scoop the ball up instead of trusting the wedge's loft.",
+      "de": "Du willst den Ball hochlöffeln, statt dem Loft des Wedges zu vertrauen."
+    },
+    "correction": {
+      "en": "Keep your hands ahead of the club head through the ball and the lead wrist firm – the chest turns the club through.",
+      "de": "Halte die Hände durch den Ball vor dem Schlägerkopf und das linke Handgelenk fest – die Brust dreht den Schläger durch."
+    },
+    "benefit": {
+      "en": "Predictable height and spin – you start getting chips close instead of hoping.",
+      "de": "Berechenbare Höhe und Spin – deine Chips landen nah an der Fahne, statt dass du hoffst."
+    },
+    "drillIds": [
+      "impact_hold",
+      "towel_behind_ball"
+    ],
+    "trainingTarget": {
+      "metric": "hands_ahead",
+      "at": "impact",
+      "target": 5,
+      "tolerance": 5
+    }
+  },
+  {
+    "id": "chip_backswing_long",
+    "name": {
+      "en": "Chip: backswing too long",
+      "de": "Chip: Rückschwung zu lang"
+    },
+    "shotTypes": [
+      "chip"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "swing_length",
+        "at": "top",
+        "op": ">",
+        "threshold": 55,
+        "fullSeverityAt": 25,
+        "review": "REVIEW(golf): hands go back more than 55° of arm rotation in a chip (≈ hip high; a standard chip is ~25–45°). Source Chili Dip/Skull: 'Zu langer Rückschwung mit abgebremstem Abschwung'. Only meaningful because a chip is short by definition. Full at 80°."
+      }
+    ],
+    "marker": "top",
+    "importance": 3,
+    "ballFlights": [
+      "chili_dip",
+      "skull",
+      "putt_distance"
+    ],
+    "ballEffect": {
+      "en": "A long backswing for a short shot forces you to slow down before the ball: chunks and skulls.",
+      "de": "Ein langer Rückschwung für einen kurzen Schlag zwingt dich, vor dem Ball abzubremsen: Chili Dips und Skulls."
+    },
+    "cause": {
+      "en": "You swing back too far and then instinctively brake because the shot is short.",
+      "de": "Du holst zu weit aus und bremst dann instinktiv, weil der Schlag kurz ist."
+    },
+    "correction": {
+      "en": "Make the backswing short and the follow-through at least as long – control distance with length, not with braking.",
+      "de": "Mach den Rückschwung kurz und den Durchschwung mindestens gleich lang – Länge steuerst du über die Ausholbewegung, nicht übers Bremsen."
+    },
+    "benefit": {
+      "en": "An accelerating chip keeps the club stable – better distance control and far fewer duffed chips.",
+      "de": "Ein beschleunigender Chip hält den Schläger stabil – bessere Längenkontrolle und viel weniger verpatzte Chips."
+    },
+    "drillIds": [
+      "clock_chip",
+      "chip_trail_toe"
+    ],
+    "trainingTarget": {
+      "metric": "swing_length",
+      "at": "top",
+      "target": 35,
+      "tolerance": 12
+    }
+  },
+  {
+    "id": "pitch_backswing_long",
+    "name": {
+      "en": "Pitch: backswing too long",
+      "de": "Pitch: Rückschwung zu lang"
+    },
+    "shotTypes": [
+      "pitch"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "swing_length",
+        "at": "top",
+        "op": ">",
+        "threshold": 125,
+        "fullSeverityAt": 25,
+        "review": "REVIEW(golf): pitch backswing beyond 125° of arm rotation (well past lead arm parallel = a full swing). A pitch is a half to three-quarter swing (~70–110°). Distance intent is unknown, so importance is low. Full at 150°."
+      }
+    ],
+    "marker": "top",
+    "importance": 2,
+    "ballFlights": [
+      "chili_dip",
+      "skull",
+      "putt_distance"
+    ],
+    "ballEffect": {
+      "en": "An almost full backswing for a pitch makes you decelerate: fat or thin pitches and poor distance control.",
+      "de": "Ein fast voller Rückschwung beim Pitch lässt dich abbremsen: fette oder dünne Pitches und schlechte Längenkontrolle."
+    },
+    "cause": {
+      "en": "You control distance by braking instead of by the length of the backswing.",
+      "de": "Du steuerst die Länge übers Bremsen statt über die Länge des Rückschwungs."
+    },
+    "correction": {
+      "en": "Use a fixed backswing length (e.g. lead arm to 9 o'clock) and accelerate to a full finish.",
+      "de": "Nutze feste Rückschwunglängen (z. B. linker Arm bis 9 Uhr) und beschleunige bis ins volle Finish."
+    },
+    "benefit": {
+      "en": "Repeatable distances – you know how far each pitch goes and stop leaving them short.",
+      "de": "Wiederholbare Längen – du weißt, wie weit jeder Pitch fliegt, und bleibst nicht mehr zu kurz."
+    },
+    "drillIds": [
+      "clock_chip"
+    ],
+    "trainingTarget": {
+      "metric": "swing_length",
+      "at": "top",
+      "target": 90,
+      "tolerance": 15
+    }
+  },
+  {
+    "id": "short_game_tempo",
+    "name": {
+      "en": "Short game: uneven rhythm",
+      "de": "Kurzes Spiel: unruhiger Rhythmus"
+    },
+    "shotTypes": [
+      "pitch",
+      "chip"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "tempo_ratio",
+        "at": "swing",
+        "op": "outside",
+        "threshold": 1.4,
+        "thresholdHigh": 2.8,
+        "fullSeverityAt": 0.8,
+        "review": "REVIEW(golf): short-game tempo outside 1.4–2.8 : 1. Target ≈ 2 : 1 (SHOT_TYPES, tolerance 0.4); fires at 1.5–2 T. Above = slow/braking forward swing, below = jabbing. Full 0.8 beyond."
+      }
+    ],
+    "marker": "impact",
+    "importance": 2,
+    "ballFlights": [
+      "chili_dip",
+      "skull",
+      "putt_distance"
+    ],
+    "ballEffect": {
+      "en": "A jab or a braking forward swing makes contact and distance random.",
+      "de": "Ein Zustoßen oder Abbremsen macht Kontakt und Länge zufällig."
+    },
+    "cause": {
+      "en": "Either you jab at the ball from a short, quick backswing or you swing back long and slow down.",
+      "de": "Entweder stößt du aus einem kurzen, schnellen Rückschwung zu, oder du holst lang aus und bremst ab."
+    },
+    "correction": {
+      "en": "Swing like a pendulum: \"one\" back, \"two\" through – same rhythm for every length.",
+      "de": "Schwing wie ein Pendel: „eins“ zurück, „zwei“ durch – gleicher Rhythmus für jede Länge."
+    },
+    "benefit": {
+      "en": "A steady rhythm gives you feel – your short shots finish close to the pin more often.",
+      "de": "Ein gleichmäßiger Rhythmus gibt dir Gefühl – deine kurzen Schläge landen öfter nah an der Fahne."
+    },
+    "drillIds": [
+      "count_tempo",
+      "clock_chip"
+    ],
+    "trainingTarget": {
+      "metric": "tempo_ratio",
+      "at": "swing",
+      "target": 2,
+      "tolerance": 0.4
+    }
+  },
+  {
+    "id": "bunker_short_backswing",
+    "name": {
+      "en": "Bunker: backswing too short",
+      "de": "Bunker: Rückschwung zu kurz"
+    },
+    "shotTypes": [
+      "bunker"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "swing_length",
+        "at": "top",
+        "op": "<",
+        "threshold": 70,
+        "fullSeverityAt": 30,
+        "review": "REVIEW(golf): greenside bunker backswing shorter than 70° of arm rotation (lead arm clearly below parallel). The sand needs speed; source Bunker zu fett: 'Zu kurzer Rückschwung – nicht genug Tempo für den Sand'. The entry point in the sand is NOT measurable. Full at 40°."
+      }
+    ],
+    "marker": "top",
+    "importance": 3,
+    "ballFlights": [
+      "bunker_fat"
+    ],
+    "ballEffect": {
+      "en": "Too little speed for the sand: the club gets stuck and the ball stays in the bunker.",
+      "de": "Zu wenig Tempo für den Sand: der Schläger bleibt stecken und der Ball bleibt im Bunker."
+    },
+    "cause": {
+      "en": "You are afraid of hitting it too far and make a short, careful swing.",
+      "de": "Du hast Angst, zu weit zu schlagen, und machst einen kurzen, vorsichtigen Schwung."
+    },
+    "correction": {
+      "en": "Make at least a three-quarter backswing and swing through the sand into a full finish – the sand brakes the ball, not you.",
+      "de": "Hol mindestens drei Viertel aus und schwing durch den Sand bis ins volle Finish – der Sand bremst den Ball, nicht du."
+    },
+    "benefit": {
+      "en": "Out first time: enough speed lets the club glide through the sand and splash the ball onto the green.",
+      "de": "Beim ersten Versuch raus: mit genug Tempo gleitet der Schläger durch den Sand und spritzt den Ball aufs Grün."
+    },
+    "drillIds": [
+      "sand_line",
+      "count_tempo"
+    ],
+    "trainingTarget": {
+      "metric": "swing_length",
+      "at": "top",
+      "target": 95,
+      "tolerance": 15
+    }
+  },
+  {
+    "id": "putt_head_movement",
+    "name": {
+      "en": "Putt: head moves",
+      "de": "Putt: Kopf bewegt sich"
+    },
+    "shotTypes": [
+      "putt"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "head_shift_x",
+        "at": "impact",
+        "op": "abs>",
+        "threshold": 4,
+        "fullSeverityAt": 8,
+        "review": "REVIEW(golf): head moves more than 4 % torso (≈ 2 cm) along the target line between address and impact. Good putters keep the head practically still. Source Putt-Fehler: 'Kopf oder Körper bewegen sich'. Full at 12 %."
+      },
+      {
+        "metric": "head_shift_y",
+        "at": "impact",
+        "op": "abs>",
+        "threshold": 4,
+        "fullSeverityAt": 8,
+        "review": "REVIEW(golf): head moves more than 4 % torso (≈ 2 cm) up or down during the stroke. Full at 12 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 4,
+    "ballFlights": [
+      "putt_pull",
+      "putt_push",
+      "putt_distance"
+    ],
+    "ballEffect": {
+      "en": "When the head moves, the shoulders and the putter face move with it: putts start off line.",
+      "de": "Wenn sich der Kopf bewegt, bewegen sich Schultern und Schlagfläche mit: Putts starten neben der Linie."
+    },
+    "cause": {
+      "en": "You look up to watch the ball roll before you have hit it.",
+      "de": "Du schaust dem Ball nach, bevor du ihn getroffen hast."
+    },
+    "correction": {
+      "en": "Keep your head still and look at the spot where the ball was until you hear it drop (or count to two).",
+      "de": "Halte den Kopf ruhig und schau auf die Stelle, wo der Ball lag, bis du ihn fallen hörst (oder bis zwei zählst)."
+    },
+    "benefit": {
+      "en": "A still head keeps the face square – more short putts that start on line and drop.",
+      "de": "Ein ruhiger Kopf hält die Schlagfläche square – mehr kurze Putts starten auf der Linie und fallen."
+    },
+    "drillIds": [
+      "coin_under_ball",
+      "putt_gate"
+    ],
+    "trainingTarget": {
+      "metric": "head_shift_x",
+      "at": "impact",
+      "target": 0,
+      "tolerance": 3
+    }
+  },
+  {
+    "id": "putt_body_movement",
+    "name": {
+      "en": "Putt: body moves",
+      "de": "Putt: Körper bewegt sich"
+    },
+    "shotTypes": [
+      "putt"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "body_motion",
+        "at": "swing",
+        "op": ">",
+        "threshold": 6,
+        "fullSeverityAt": 9,
+        "review": "REVIEW(golf): shoulder centre moves more than 6 % torso (≈ 3 cm) during the stroke. The putting stroke is a shoulder rock around a still centre. Full at 15 %."
+      }
+    ],
+    "marker": "impact",
+    "importance": 3,
+    "ballFlights": [
+      "putt_pull",
+      "putt_push",
+      "putt_distance"
+    ],
+    "ballEffect": {
+      "en": "Swaying moves the bottom of the stroke: the ball is struck off centre and its speed varies.",
+      "de": "Wenn du dich mitbewegst, wandert der tiefste Punkt: der Ball wird nicht mittig getroffen und die Länge schwankt."
+    },
+    "cause": {
+      "en": "You push the putter with your body or follow the ball with your hips.",
+      "de": "Du schiebst den Putter mit dem Körper oder gehst mit der Hüfte dem Ball hinterher."
+    },
+    "correction": {
+      "en": "Let only the shoulders rock like a seesaw; hips and knees stay quiet.",
+      "de": "Lass nur die Schultern wie eine Wippe schaukeln; Hüfte und Knie bleiben ruhig."
+    },
+    "benefit": {
+      "en": "Centred contact on every putt – much better distance control and fewer three-putts.",
+      "de": "Mittiger Treffer bei jedem Putt – viel bessere Längenkontrolle und weniger Dreiputts."
+    },
+    "drillIds": [
+      "putt_gate",
+      "shoulder_rock"
+    ],
+    "trainingTarget": {
+      "metric": "body_motion",
+      "at": "swing",
+      "target": 0,
+      "tolerance": 4
+    }
+  },
+  {
+    "id": "putt_wrist_break",
+    "name": {
+      "en": "Putt: wrists break",
+      "de": "Putt: Handgelenke knicken ab"
+    },
+    "shotTypes": [
+      "putt"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "putter_wrist_change",
+        "at": "swing",
+        "op": ">",
+        "threshold": 22,
+        "fullSeverityAt": 15,
+        "minConfidence": 0.5,
+        "review": "REVIEW(golf): change of the lead forearm–shaft angle during the stroke above 22°. Synthetic putt without wrist action already reads 15–16° (arm rotation in 2D), wrist-break knob 39–40° (PM4). Real calibration needed."
+      }
+    ],
+    "marker": "impact",
+    "importance": 4,
+    "ballFlights": [
+      "putt_pull",
+      "putt_push",
+      "putt_distance",
+      "yips"
+    ],
+    "ballEffect": {
+      "en": "Active wrists twist the putter face and change the loft: putts go left and right and the speed varies.",
+      "de": "Aktive Handgelenke drehen die Schlagfläche und ändern den Loft: Putts gehen links und rechts vorbei und die Länge schwankt."
+    },
+    "cause": {
+      "en": "You steer the ball with your hands instead of rocking the shoulders – often from tension on short putts.",
+      "de": "Du steuerst den Ball mit den Händen, statt die Schultern schaukeln zu lassen – oft aus Anspannung bei kurzen Putts."
+    },
+    "correction": {
+      "en": "Keep the triangle of arms and shoulders still – the wrists stay passive and the shoulders move the putter.",
+      "de": "Halte das Dreieck aus Armen und Schultern stabil – die Handgelenke bleiben passiv, die Schultern bewegen den Putter."
+    },
+    "benefit": {
+      "en": "A quiet stroke under pressure – the short ones you used to miss start to drop.",
+      "de": "Ein ruhiger Stroke auch unter Druck – die kurzen Putts, die du früher verschoben hast, fallen."
+    },
+    "drillIds": [
+      "shoulder_rock",
+      "putt_gate"
+    ],
+    "trainingTarget": {
+      "metric": "putter_wrist_change",
+      "at": "swing",
+      "target": 12,
+      "tolerance": 10
+    }
+  },
+  {
+    "id": "putt_tempo",
+    "name": {
+      "en": "Putt: uneven tempo",
+      "de": "Putt: unruhiges Tempo"
+    },
+    "shotTypes": [
+      "putt"
+    ],
+    "views": [
+      "face_on",
+      "down_the_line"
+    ],
+    "match": "any",
+    "rules": [
+      {
+        "metric": "tempo_ratio",
+        "at": "swing",
+        "op": "outside",
+        "threshold": 1.5,
+        "thresholdHigh": 2.6,
+        "fullSeverityAt": 0.8,
+        "review": "REVIEW(golf): putting tempo outside 1.5–2.6 : 1. Commonly taught ≈ 2 : 1 (backstroke twice as long as the forward stroke; SHOT_TYPES putt tolerance 0.4). Below = jab, above = braking. Full 0.8 beyond."
+      }
+    ],
+    "marker": "impact",
+    "importance": 3,
+    "ballFlights": [
+      "putt_distance",
+      "putt_pull",
+      "putt_push"
+    ],
+    "ballEffect": {
+      "en": "Jabbing or braking makes the ball speed random: putts stop short or race past the hole.",
+      "de": "Zustoßen oder Abbremsen macht die Ballgeschwindigkeit zufällig: Putts bleiben kurz oder schießen vorbei."
+    },
+    "cause": {
+      "en": "You either jab from a short backstroke or take it back too far and slow down.",
+      "de": "Du stößt aus einem kurzen Rückschwung zu oder holst zu weit aus und bremst."
+    },
+    "correction": {
+      "en": "Same rhythm for every putt: back on \"one\", through on \"two\"; make longer putts with a longer backstroke, not a faster hit.",
+      "de": "Gleicher Rhythmus für jeden Putt: zurück auf „eins“, durch auf „zwei“; lange Putts mit längerem Rückschwung, nicht mit mehr Schlag."
+    },
+    "benefit": {
+      "en": "Speed control from feel – lag putts finish near the hole and the three-putts disappear.",
+      "de": "Längenkontrolle aus dem Gefühl – lange Putts bleiben nah am Loch liegen und die Dreiputts verschwinden."
+    },
+    "drillIds": [
+      "putt_metronome",
+      "putt_ladder"
+    ],
+    "trainingTarget": {
+      "metric": "tempo_ratio",
+      "at": "swing",
+      "target": 2,
+      "tolerance": 0.4
+    }
+  }
+]

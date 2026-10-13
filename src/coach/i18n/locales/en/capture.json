@@ -1,0 +1,79 @@
+{
+  "title": "Record a swing",
+  "shotType": "What are you hitting?",
+  "view": "Where is the phone?",
+  "puttFaceOn": "Putts work best filmed from the front (face-on): from behind the putter moves towards the camera and the stroke cannot be timed.",
+  "viewHint": {
+    "face_on": "In front of you",
+    "down_the_line": "Behind you, looking at the target"
+  },
+  "hand": "You play",
+  "guideTitle": "How to set up the phone",
+  "guide": {
+    "common": {
+      "upright": "Phone upright on a tripod or leaning on your bag – not in your hand.",
+      "height": "Camera at hip height.",
+      "distance": "About 3–4 m away (4–5 big steps).",
+      "whole": "Your whole body must be in the picture – and the club above your head at the top."
+    },
+    "face_on": "Stand facing the phone, the phone opposite your chest.",
+    "down_the_line": "Phone behind your hands, on a line parallel to where you aim (the target line). You stand on the left of the picture."
+  },
+  "startCamera": "Start camera",
+  "upload": "Upload a video",
+  "uploadSub": "From your photos – also slow motion",
+  "noCamera": "The camera only works over a secure connection (https) or is blocked. You can still upload a video.",
+  "auto": "Auto record",
+  "autoOn": "✓ Auto record on",
+  "autoOff": "✕ Auto record off",
+  "practiceIgnore": "✓ Skip practice swings",
+  "practiceKeep": "✕ Keep practice swings",
+  "record": "Record",
+  "stop": "Stop",
+  "switchCamera": "Switch camera",
+  "close": "Close",
+  "status": {
+    "starting": "Starting camera…",
+    "loadingModel": "Loading body detection…",
+    "lookingForPlayer": "Step into the picture",
+    "playerDetected": "Player detected – take your address",
+    "ready": "Ready for swing",
+    "readyFull": "Player detected · Ready for swing",
+    "swinging": "Swing detected…",
+    "recording": "Recording",
+    "manual": "Recording – tap Stop when done",
+    "practiceSkipped": "Practice swing skipped",
+    "analyseAnyway": "Analyse it anyway"
+  },
+  "issue": {
+    "no_person": "Nobody in the picture",
+    "multiple_people": "Several people in the picture – only you, please",
+    "body_cut_off": "Head or feet not in the picture – step back or point the phone lower",
+    "too_far": "You are too small – come closer",
+    "no_headroom": "Leave room above your head for the club",
+    "camera_tilted": "Phone tilted – hold it upright and level"
+  },
+  "analysing": "Analysing your swing…",
+  "stage": {
+    "load": "Opening video",
+    "model": "Loading body detection",
+    "scan": "Looking for the swing in the video",
+    "pose": "Finding your body in every frame",
+    "analyse": "Measuring and checking"
+  },
+  "cancel": "Cancel",
+  "slowmo": {
+    "title": "Slow-motion video?",
+    "text": "This swing looks about {f}× slower than a real swing. Was it filmed in slow motion?",
+    "yes": "Yes, slow motion",
+    "no": "No, normal speed"
+  },
+  "error": {
+    "load_failed": "This video could not be opened. Try another one (MP4 or MOV).",
+    "no_frames": "No pictures could be read from this video.",
+    "camera": "The camera could not be started. Allow camera access in the settings or upload a video.",
+    "generic": "Something went wrong: {msg}",
+    "noRecorder": "This browser cannot record video. Please upload a video instead."
+  },
+  "tryAgain": "Try again"
+}

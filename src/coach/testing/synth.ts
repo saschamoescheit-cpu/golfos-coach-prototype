@@ -83,6 +83,13 @@ export interface SynthParams {
   puttWristBreak: number;
   /** putting/chipping: extra shoulder-centre sway during the stroke (m) */
   strokeBodySway: number;
+  /** waggle before the swing: hand-arc amplitude (deg) of a club wiggle that ends 0.35 s before the takeaway (0 = none) */
+  waggle: number;
+  /**
+   * how much the body keeps moving from impact into the finish (turn, standing up, side bend, hips, head):
+   * 1 = full-swing finish (default), 0 = body stays in its impact position (putt).
+   */
+  followBody: number;
   /** Gaussian landmark noise (normalized units) and share of frames without detection */
   noise: number;
   dropout: number;
@@ -108,12 +115,12 @@ const SHOT_DEFAULTS: Record<ShotType, Partial<SynthParams>> = {
   },
   chip: {
     armArcTop: 35, armArcFinish: 40, hingeTop: 10, shoulderTurnTop: 20, hipTurnTop: 5, shoulderTurnImpact: -5,
-    hipTurnImpact: -10, backswingMs: 450, downswingMs: 225, followMs: 300, hipShiftImpact: 0.01,
+    hipTurnImpact: -10, backswingMs: 450, downswingMs: 225, followMs: 300, hipShiftImpact: 0.01, followBody: 0.3, sideBendTop: -2, sideBendImpact: -6,
   },
   putt: {
     armArcTop: 18, armArcFinish: 22, hingeTop: 0, shoulderTurnTop: 8, hipTurnTop: 0, shoulderTurnImpact: -4,
     hipTurnImpact: 0, backswingMs: 600, downswingMs: 300, followMs: 400, hipShiftImpact: 0, sideBendImpact: 0,
-    leadElbowTop: 25, leadElbowImpact: 25, leadElbowFollow: 25, trailElbowTop: 30, spineTilt: 45,
+    leadElbowTop: 25, leadElbowImpact: 25, leadElbowFollow: 25, trailElbowTop: 30, spineTilt: 45, followBody: 0, sideBendTop: 0, hipShiftTop: 0,
   },
 };
 
@@ -126,7 +133,7 @@ export const SYNTH_DEFAULTS: SynthParams = {
   hipShiftTop: -0.01, hipShiftImpact: 0.06, headShiftTopX: 0, headShiftImpactX: 0, headLiftImpact: 0,
   sideBendTop: -5, sideBendImpact: -15,
   leadElbowTop: 8, leadElbowImpact: 5, leadElbowFollow: 15, trailElbowTop: 90,
-  overTheTop: 0, shaftPlaneDevBack: 0, shaftPlaneDevDown: 0, puttWristBreak: 0, strokeBodySway: 0,
+  overTheTop: 0, shaftPlaneDevBack: 0, shaftPlaneDevDown: 0, puttWristBreak: 0, strokeBodySway: 0, waggle: 0, followBody: 1,
   noise: 0, dropout: 0, visibility: 1, zoom: 1, seed: 1,
 };
 
@@ -197,7 +204,15 @@ function kinematics(p: SynthParams, t: number): Kin {
   const B = A + p.backswingMs;
   const D = B + p.downswingMs;
   const F = D + p.followMs;
-  if (t < A) return { stage: 'address', arc: 0, hinge: 0, s: 0 };
+  if (t < A) {
+    // optional waggle (arms and wrists only), then a still address of 0.35 s before the takeaway
+    const wEnd = A - 350;
+    if (p.waggle > 0 && t < wEnd) {
+      const w = p.waggle * Math.sin((2 * Math.PI * t) / 500) * Math.sin((Math.PI * t) / wEnd);
+      return { stage: 'address', arc: w, hinge: 1.5 * w, s: 0 };
+    }
+    return { stage: 'address', arc: 0, hinge: 0, s: 0 };
+  }
   if (t < B) {
     const s = (t - A) / p.backswingMs;
     const e = (1 - Math.cos(Math.PI * s)) / 2; // slow start, slow arrival at the top
@@ -234,9 +249,9 @@ function bodyValue(k: Kin, p: SynthParams, top: number, impact: number, finish: 
       return lerp(top, impact, q);
     }
     case 'follow':
-      return lerp(impact, finish, k.s);
+      return lerp(impact, impact + (finish - impact) * p.followBody, k.s);
     case 'finish':
-      return finish;
+      return impact + (finish - impact) * p.followBody;
   }
 }
 

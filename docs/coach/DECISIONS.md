@@ -18,3 +18,14 @@ Format: Nummer · Datum · Wer · Entscheidung · Begründung. Neueste Einträge
 - **A7** Swing-Score (Konzept 08.10.) wird mitgebaut, alle Werte `REVIEW(golf)`.
 - **A8** Analyse als reine Funktion `analyzeSequence()` – komplett in Node testbar mit dem synthetischen Generator (`testing/synth.ts`, 3D-Strichmännchen mit Stellschrauben für jeden Fehler, projiziert in Face-on/DTL).
 - **A9** Quelltexte der internen Konzepte liegen außerhalb des Repos (`GolfOS\features\015-coach\quellen`), weil das Repo für GitHub Pages öffentlich wird.
+
+## Lead (Integration, 13.10.2026)
+- **L1** Pipeline: Fehler werden immer ausgewertet (die Engine setzt bei schlechter Qualität alles auf „nicht sicher erkennbar“); der Swing-Score bekommt Bildrate, Spielerstufe (aus den Einstellungen) und Qualität.
+- **L2** Die per Finger verschobene neutrale Linie wird am Schwung gespeichert (`manualNeutralLine`), bleibt aber reine Markierung (Entscheidung 06.10.).
+- **L3** **Putts nur von vorne (Face-on).** Von hinten bewegt sich der Putter fast nur auf die Kamera zu; weder Phasen noch automatische Aufnahme lassen sich zuverlässig bestimmen (Befund phases-metrics + capture-pose). Wählt der Spieler „Putt“, stellt die App auf Face-on um und zeigt einen Hinweis, falls er doch Down-the-line wählt.
+- **L4** Grenzwerte nach Messung am synthetischen Idealschwung angepasst (decisions/phases-metrics.md PM4), alle weiter REVIEW(golf):
+  - `head_sway` @ Top: −15 → **−25 %** Rumpf (Idealschwung zeigt −17 … −19 %).
+  - `casting`: nur noch **Face-on**, Schwelle 60° → **28°** (ideal 35–45°, Casting 17–22°).
+  - `bent_lead_arm`: nur noch **Face-on** (von hinten verkürzt).
+  - `flying_elbow`: in 2D von hinten **nicht messbar** (gebeugter Arm wirkt gestreckt) → bleibt im Katalog, erscheint aber immer unter „nicht sicher geprüft“, bis es einen 3D-/Ellbogenrichtungs-Messwert gibt.
+  - `putt_wrist_break`: 6° → **22°** (synthetischer Putt ohne Handgelenk zeigt schon 15–16° durch die Armdrehung im 2D-Bild).
