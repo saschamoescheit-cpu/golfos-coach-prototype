@@ -25,7 +25,8 @@
       "camera_moving": "Die Kamera hat sich während des Schwungs bewegt.",
       "too_far": "Du bist zu klein im Bild – stell die Kamera näher.",
       "mirrored_suspected": "Die Bewegung passt nicht zur gewählten Spielhand.",
-      "club_not_found": "Der Schläger wurde im Bild nicht gefunden – Schlägerwerte sind geschätzt oder fehlen."
+      "club_not_found": "Der Schläger wurde im Bild nicht gefunden – Schlägerwerte sind geschätzt oder fehlen.",
+      "multiple_people": "Mehrere Personen waren im Bild – andere bitte aus dem Bild halten."
     }
   },
   "score": {

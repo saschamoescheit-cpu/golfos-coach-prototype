@@ -102,7 +102,18 @@ export function AnalysisScreen({ route }: { route: Route }) {
       <div className="muted small">
         {t(`common.shot.${swing.shotType}`)} · {t(`common.view.${swing.view}`)}
       </div>
-      <SwingPlayer swing={swing} videoUrl={videoUrl} seekTo={seekTo} lineStatus={lineStatus} />
+      <SwingPlayer
+        swing={swing}
+        videoUrl={videoUrl}
+        seekTo={seekTo}
+        lineStatus={lineStatus}
+        onManualLineChange={(line) => {
+          // visual marker only (decision 06.10.2026) – stored with the swing, never used for metrics
+          const next = { ...swing, manualNeutralLine: line };
+          setSwing(next);
+          getStore().then((st) => st.saveSwing(next)).catch(() => {});
+        }}
+      />
       {!swing.videoKey && <div className="fx-muted">{t('analysis.noVideo')}</div>}
 
       {lowQuality && (

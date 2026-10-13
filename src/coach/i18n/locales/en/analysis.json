@@ -25,7 +25,8 @@
       "camera_moving": "The camera moved during the swing.",
       "too_far": "You are too small in the picture – move the camera closer.",
       "mirrored_suspected": "The movement does not match the chosen handedness.",
-      "club_not_found": "The club could not be found in the picture – club values are estimated or missing."
+      "club_not_found": "The club could not be found in the picture – club values are estimated or missing.",
+      "multiple_people": "Several people were in the picture – keep others out of the frame."
     }
   },
   "score": {
