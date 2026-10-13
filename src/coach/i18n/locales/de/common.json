@@ -9,9 +9,34 @@
   "done": "Fertig",
   "loading": "Lädt …",
   "notReliable": "Nicht sicher erkennbar",
+  "shotType": "Schlagart",
   "shot": { "driver": "Driver", "iron": "Eisen", "pitch": "Pitch", "chip": "Chip", "bunker": "Bunker", "putt": "Putt" },
   "view": { "face_on": "Von vorne (Face-on)", "down_the_line": "Von hinten (Down-the-line)" },
+  "viewShort": { "face_on": "Von vorne", "down_the_line": "Von hinten" },
   "hand": { "right": "Rechtshänder", "left": "Linkshänder" },
   "pos": { "address": "Ansprechen", "backswing9": "9 Uhr Aufschwung", "top": "Top", "downswing9": "9 Uhr Abschwung", "impact": "Treffmoment", "finish": "Finish" },
-  "home": { "analyze": "Schwung analysieren", "analyzeSub": "Video aufnehmen oder hochladen", "train": "Trainieren", "trainSub": "Spiegel-Modus und Ball-Serie mit Ton", "history": "Meine Schwünge", "historySub": "Verlauf, Vergleich, Fortschritt", "diagnose": "Mein Fehlschlag", "diagnoseSub": "Ball geht links? Ursache finden", "settings": "Einstellungen", "prototype": "Prototyp – Ideengebung für die Produktentwicklung" }
+  "home": {
+    "analyze": "Schwung analysieren",
+    "analyzeSub": "Video aufnehmen oder hochladen",
+    "train": "Trainieren",
+    "trainSub": "Spiegel-Modus und Ball-Serie mit Ton",
+    "history": "Meine Schwünge",
+    "historySub": "Verlauf, Vergleich, Fortschritt",
+    "diagnose": "Mein Fehlschlag",
+    "diagnoseSub": "Ball geht links? Ursache finden",
+    "settings": "Einstellungen",
+    "prototype": "Prototyp – Ideengebung für die Produktentwicklung",
+    "latest": "Dein letzter Schwung",
+    "latestOpen": "Öffnen",
+    "workOn": "Daran arbeiten: {fault}",
+    "noFault": "✓ Kein klarer Fehler in dem, was wir prüfen konnten",
+    "notReliable": "Nicht sicher erkennbar – probier ein anderes Video",
+    "welcome": "Film deinen Schwung, sieh, was du zuerst angehen solltest, und trainier es mit Live-Feedback."
+  },
+  "offline": {
+    "ready": "✓ Bereit für offline – auch auf der Range ohne Netz.",
+    "update": "Eine neue Version ist da.",
+    "reload": "Neu laden",
+    "notSaved": "✕ Privater Modus: Es wird nichts gespeichert."
+  }
 }

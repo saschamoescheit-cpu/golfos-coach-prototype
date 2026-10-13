@@ -1,6 +1,12 @@
+import { useEffect, useState } from 'react';
 import { APP_NAME, MODULE_NAME } from '../../coach/model/constants';
 import { t } from '../../coach/i18n/i18n';
+import type { Swing } from '../../coach/model/types';
+import { getStore } from '../../coach/storage';
+import { faultName, formatWhen, topFault } from '../components/HistoryModel';
 import { go, type ScreenName } from '../nav';
+import { ScoreBadge } from './HistoryScreen';
+import '../styles/history.css';
 
 const TILES: { ico: string; key: string; to: ScreenName; primary?: boolean }[] = [
   { ico: '🎥', key: 'analyze', to: 'capture', primary: true },
@@ -10,6 +16,22 @@ const TILES: { ico: string; key: string; to: ScreenName; primary?: boolean }[] =
 ];
 
 export function HomeScreen() {
+  const [latest, setLatest] = useState<Swing | null | undefined>(undefined);
+
+  useEffect(() => {
+    let alive = true;
+    void getStore()
+      .then((s) => s.listSwings({ limit: 1 }))
+      .then((l) => alive && setLatest(l[0] ?? null))
+      .catch(() => alive && setLatest(null));
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const f = latest ? topFault(latest) : undefined;
+  const uncertain = latest && !f && latest.checkedFaultIds.length === 0;
+
   return (
     <div className="screen">
       <div className="topbar">
@@ -20,6 +42,27 @@ export function HomeScreen() {
           ⚙
         </button>
       </div>
+
+      {latest === null && <p className="muted" style={{ margin: 0 }}>{t('common.home.welcome')}</p>}
+
+      {latest && (
+        <button className="card home-latest" onClick={() => go('analysis', { swingId: latest.id })}>
+          <ScoreBadge score={latest.score?.total} />
+          <span className="grow">
+            <span className="eyebrow">{t('common.home.latest')}</span>
+            <span className={`title${f ? '' : uncertain ? ' muted' : ' status-ok'}`}>
+              {f ? t('common.home.workOn', { fault: faultName(f.defId) }) : uncertain ? t('common.home.notReliable') : t('common.home.noFault')}
+            </span>
+            <span className="small muted">
+              {formatWhen(latest.createdAt)} · {t(`common.shot.${latest.shotType}`)}
+            </span>
+          </span>
+          <span className="muted" aria-hidden="true" style={{ fontSize: 22 }}>
+            ›
+          </span>
+        </button>
+      )}
+
       <div className="home-tiles">
         {TILES.map((x) => (
           <button key={x.key} className={`home-tile${x.primary ? ' primary' : ''}`} onClick={() => go(x.to)}>

@@ -1,0 +1,66 @@
+{
+  "title": "My swings",
+  "tabSwings": "Swings",
+  "tabProgress": "Progress",
+  "all": "All",
+  "today": "Today",
+  "yesterday": "Yesterday",
+  "select": "Select",
+  "selectHint": "Tap two swings to compare them, or select swings to delete.",
+  "selected": "{n} selected",
+  "compare": "Compare",
+  "compareTwo": "Pick exactly two swings to compare",
+  "deleteN": "Delete ({n})",
+  "showAll": "Show all {n}",
+  "noFault": "✓ No clear fault",
+  "notReliable": "Not reliably detectable",
+  "noScore": "–",
+  "scoreLabel": "Score {n}",
+  "empty": {
+    "title": "No swings yet",
+    "text": "Record or upload your first swing – it shows up here with its score and the main thing to work on.",
+    "cta": "Analyze a swing"
+  },
+  "memoryMode": "✕ Your swings are not saved in this mode (e.g. private browsing). They are gone when you close the app.",
+  "confirmDelete": {
+    "titleOne": "Delete this swing?",
+    "titleMany": "Delete {n} swings?",
+    "text": "The video, the analysis and its progress entries are deleted from this phone. This cannot be undone.",
+    "ok": "Delete"
+  },
+  "progress": {
+    "intro": "How often each fault showed up – oldest swing on the left.",
+    "recent": "{n} of the last {m}",
+    "before": "{n} of {m} before",
+    "trend": {
+      "improving": "✓ Getting better",
+      "worse": "✕ Showing up more often",
+      "same": "About the same",
+      "unknown": "Not enough swings yet"
+    },
+    "legend": "Each bar is one swing. Red ✕ = fault seen (taller = stronger), green ✓ = not seen. Swings where the fault could not be checked are left out.",
+    "empty": "No faults found so far – or not enough swings. Keep analyzing, the curve builds up with every swing.",
+    "train": "Train this",
+    "swingsChecked": "{n} swings checked"
+  },
+  "metric": {
+    "approxCm": "≈ {cm} cm",
+    "noValue": "–"
+  },
+  "compareScreen": {
+    "title": "Compare",
+    "a": "A",
+    "b": "B",
+    "syncHint": "Both swings jump to the same position. Slide to move through both swings together.",
+    "slider": "Position in the swing",
+    "differentView": "The two swings were filmed from different sides – most values are not comparable.",
+    "differentShot": "Different shot types: {a} vs. {b}.",
+    "table": "Measured values",
+    "atPosition": "At {pos}",
+    "wholeSwing": "Whole swing",
+    "noValues": "No values measured at this position.",
+    "topFault": "Main fault",
+    "score": "Score",
+    "notFound": "One of the swings could not be found."
+  }
+}

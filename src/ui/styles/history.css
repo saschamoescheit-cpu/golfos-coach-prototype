@@ -1,0 +1,62 @@
+/* History, compare, settings, home (agent history-i18n-offline) */
+.history-group { display: flex; flex-direction: column; gap: 8px; }
+.history-group .btn-ghost { align-self: flex-start; }
+.swing-row.selected { outline: 2px solid var(--brand); background: var(--brand-soft); }
+.swing-row .chev { color: var(--muted); font-size: 22px; }
+.swing-row .check {
+  width: 28px; height: 28px; border-radius: 14px; border: 2px solid var(--line-strong); flex: none;
+  display: flex; align-items: center; justify-content: center; font-weight: 700;
+}
+.swing-row .check.on { background: var(--brand); border-color: var(--brand); color: var(--bg); }
+.empty-state { display: flex; flex-direction: column; gap: 10px; }
+.empty-state p { margin: 0; }
+
+.progress-card { display: flex; flex-direction: column; gap: 8px; }
+.progress-head { background: none; border: 0; padding: 0; display: flex; align-items: center; gap: 8px; text-align: left; min-height: 44px; width: 100%; }
+.progress-head .grow { flex: 1; display: flex; flex-direction: column; }
+.progress-head .title { font-weight: 600; }
+.progress-head .chev { color: var(--muted); font-size: 20px; }
+.progress-bars { width: 100%; height: 44px; display: block; }
+.progress-detail { display: flex; flex-direction: column; gap: 10px; }
+.trend-improving { color: var(--ok); }
+.trend-worse { color: var(--bad); }
+.trend-same, .trend-unknown { color: var(--muted); }
+
+.compare-players { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.compare-players .side { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.compare-players .side-label { font: 600 13px var(--display); color: var(--muted); display: flex; gap: 6px; align-items: center; min-height: 24px; }
+.compare-players .side-label .tag { background: var(--surface-2); border-radius: 6px; padding: 0 6px; color: var(--text); }
+.pos-bar { display: flex; gap: 6px; overflow-x: auto; margin: 0 -16px; padding: 0 16px; scrollbar-width: none; }
+.pos-bar::-webkit-scrollbar { display: none; }
+.pos-bar .chip { font-size: 14px; padding: 0 12px; }
+.sync-slider { width: 100%; height: 44px; accent-color: var(--brand); }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.compare-table th, .compare-table td { padding: 10px 6px; border-bottom: 1px solid var(--line); text-align: right; vertical-align: top; }
+.compare-table th:first-child, .compare-table td:first-child { text-align: left; }
+.compare-table thead th { font: 600 13px var(--display); color: var(--muted); }
+.compare-table .sub { display: block; font-size: 12px; color: var(--muted); }
+
+.settings-section { display: flex; flex-direction: column; gap: 12px; }
+.settings-section > h2 { margin-top: 4px; }
+.settings-row { display: flex; align-items: center; gap: 12px; min-height: 52px; }
+.settings-row .grow { flex: 1; display: flex; flex-direction: column; }
+.stepper { display: flex; align-items: center; gap: 8px; }
+.stepper button { width: 52px; height: 52px; border-radius: 12px; border: 1px solid var(--line-strong); background: var(--surface-2); font: 600 22px var(--display); flex: none; }
+.stepper .input { text-align: center; width: 110px; }
+.switch {
+  width: 64px; height: 40px; border-radius: 20px; border: 1px solid var(--line-strong); background: var(--surface-2);
+  position: relative; flex: none;
+}
+.switch::after { content: ''; position: absolute; top: 4px; left: 4px; width: 30px; height: 30px; border-radius: 15px; background: var(--muted); transition: left 0.15s; }
+.switch[aria-checked='true'] { background: var(--brand); border-color: var(--brand); }
+.switch[aria-checked='true']::after { left: 28px; background: var(--bg); }
+.range-row { display: flex; flex-direction: column; gap: 4px; }
+.range-row input[type='range'] { width: 100%; height: 44px; accent-color: var(--brand); }
+.range-row .ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+.level-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.storage-meter { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.storage-meter > span { display: block; height: 100%; background: var(--brand); }
+
+.home-latest { width: 100%; text-align: left; border: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+.home-latest .grow { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.home-latest .title { font-weight: 600; }

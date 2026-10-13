@@ -1,0 +1,66 @@
+{
+  "title": "Meine Schwünge",
+  "tabSwings": "Schwünge",
+  "tabProgress": "Fortschritt",
+  "all": "Alle",
+  "today": "Heute",
+  "yesterday": "Gestern",
+  "select": "Auswählen",
+  "selectHint": "Tippe zwei Schwünge an, um sie zu vergleichen – oder wähle Schwünge zum Löschen aus.",
+  "selected": "{n} ausgewählt",
+  "compare": "Vergleichen",
+  "compareTwo": "Wähle genau zwei Schwünge zum Vergleichen",
+  "deleteN": "Löschen ({n})",
+  "showAll": "Alle {n} zeigen",
+  "noFault": "✓ Kein klarer Fehler",
+  "notReliable": "Nicht sicher erkennbar",
+  "noScore": "–",
+  "scoreLabel": "Score {n}",
+  "empty": {
+    "title": "Noch keine Schwünge",
+    "text": "Nimm deinen ersten Schwung auf oder lade ein Video hoch – hier siehst du dann Score und das Wichtigste zum Üben.",
+    "cta": "Schwung analysieren"
+  },
+  "memoryMode": "✕ In diesem Modus (z. B. privates Surfen) werden deine Schwünge nicht gespeichert. Sie sind weg, sobald du die App schließt.",
+  "confirmDelete": {
+    "titleOne": "Diesen Schwung löschen?",
+    "titleMany": "{n} Schwünge löschen?",
+    "text": "Video, Analyse und die Einträge im Fortschritt werden von diesem Handy gelöscht. Das lässt sich nicht rückgängig machen.",
+    "ok": "Löschen"
+  },
+  "progress": {
+    "intro": "Wie oft jeder Fehler aufgetaucht ist – der älteste Schwung steht links.",
+    "recent": "{n} von den letzten {m}",
+    "before": "vorher {n} von {m}",
+    "trend": {
+      "improving": "✓ Wird besser",
+      "worse": "✕ Taucht öfter auf",
+      "same": "Etwa gleich",
+      "unknown": "Noch zu wenige Schwünge"
+    },
+    "legend": "Jeder Balken ist ein Schwung. Rot ✕ = Fehler gesehen (höher = stärker), grün ✓ = nicht gesehen. Schwünge, in denen der Fehler nicht prüfbar war, fehlen.",
+    "empty": "Bisher keine Fehler gefunden – oder noch zu wenige Schwünge. Analysiere weiter, die Kurve wächst mit jedem Schwung.",
+    "train": "Das üben",
+    "swingsChecked": "{n} Schwünge geprüft"
+  },
+  "metric": {
+    "approxCm": "≈ {cm} cm",
+    "noValue": "–"
+  },
+  "compareScreen": {
+    "title": "Vergleich",
+    "a": "A",
+    "b": "B",
+    "syncHint": "Beide Schwünge springen an dieselbe Position. Schieb den Regler, um beide gemeinsam durchzugehen.",
+    "slider": "Position im Schwung",
+    "differentView": "Die beiden Schwünge sind aus verschiedenen Richtungen gefilmt – die meisten Werte lassen sich nicht vergleichen.",
+    "differentShot": "Verschiedene Schlagarten: {a} und {b}.",
+    "table": "Messwerte",
+    "atPosition": "Bei {pos}",
+    "wholeSwing": "Ganzer Schwung",
+    "noValues": "An dieser Position wurde nichts gemessen.",
+    "topFault": "Hauptfehler",
+    "score": "Score",
+    "notFound": "Einer der Schwünge wurde nicht gefunden."
+  }
+}

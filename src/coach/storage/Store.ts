@@ -27,6 +27,9 @@ export interface CoachStore {
   getSettings(): Promise<Settings>;
   saveSettings(settings: Settings): Promise<void>;
 
+  /** Delete everything (swings, videos, sessions, targets, progress, settings) – "delete all data" in the settings. */
+  clearAll?(): Promise<void>;
+
   /** 'indexeddb' or 'memory' (fallback – data lost on reload; the UI shows a hint) */
   readonly kind: 'indexeddb' | 'memory';
 }

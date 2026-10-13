@@ -1,0 +1,84 @@
+{
+  "title": "Einstellungen",
+  "language": "Sprache",
+  "game": {
+    "title": "Dein Spiel",
+    "handedness": "Du spielst als",
+    "height": "Deine Größe",
+    "heightHint": "Nur dafür, neben den Messwerten ungefähre Zentimeter anzuzeigen.",
+    "cm": "cm",
+    "minus": "Weniger",
+    "plus": "Mehr"
+  },
+  "handicap": {
+    "label": "Handicap (freiwillig)",
+    "placeholder": "z. B. 18,4",
+    "plusLabel": "Plus-Handicap",
+    "plusHint": "Besser als Scratch (z. B. +2)",
+    "none": "Nicht angegeben",
+    "invalid": "Bitte eine Zahl zwischen 0 und 54 eingeben."
+  },
+  "level": {
+    "title": "Score-Stufe",
+    "explain": "Die Stufe macht den Swing-Score nur nachsichtiger – sie erweitert die Toleranzen. Die Ziele bleiben für alle gleich: Ein guter Schwung ist immer ein guter Schwung.",
+    "auto": "Auto",
+    "autoFrom": "Auto aus deinem Handicap: Stufe {n}",
+    "autoNoHcp": "Auto: Stufe {n}, bis du ein Handicap einträgst",
+    "n": "Stufe {n}",
+    "range": "Hcp {from}–{to}",
+    "rangeFirst": "Hcp bis {to}",
+    "name": {
+      "1": "Streng",
+      "2": "Eher streng",
+      "3": "Mittel",
+      "4": "Nachsichtig",
+      "5": "Sehr nachsichtig"
+    }
+  },
+  "defaults": {
+    "title": "Beim Aufnehmen",
+    "shotType": "Übliche Schlagart",
+    "view": "Übliche Kameraposition",
+    "hint": "Ist beim Aufnehmen vorausgewählt – du kannst es dort jedes Mal ändern."
+  },
+  "training": {
+    "title": "Training",
+    "tolerance": "Wie genau die Ziele sind",
+    "toleranceValue": "{x}× Toleranz",
+    "stricter": "Strenger",
+    "forgiving": "Nachsichtiger",
+    "toleranceHint": "Gilt für die Trainingsziele (Spiegel-Modus und Ball-Serie). 1× ist der Standard.",
+    "sound": "Töne",
+    "soundHint": "Piept, wenn du die Zielposition erreichst – sehr hilfreich, wenn du nicht aufs Display schauen kannst.",
+    "on": "An",
+    "off": "Aus"
+  },
+  "storage": {
+    "title": "Deine Daten",
+    "where": "Alles bleibt auf diesem Handy. Kein Konto, kein Server.",
+    "savedOk": "✓ Schwünge werden auf diesem Handy gespeichert",
+    "savedNo": "✕ In diesem Modus (privates Surfen) wird nichts gespeichert – alles ist weg, wenn du die App schließt.",
+    "used": "{used} belegt",
+    "usedOf": "{used} von etwa {quota} verfügbar",
+    "unknown": "Speicherbelegung auf diesem Handy unbekannt",
+    "persisted": "✓ Geschützt – der Browser löscht deine Schwünge nicht von selbst",
+    "notPersisted": "Noch nicht geschützt",
+    "persistWhy": "Wenn dein Handy wenig Platz hat oder du die App länger nicht geöffnet hast, kann Safari Website-Daten löschen – auch deine Schwünge. Geschützter Speicher bittet den Browser, sie zu behalten. Die App auf den Home-Bildschirm zu legen hilft auch.",
+    "persistButton": "Meine Schwünge schützen",
+    "persistDenied": "Der Browser hat vorerst abgelehnt. Leg die App auf den Home-Bildschirm und versuch es noch mal.",
+    "persistUnsupported": "Dieser Browser kann den Speicher nicht schützen. Leg die App auf den Home-Bildschirm – dann bleiben die Daten deutlich länger erhalten.",
+    "homeScreen": "Tipp: Teilen ↑ → „Zum Home-Bildschirm“ – dann funktioniert die App wie eine normale App, auch offline.",
+    "deleteAll": "Alle Daten löschen",
+    "deleteTitle": "Wirklich alles löschen?",
+    "deleteText": "Alle Schwünge, Videos, Trainingsziele, der Fortschritt und die Einstellungen werden von diesem Handy gelöscht. Das lässt sich nicht rückgängig machen.",
+    "deleteOk": "Alles löschen",
+    "deleted": "✓ Alle Daten gelöscht"
+  },
+  "about": {
+    "title": "Über die App",
+    "version": "Version {v}",
+    "build": "Build {d}",
+    "prototype": "Das ist ein Prototyp, um Ideen für das Produkt auszuprobieren. Die Messwerte sind Näherungen, und die Golf-Regeln prüft noch ein Trainer.",
+    "offline": "Funktioniert nach dem ersten Start offline – die Körpererkennung läuft auf deinem Handy, kein Video verlässt es."
+  }
+}

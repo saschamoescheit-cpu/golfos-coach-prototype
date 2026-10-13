@@ -1,4 +1,4 @@
-import type { FaultProgressRecord, Session, Settings, ShotType, Swing, TrainingTarget } from '../model/types';
+import type { FaultProgressRecord, Lang, Session, Settings, ShotType, Swing, TrainingTarget } from '../model/types';
 import type { CoachStore } from './Store';
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -11,6 +11,17 @@ export const DEFAULT_SETTINGS: Settings = {
   heightCm: 178,
 };
 
+/** Phone language as the first default (German phones → German, everything else English). */
+function phoneLang(): Lang {
+  const l = typeof navigator !== 'undefined' ? navigator.language?.toLowerCase() : undefined;
+  return l?.startsWith('de') ? 'de' : 'en';
+}
+
+/** Defaults for a player who has never saved settings: DEFAULT_SETTINGS with the phone language. */
+export function defaultSettings(): Settings {
+  return { ...DEFAULT_SETTINGS, lang: phoneLang() };
+}
+
 /** In-memory store: fallback when IndexedDB is unavailable, and the store used in tests. */
 export class MemoryStore implements CoachStore {
   readonly kind = 'memory' as const;
@@ -19,7 +30,7 @@ export class MemoryStore implements CoachStore {
   private sessions = new Map<string, Session>();
   private targets = new Map<string, TrainingTarget>();
   private progress: FaultProgressRecord[] = [];
-  private settings: Settings = { ...DEFAULT_SETTINGS };
+  private settings: Settings = defaultSettings();
 
   async saveSwing(s: Swing) {
     this.swings.set(s.id, s);
@@ -65,7 +76,9 @@ export class MemoryStore implements CoachStore {
     this.targets.delete(id);
   }
   async addProgress(records: FaultProgressRecord[]) {
-    this.progress.push(...records);
+    // same semantics as the IndexedDB put: a row with the same id (swingId:faultId) is replaced
+    const ids = new Set(records.map((r) => r.id));
+    this.progress = [...this.progress.filter((p) => !ids.has(p.id)), ...records];
   }
   async listProgress(f: { faultId?: string; shotType?: ShotType } = {}) {
     return this.progress
@@ -77,5 +90,13 @@ export class MemoryStore implements CoachStore {
   }
   async saveSettings(s: Settings) {
     this.settings = { ...s };
+  }
+  async clearAll() {
+    this.swings.clear();
+    this.videos.clear();
+    this.sessions.clear();
+    this.targets.clear();
+    this.progress = [];
+    this.settings = defaultSettings();
   }
 }

@@ -1,0 +1,84 @@
+{
+  "title": "Settings",
+  "language": "Language",
+  "game": {
+    "title": "Your game",
+    "handedness": "You play",
+    "height": "Your height",
+    "heightHint": "Only used to show rough centimetres next to measured values.",
+    "cm": "cm",
+    "minus": "Less",
+    "plus": "More"
+  },
+  "handicap": {
+    "label": "Handicap (optional)",
+    "placeholder": "e.g. 18,4",
+    "plusLabel": "Plus handicap",
+    "plusHint": "Better than scratch (e.g. +2)",
+    "none": "Not set",
+    "invalid": "Please enter a number between 0 and 54."
+  },
+  "level": {
+    "title": "Score level",
+    "explain": "The level only makes the swing score more forgiving – it widens the tolerances. The targets stay the same for everybody, so a good swing is always a good swing.",
+    "auto": "Auto",
+    "autoFrom": "Auto from your handicap: level {n}",
+    "autoNoHcp": "Auto: level {n} until you enter a handicap",
+    "n": "Level {n}",
+    "range": "Hcp {from}–{to}",
+    "rangeFirst": "Hcp up to {to}",
+    "name": {
+      "1": "Strict",
+      "2": "Fairly strict",
+      "3": "Medium",
+      "4": "Forgiving",
+      "5": "Very forgiving"
+    }
+  },
+  "defaults": {
+    "title": "When you record",
+    "shotType": "Usual shot type",
+    "view": "Usual camera position",
+    "hint": "Preselected on the recording screen – you can change it there every time."
+  },
+  "training": {
+    "title": "Training",
+    "tolerance": "How exact the targets are",
+    "toleranceValue": "{x}× tolerance",
+    "stricter": "Stricter",
+    "forgiving": "More forgiving",
+    "toleranceHint": "Applies to the training targets (mirror mode and ball series). 1× is the default.",
+    "sound": "Sounds",
+    "soundHint": "Beep when you reach the target position – very helpful when you can't look at the screen.",
+    "on": "On",
+    "off": "Off"
+  },
+  "storage": {
+    "title": "Your data",
+    "where": "Everything stays on this phone. No account, no server.",
+    "savedOk": "✓ Swings are saved on this phone",
+    "savedNo": "✕ Not saved in this mode (private browsing) – everything is gone when you close the app.",
+    "used": "{used} used",
+    "usedOf": "{used} of about {quota} available",
+    "unknown": "Storage use unknown on this phone",
+    "persisted": "✓ Protected – the browser won't clear your swings on its own",
+    "notPersisted": "Not protected yet",
+    "persistWhy": "If your phone runs low on space, or you haven't opened the app for a while, Safari may clear website data – including your swings. Protected storage asks the browser to keep it. Adding the app to your home screen helps too.",
+    "persistButton": "Protect my swings",
+    "persistDenied": "The browser said no for now. Add the app to your home screen and try again.",
+    "persistUnsupported": "This browser can't protect storage. Add the app to your home screen – that keeps data much longer.",
+    "homeScreen": "Tip: Share ↑ → \"Add to Home Screen\" – then the app works like a normal app, also offline.",
+    "deleteAll": "Delete all data",
+    "deleteTitle": "Delete everything?",
+    "deleteText": "All swings, videos, training targets, progress and settings are deleted from this phone. This cannot be undone.",
+    "deleteOk": "Delete everything",
+    "deleted": "✓ All data deleted"
+  },
+  "about": {
+    "title": "About",
+    "version": "Version {v}",
+    "build": "Build {d}",
+    "prototype": "This is a prototype to explore ideas for the product. Measurements are approximate and the golf rules are still being reviewed by a coach.",
+    "offline": "Works offline after the first start – the pose detection runs on your phone, no video ever leaves it."
+  }
+}
