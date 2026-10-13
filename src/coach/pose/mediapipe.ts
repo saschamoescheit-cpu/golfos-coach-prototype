@@ -1,4 +1,5 @@
 import { FilesetResolver, PoseLandmarker } from '@mediapipe/tasks-vision';
+import { PoseUnsupportedError, wasmSimdSupported } from './wasmSupport';
 import type { Landmark } from '../model/types';
 import { personCenter, pickMainPerson } from '../pipeline/clip';
 import type { PoseDetection, PoseModel, PoseProvider } from './PoseProvider';
@@ -47,6 +48,9 @@ export class MediaPipePoseProvider implements PoseProvider {
 
   private async load(model: PoseModel): Promise<void> {
     this.close();
+    // only the SIMD build of the WASM is shipped (DECISIONS A2): without SIMD (iOS < 16.4) MediaPipe would request a
+    // missing file and fail with a cryptic error – say clearly what is needed instead (review K5)
+    if (!wasmSimdSupported()) throw new PoseUnsupportedError();
     const fileset = await FilesetResolver.forVisionTasks(`${base()}mediapipe`);
     const options = (delegate: 'GPU' | 'CPU') => ({
       baseOptions: { modelAssetPath: `${base()}models/pose_landmarker_${model}.task`, delegate },
@@ -126,3 +130,4 @@ const byModel: Partial<Record<PoseModel, MediaPipePoseProvider>> = {};
 export function getPoseProviderFor(model: PoseModel): MediaPipePoseProvider {
   return (byModel[model] ??= new MediaPipePoseProvider());
 }
+

@@ -3,6 +3,7 @@ import { buildSwing } from '../../coach/analysis/analyze';
 import type { AnalysisContext } from '../../coach/analysis/context';
 import { criterionText, formatValue, metricName } from '../../coach/faults/format';
 import { t } from '../../coach/i18n/i18n';
+import { startErrorText } from './startError';
 import { openCamera, type CameraHandle, type Facing } from '../../coach/live/camera';
 import { startPoseLoop, type LiveFrame } from '../../coach/live/poseLoop';
 import { ClipRecorder } from '../../coach/live/recorder';
@@ -257,7 +258,13 @@ export function LiveTraining({ target, mode, ctx, toleranceScale, sound, ballGoa
       }
       if (L.rec.recording && L.rec.elapsed() > MAX_IDLE_RECORDING_MS && (tr.state === 'present' || tr.state === 'address')) {
         L.rec.discard();
-        if (tr.state === 'address' && L.cam) L.rec.start(L.cam.stream);
+        if (tr.state === 'address' && L.cam) {
+          try {
+            L.rec.start(L.cam.stream);
+          } catch {
+            /* recorder refused to restart (review K4) – the next address tries again */
+          }
+        }
       }
       const showEval = f.raw.t - L.lastEvalAt < RESULT_SHOW_MS ? L.lastEval : null;
       drawTrainingOverlay(canvasRef.current, {
@@ -350,7 +357,7 @@ export function LiveTraining({ target, mode, ctx, toleranceScale, sound, ballGoa
         setPhase('live');
       } catch (e) {
         if (cancelled) return;
-        setErrMsg(String((e as Error)?.message ?? e));
+        setErrMsg(startErrorText(e)); // never the raw browser message (review K3)
         setPhase('error');
       }
     })();

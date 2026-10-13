@@ -73,7 +73,11 @@
     "no_frames": "No pictures could be read from this video.",
     "camera": "The camera could not be started. Allow camera access in the settings or upload a video.",
     "generic": "Something went wrong: {msg}",
-    "noRecorder": "This browser cannot record video. Please upload a video instead."
+    "noRecorder": "This browser cannot record video. Please upload a video instead.",
+    "cameraDenied": "Camera access is blocked. Allow it in the iPhone settings (Safari › Camera) or upload a video.",
+    "cameraNotFound": "No suitable camera found on this device. You can still upload a video.",
+    "cameraBusy": "The camera is being used by another app. Close it and try again.",
+    "unsupported": "This device is too old for the body detection – iOS 16.4 or newer is needed."
   },
   "tryAgain": "Try again"
 }

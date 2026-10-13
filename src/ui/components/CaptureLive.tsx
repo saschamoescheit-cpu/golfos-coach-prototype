@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import type { AnalysisContext } from '../../coach/analysis/context';
 import { t } from '../../coach/i18n/i18n';
+import { startErrorText } from './startError';
 import { openCamera, type CameraHandle, type Facing } from '../../coach/live/camera';
 import { cameraTilted, IssueDebouncer, LIVE_ISSUE_ORDER, liveFrameIssues, type LiveIssue } from '../../coach/live/frameCheck';
 import { startPoseLoop, type LiveFrame } from '../../coach/live/poseLoop';
@@ -157,7 +158,13 @@ export function CaptureLive({ ctx, onClip, onUpload, onClose }: Props) {
       // waiting at address for a long time: start a fresh recording (memory)
       if (L.rec.recording && L.rec.elapsed() > MAX_IDLE_RECORDING_MS && (tr.state === 'present' || tr.state === 'address')) {
         L.rec.discard();
-        if (tr.state === 'address' && L.cam) L.rec.start(L.cam.stream);
+        if (tr.state === 'address' && L.cam) {
+          try {
+            L.rec.start(L.cam.stream);
+          } catch {
+            setAuto(false); // recorder refused to restart (review K4) – keep the live view, manual recording still possible
+          }
+        }
         setRecording(L.rec.recording);
       }
       if (!L.auto && L.rec.recording) {
@@ -189,7 +196,7 @@ export function CaptureLive({ ctx, onClip, onUpload, onClose }: Props) {
         setPhase('live');
       } catch (e) {
         if (cancelled) return;
-        setErrMsg(String((e as Error)?.message ?? e));
+        setErrMsg(startErrorText(e)); // never the raw browser message (review K3)
         setPhase('error');
       }
     })();
@@ -216,7 +223,11 @@ export function CaptureLive({ ctx, onClip, onUpload, onClose }: Props) {
     }
     if (!L.cam || !ClipRecorder.supported()) return;
     L.rec.discard();
-    L.rec.start(L.cam.stream);
+    try {
+      L.rec.start(L.cam.stream);
+    } catch {
+      return; // recorder refused (review K4)
+    }
     setManual(true);
     setRecording(true);
   };

@@ -10,6 +10,7 @@ import { analyzeVideo, reanalyze, VideoAnalysisError, type VideoAnalysisOutput, 
 import { getStore } from '../../coach/storage';
 import { newId, persistSwing } from '../../coach/storage/save';
 import { CaptureGuide } from '../components/CaptureGuide';
+import { startErrorText } from '../components/startError';
 import { applyLoadedSettings, initialCaptureChoice, type CaptureChoice, type CaptureField, type CaptureParams } from '../components/CaptureModel';
 import { currentSettings } from '../../coach/storage/settings';
 import { CaptureLive, type CapturedClip } from '../components/CaptureLive';
@@ -137,7 +138,7 @@ export function CaptureScreen({ route }: { route: Route }) {
         return;
       }
       const code = e instanceof VideoAnalysisError ? e.code : null;
-      setPhase({ k: 'error', msg: code ? t(`capture.error.${code}`) : t('capture.error.generic', { msg: String((e as Error)?.message ?? e) }) });
+      setPhase({ k: 'error', msg: code ? t(`capture.error.${code}`) : startErrorText(e) || t('capture.error.generic', { msg: String((e as Error)?.message ?? e) }) });
     } finally {
       if (abortRef.current === ac) abortRef.current = null;
     }

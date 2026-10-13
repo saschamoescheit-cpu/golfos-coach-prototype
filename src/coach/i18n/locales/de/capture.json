@@ -73,7 +73,11 @@
     "no_frames": "Aus diesem Video konnten keine Bilder gelesen werden.",
     "camera": "Die Kamera ließ sich nicht starten. Erlaube den Kamerazugriff in den Einstellungen oder lade ein Video hoch.",
     "generic": "Etwas ist schiefgegangen: {msg}",
-    "noRecorder": "Dieser Browser kann kein Video aufnehmen. Bitte lade ein Video hoch."
+    "noRecorder": "Dieser Browser kann kein Video aufnehmen. Bitte lade ein Video hoch.",
+    "cameraDenied": "Der Kamerazugriff ist gesperrt. Erlaube ihn in den iPhone-Einstellungen (Safari › Kamera) oder lade ein Video hoch.",
+    "cameraNotFound": "Auf diesem Gerät wurde keine passende Kamera gefunden. Du kannst trotzdem ein Video hochladen.",
+    "cameraBusy": "Die Kamera wird gerade von einer anderen App benutzt. Schließ sie und versuch es noch einmal.",
+    "unsupported": "Dieses Gerät ist für die Körpererkennung zu alt – nötig ist iOS 16.4 oder neuer."
   },
   "tryAgain": "Nochmal versuchen"
 }
