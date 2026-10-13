@@ -79,7 +79,7 @@ export function analyzeSequence({ raw, images, ctx, scoreLevel }: AnalysisInput)
 
   // the engine handles low quality itself (everything 'uncertain' → shown as "not reliably detectable")
   const evaluation = evaluateFaults(metrics, keyframes, quality, ctx);
-  const score = computeSwingScore(metrics, ctx, { fps: pose.fps, level: scoreLevel, quality: quality.score });
+  const score = computeSwingScore(metrics, ctx, { fps: pose.fps, level: scoreLevel ?? currentScoreLevel, quality: quality.score });
 
   return {
     pose,
@@ -93,4 +93,10 @@ export function analyzeSequence({ raw, images, ctx, scoreLevel }: AnalysisInput)
     uncertainFaultIds: evaluation.uncertain,
     score,
   };
+}
+
+let currentScoreLevel: ScoreLevel | undefined;
+/** Player level from the settings, used when a caller does not pass scoreLevel (capture, training series). */
+export function setScoreLevel(level: ScoreLevel | undefined) {
+  currentScoreLevel = level;
 }
