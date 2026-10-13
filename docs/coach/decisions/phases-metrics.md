@@ -173,6 +173,7 @@ Konkret (Messwert des Ideal-Schwungs → Regel im Katalog):
   Regel > 6 → für den Synth Schwelle ~25; auf echtem Video vermutlich kleiner (echtes Pendel).
 - `flip_at_impact` / `chip_scoop`: der Synth hat am Treffmoment **keine Schaftvorlage** (shaft_lean −2…0°,
   hands_ahead −7…0 %); echte Eisen haben +5…+10°. Regeln sind fachlich plausibel, der Synth ist hier unrealistisch.
+  **Erledigt (Review K7, DECISIONS R2):** Synth-Parameter `shaftLeanImpact` (Eisen 8°, Pitch/Chip 6°, Casting nimmt ihn weg); Fehlalarm-Test in `faults/integration.test.ts`.
 - `putt_tempo` (Integrationstest Putt): Synth-Putt-Tempo misst 1,8–2,0 (Ziel 2) – feuert nur, wenn die Messung < 1,5.
 - Funktionieren wie gedacht: early_extension (hip_depth_change 15 / spine_angle_change −12), hip_sway (−14),
   reverse_pivot (side_bend −12, hip_shift_x +12), chicken_wing (118 vs 165), over_the_top (12,6 vs 3,4),

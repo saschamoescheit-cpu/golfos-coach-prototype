@@ -44,6 +44,8 @@ export interface SynthParams {
   hingeTop: number;
   /** 0 = lag held until late (good); 1 = full early release / casting */
   casting: number;
+  /** forward shaft lean at impact (deg, hands ahead of the club head; good irons/wedges ≈ 5–10°). Casting removes it (flip). */
+  shaftLeanImpact: number;
   /** 3D shoulder turn at the top (deg) */
   shoulderTurnTop: number;
   hipTurnTop: number;
@@ -107,14 +109,14 @@ const FULL: Partial<SynthParams> = {
 
 const SHOT_DEFAULTS: Record<ShotType, Partial<SynthParams>> = {
   driver: { ...FULL, spineTilt: 32, backswingMs: 780, downswingMs: 260 },
-  iron: { ...FULL },
+  iron: { ...FULL, shaftLeanImpact: 8 },
   bunker: { ...FULL, armArcTop: 130, shoulderTurnTop: 80 },
   pitch: {
-    armArcTop: 95, armArcFinish: 110, hingeTop: 80, shoulderTurnTop: 55, hipTurnTop: 25, shoulderTurnImpact: -10,
+    shaftLeanImpact: 6, armArcTop: 95, armArcFinish: 110, hingeTop: 80, shoulderTurnTop: 55, hipTurnTop: 25, shoulderTurnImpact: -10,
     hipTurnImpact: -25, backswingMs: 600, downswingMs: 300, followMs: 400,
   },
   chip: {
-    armArcTop: 35, armArcFinish: 40, hingeTop: 10, shoulderTurnTop: 20, hipTurnTop: 5, shoulderTurnImpact: -5,
+    shaftLeanImpact: 6, armArcTop: 35, armArcFinish: 40, hingeTop: 10, shoulderTurnTop: 20, hipTurnTop: 5, shoulderTurnImpact: -5,
     hipTurnImpact: -10, backswingMs: 450, downswingMs: 225, followMs: 300, hipShiftImpact: 0.01, followBody: 0.3, sideBendTop: -2, sideBendImpact: -6,
   },
   putt: {
@@ -127,7 +129,7 @@ const SHOT_DEFAULTS: Record<ShotType, Partial<SynthParams>> = {
 export const SYNTH_DEFAULTS: SynthParams = {
   view: 'face_on', shotType: 'iron', handedness: 'right', fps: 60, width: 1080, height: 1920,
   addressMs: 700, backswingMs: 750, downswingMs: 250, followMs: 450, finishHoldMs: 700,
-  armArcTop: 150, armArcFinish: 200, hingeTop: 90, casting: 0,
+  armArcTop: 150, armArcFinish: 200, hingeTop: 90, casting: 0, shaftLeanImpact: 0,
   shoulderTurnTop: 90, hipTurnTop: 45, shoulderTurnImpact: -20, hipTurnImpact: -40,
   spineTilt: 38, spineTiltImpactDelta: 0, hipDepthImpact: 0,
   hipShiftTop: -0.01, hipShiftImpact: 0.06, headShiftTopX: 0, headShiftImpactX: 0, headLiftImpact: 0,
@@ -225,12 +227,15 @@ function kinematics(p: SynthParams, t: number): Kin {
     const arc = p.armArcTop * (1 - s * s); // accelerating
     // good: lag held until late (release ∝ s^4); casting: released linearly from the top
     const release = lerp(Math.pow(s, 4), s, p.casting);
-    return { stage: 'down', arc, hinge: p.hingeTop * (1 - release), s };
+    // the last bit of lag stays as forward shaft lean at impact (casting releases it all = flip)
+    const lean = p.shaftLeanImpact * (1 - p.casting);
+    return { stage: 'down', arc, hinge: p.hingeTop * (1 - release) + lean * release, s };
   }
   if (t < F) {
     const s = (t - D) / p.followMs;
     const e = 1 - (1 - s) * (1 - s); // decelerating
-    return { stage: 'follow', arc: -p.armArcFinish * e, hinge: -p.hingeTop * 0.9 * e, s };
+    const lean = p.shaftLeanImpact * (1 - p.casting);
+    return { stage: 'follow', arc: -p.armArcFinish * e, hinge: lean * (1 - e) - p.hingeTop * 0.9 * e, s };
   }
   return { stage: 'finish', arc: -p.armArcFinish, hinge: -p.hingeTop * 0.9, s: 1 };
 }

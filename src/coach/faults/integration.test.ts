@@ -64,6 +64,15 @@ describe.skipIf(!metricsImplemented)('integration with synthetic swings', () => 
     expect(r.ids).toContain('putt_body_movement');
   });
 
+  // Review K7: the generator now has forward shaft lean at impact (irons 8°, wedges 6°), so these rules get a
+  // false-alarm test; a shaft leaning back (or casting) is found.
+  it('face-on: no flip / scoop on the ideal iron and pitch, found with the shaft leaning back', () => {
+    expect(run({ view: 'face_on', shotType: 'iron' }).ids).not.toContain('flip_at_impact');
+    expect(run({ view: 'face_on', shotType: 'pitch' }).ids).not.toContain('chip_scoop');
+    expect(run({ view: 'face_on', shotType: 'iron', shaftLeanImpact: -6 }).ids).toContain('flip_at_impact');
+    expect(run({ view: 'face_on', shotType: 'chip', shaftLeanImpact: -8 }).ids).toContain('chip_scoop');
+  });
+
   it('dark video → nothing diagnosed', () => {
     const { r } = run({ view: 'down_the_line', visibility: 0.3 });
     expect(r.faults).toEqual([]);
