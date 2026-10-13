@@ -10,6 +10,8 @@ import { analyzeVideo, reanalyze, VideoAnalysisError, type VideoAnalysisOutput, 
 import { getStore } from '../../coach/storage';
 import { newId, persistSwing } from '../../coach/storage/save';
 import { CaptureGuide } from '../components/CaptureGuide';
+import { applyLoadedSettings, initialCaptureChoice, type CaptureChoice, type CaptureField, type CaptureParams } from '../components/CaptureModel';
+import { currentSettings } from '../../coach/storage/settings';
 import { CaptureLive, type CapturedClip } from '../components/CaptureLive';
 import { TopBar } from '../components/TopBar';
 import { replace, type Route } from '../nav';
@@ -39,9 +41,15 @@ const STAGE_WEIGHT: Record<VideoStage, [number, number]> = {
 };
 
 export function CaptureScreen({ route }: { route: Route }) {
-  const [shotType, setShotType] = useState<ShotType>((route.params.shotType as ShotType) ?? 'iron');
-  const [view, setView] = useState<CameraView>((route.params.view as CameraView) ?? 'face_on');
-  const [hand, setHand] = useState<Handedness>('right');
+  const params: CaptureParams = { shotType: route.params.shotType as ShotType | undefined, view: route.params.view as CameraView | undefined };
+  // start from the cached settings (loaded at app start); later-arriving settings only fill untouched fields (review W6)
+  const [choice, setChoice] = useState<CaptureChoice>(() => initialCaptureChoice(params, currentSettings()));
+  const touched = useRef(new Set<CaptureField>());
+  const choose = (patch: Partial<CaptureChoice>) => {
+    for (const k of Object.keys(patch) as CaptureField[]) touched.current.add(k);
+    setChoice((c) => ({ ...c, ...patch }));
+  };
+  const { shotType, view, hand } = choice;
   const [phase, setPhase] = useState<Phase>({ k: 'setup' });
   const fileRef = useRef<HTMLInputElement>(null);
   const abortRef = useRef<AbortController | null>(null);
@@ -54,10 +62,8 @@ export function CaptureScreen({ route }: { route: Route }) {
       .then((s) => s.getSettings())
       .then((st) => {
         if (!alive) return;
-        setHand(st.handedness);
         setScoreLevel(levelFromSettings(st));
-        if (!route.params.shotType && st.defaultShotType) setShotType(st.defaultShotType);
-        if (!route.params.view && st.defaultView) setView(st.defaultView);
+        setChoice((c) => applyLoadedSettings(c, touched.current, params, st));
       })
       .catch(() => {});
     return () => {
@@ -214,9 +220,8 @@ export function CaptureScreen({ route }: { route: Route }) {
         <div className="capture-choice-grid">
           {ALL_SHOT_TYPES.map((s) => (
             <button key={s} className="choice" aria-pressed={shotType === s} onClick={() => {
-                setShotType(s);
                 // putts can only be timed face-on (the putter moves along the camera axis from behind) – DECISIONS L3
-                if (s === 'putt') setView('face_on');
+                choose(s === 'putt' ? { shotType: s, view: 'face_on' } : { shotType: s });
               }}>
               {t(`common.shot.${s}`)}
             </button>
@@ -228,7 +233,7 @@ export function CaptureScreen({ route }: { route: Route }) {
         <h2>{t('capture.view')}</h2>
         <div className="choice-grid">
           {ALL_VIEWS.map((v) => (
-            <button key={v} className="choice" aria-pressed={view === v} onClick={() => setView(v)}>
+            <button key={v} className="choice" aria-pressed={view === v} onClick={() => choose({ view: v })}>
               {t(`common.view.${v}`)}
               <small>{t(`capture.viewHint.${v}`)}</small>
             </button>
@@ -241,7 +246,7 @@ export function CaptureScreen({ route }: { route: Route }) {
         <h2>{t('capture.hand')}</h2>
         <div className="segmented">
           {(['right', 'left'] as Handedness[]).map((h) => (
-            <button key={h} aria-pressed={hand === h} onClick={() => setHand(h)}>
+            <button key={h} aria-pressed={hand === h} onClick={() => choose({ hand: h })}>
               {t(`common.hand.${h}`)}
             </button>
           ))}
