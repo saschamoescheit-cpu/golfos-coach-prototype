@@ -1,0 +1,25 @@
+{
+  "title": "Mein Fehlschlag",
+  "intro": "Was macht dein Ball am häufigsten? Wir suchen die Ursache in deinen aufgenommenen Schwüngen.",
+  "group": {
+    "direction": "Richtung & Kurve",
+    "contact": "Treffer",
+    "height": "Flughöhe",
+    "short_game": "Kurzes Spiel",
+    "putting": "Putten"
+  },
+  "change": "Anderen Fehlschlag wählen",
+  "causesTitle": "Wahrscheinliche Ursachen in deinem Schwung",
+  "noData": "Analysiere mindestens {n} Schwünge für eine persönliche Reihenfolge. Bis dahin die typischen Ursachen:",
+  "basedOn": "Auf Basis von {n} analysierten Schwüngen.",
+  "frequency": "In {d} von {c} Schwüngen",
+  "notFound": "In deinen Schwüngen nicht gefunden",
+  "notChecked": "Noch nicht geprüft – filme {view}",
+  "showCorrection": "Korrektur zeigen",
+  "hideCorrection": "Korrektur ausblenden",
+  "train": "Das trainieren",
+  "noneOccurring": "Keine der messbaren Ursachen kam in deinen Schwüngen vor. Prüf die Ursachen unten, die die Kamera nicht sehen kann.",
+  "unmeasurableTitle": "Ursachen, die die Kamera nicht sieht",
+  "unmeasurableIntro": "Griff, Schlagfläche, Ausrichtung, Ausrüstung und Kopf – prüf das selbst oder mit deinem Pro:",
+  "physics": "Warum der Ball das macht"
+}

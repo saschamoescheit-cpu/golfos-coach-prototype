@@ -195,7 +195,9 @@ export type BallFlight =
   | 'putt_push'
   | 'putt_distance'
   | 'inconsistent_contact'
-  | 'loss_of_distance';
+  | 'loss_of_distance'
+  // additive (faults agent): yips from the Fehlschlag-Katalog
+  | 'yips';
 
 export type RuleOp = '>' | '<' | 'abs>' | 'outside';
 
@@ -274,7 +276,43 @@ export interface Drill {
 /** Swing score 0..100 (concept 08.10.2026). */
 export interface SwingScore {
   total: number | null;
-  parts: { id: 'downswing9' | 'tempo' | 'body' | 'top' | 'backswing9' | 'setup'; score: number | null; weight: number }[];
+  parts: { id: SwingScorePartId; score: number | null; weight: number }[];
+  // ---- additive (Swing-Score rules 12.10.2026, section 5) ----
+  /** SCORE_VERSION used – stored scores stay comparable when weights/targets change */
+  version?: string;
+  /** player level 1 (strict, Hcp ≤ 4) .. 5 (Hcp 36–54) – scales tolerances only */
+  level?: ScoreLevel;
+  toleranceFactor?: number;
+  /** same measurement on level 1 with standard targets (neutral comparison number) */
+  tourTotal?: number | null;
+  /** measured share of the total weight 0..1 */
+  coverage?: number;
+  noTotalReason?: 'coverage' | 'shot_type' | 'quality';
+  /** raw criteria – enough to recompute the score with another level/version (rescore) */
+  criteria?: ScoreCriterion[];
+}
+
+export type SwingScorePartId = 'downswing9' | 'tempo' | 'body' | 'top' | 'backswing9' | 'setup';
+export type ScoreLevel = 1 | 2 | 3 | 4 | 5;
+export type ScoreStatus = 'green' | 'yellow' | 'red' | 'not_measured';
+
+export interface ScoreCriterion {
+  part: SwingScorePartId;
+  metric: MetricId;
+  at: KeyPosition | 'swing';
+  measured: number | null;
+  /** target actually used (standard or personal target) */
+  target: number;
+  /** effective tolerance (base × level factor) */
+  tolerance: number;
+  points: number | null;
+  status: ScoreStatus;
+  reason?: 'view' | 'missing' | 'low_confidence' | 'below_measurement_floor';
+  /** additive detail for rescore: base tolerance, comparison mode, measurement-error floor, metric confidence */
+  baseTolerance?: number;
+  mode?: 'abs' | 'min' | 'max';
+  floor?: number;
+  confidence?: number;
 }
 
 // ---------------------------------------------------------------- swings, sessions, training
@@ -371,4 +409,8 @@ export interface Settings {
   sound: boolean;
   /** player height in cm – only used to show approximate centimetres next to relative values */
   heightCm: number;
+  /** additive (faults agent, Swing-Score rules 12.10.2026): handicap → score level; null = unknown */
+  handicap?: number | null;
+  /** score strictness 1..5, or 'auto' = derived from the handicap */
+  scoreLevel?: ScoreLevel | 'auto';
 }
