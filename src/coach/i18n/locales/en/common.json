@@ -9,9 +9,34 @@
   "done": "Done",
   "loading": "Loading…",
   "notReliable": "Not reliably detectable",
+  "shotType": "Shot type",
   "shot": { "driver": "Driver", "iron": "Iron", "pitch": "Pitch", "chip": "Chip", "bunker": "Bunker", "putt": "Putt" },
   "view": { "face_on": "Face-on", "down_the_line": "Down-the-line" },
+  "viewShort": { "face_on": "Face-on", "down_the_line": "Down-the-line" },
   "hand": { "right": "Right-handed", "left": "Left-handed" },
   "pos": { "address": "Address", "backswing9": "9 o'clock back", "top": "Top", "downswing9": "9 o'clock down", "impact": "Impact", "finish": "Finish" },
-  "home": { "analyze": "Analyze a swing", "analyzeSub": "Record or upload a video", "train": "Train", "trainSub": "Mirror mode and ball series with sound", "history": "My swings", "historySub": "History, compare, progress", "diagnose": "My miss", "diagnoseSub": "Ball goes left? Find the cause", "settings": "Settings", "prototype": "Prototype – ideas for product development" }
+  "home": {
+    "analyze": "Analyze a swing",
+    "analyzeSub": "Record or upload a video",
+    "train": "Train",
+    "trainSub": "Mirror mode and ball series with sound",
+    "history": "My swings",
+    "historySub": "History, compare, progress",
+    "diagnose": "My miss",
+    "diagnoseSub": "Ball goes left? Find the cause",
+    "settings": "Settings",
+    "prototype": "Prototype – ideas for product development",
+    "latest": "Your last swing",
+    "latestOpen": "Open",
+    "workOn": "Work on: {fault}",
+    "noFault": "✓ No clear fault in what we could check",
+    "notReliable": "Not reliably detectable – try another video",
+    "welcome": "Film your swing, see the one thing to fix first and train it with live feedback."
+  },
+  "offline": {
+    "ready": "✓ Ready to work offline – also at the range without signal.",
+    "update": "A new version is ready.",
+    "reload": "Reload",
+    "notSaved": "✕ Private mode: nothing is saved."
+  }
 }
