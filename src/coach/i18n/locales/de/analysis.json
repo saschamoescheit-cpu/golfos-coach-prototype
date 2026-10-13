@@ -1,0 +1,126 @@
+{
+  "title": "Dein Schwung",
+  "loading": "Schwung wird geladen …",
+  "notFound": "Dieser Schwung wurde nicht gefunden.",
+  "noVideo": "Video nicht gespeichert – nur das Skelett wird gezeigt.",
+  "quality": {
+    "title": "Nicht sicher erkennbar",
+    "intro": "Das Video ist nicht klar genug für eine verlässliche Diagnose. Wir zeigen, was wir gesehen haben, aber keine Fehler und keinen Score.",
+    "reasons": "Warum",
+    "tipsTitle": "Tipps fürs nächste Video",
+    "tips": {
+      "t1": "Ganzer Körper im Bild – vom Kopf bis zu den Füßen, mit etwas Platz drumherum.",
+      "t2": "Handy auf einem Stativ auf Hüfthöhe, nicht aus der Hand.",
+      "t3": "Gutes Licht von vorne oder von der Seite, kein heller Himmel hinter dir.",
+      "t4": "Face-on: Kamera vor dir. Down-the-line: Kamera hinter dir, Blick Richtung Ziel.",
+      "t5": "Nutze Zeitlupe oder 60 fps, wenn dein Handy das kann."
+    },
+    "issue": {
+      "no_person": "Im Video wurde keine Person gefunden.",
+      "body_cut_off": "Kopf oder Füße sind außerhalb des Bildes.",
+      "low_visibility": "Wichtige Gelenke waren schlecht zu sehen (Licht, Kleidung, Hintergrund).",
+      "low_fps": "Bildrate unter 30 fps – Tempo und Treffmoment sind unsicher.",
+      "too_short": "Der Clip enthält keinen ganzen Schwung.",
+      "no_swing_found": "Im Clip wurde kein Schwung gefunden.",
+      "camera_moving": "Die Kamera hat sich während des Schwungs bewegt.",
+      "too_far": "Du bist zu klein im Bild – stell die Kamera näher.",
+      "mirrored_suspected": "Die Bewegung passt nicht zur gewählten Spielhand.",
+      "club_not_found": "Der Schläger wurde im Bild nicht gefunden – Schlägerwerte sind geschätzt oder fehlen."
+    }
+  },
+  "score": {
+    "title": "Swing-Score",
+    "level": "Stufe {n}",
+    "tour": "Tour-Skala: {n}",
+    "tapHint": "Tipp auf einen Balken für Messwert und Ziel",
+    "noTotal": {
+      "coverage": "Zu wenig gemessen für einen Gesamtscore – filme Down-the-line für die Schaftpositionen.",
+      "shot_type": "Den Score gibt es nur für volle Schwünge (Driver und Eisen).",
+      "quality": "Kein Score – das Video war nicht klar genug."
+    },
+    "word": {
+      "excellent": "Hervorragend",
+      "good": "Gut",
+      "solid": "Solide",
+      "work": "Auf dem Weg",
+      "potential": "Viel Potenzial"
+    },
+    "part": {
+      "downswing9": "9 Uhr Abschwung",
+      "tempo": "Rhythmus",
+      "body": "Körper",
+      "top": "Top",
+      "backswing9": "9 Uhr Aufschwung",
+      "setup": "Setup"
+    },
+    "notMeasured": "nicht gemessen",
+    "measured": "Gemessen",
+    "target": "Ziel",
+    "points": "{n} Punkte",
+    "atLeast": "mindestens {v}",
+    "reason": {
+      "view": "aus dieser Kameraperspektive nicht messbar",
+      "missing": "in diesem Video nicht gefunden",
+      "low_confidence": "nicht sicher gemessen",
+      "below_measurement_floor": "Messfehler zu groß für diese Toleranz"
+    }
+  },
+  "tempo": {
+    "line": "Tempo {v} : 1",
+    "ref": "(Tour {t} : 1)",
+    "refShort": "(Ziel {t} : 1)",
+    "fast": "Dein Aufschwung ist im Verhältnis zum Abschwung schnell – nimm den Schläger ruhiger zurück.",
+    "slow": "Dein Abschwung ist im Verhältnis zum Aufschwung langsam – lass ihn beschleunigen.",
+    "ok": "Guter Rhythmus."
+  },
+  "faults": {
+    "title": "Daran arbeitest du",
+    "none": "In dem, was wir prüfen konnten, gibt es keinen klaren Fehler. Stark!",
+    "count": "{n} von {m} geprüften Punkten brauchen Arbeit"
+  },
+  "values": {
+    "title": "Alle Messwerte",
+    "show": "Alle Messwerte zeigen",
+    "hide": "Messwerte ausblenden",
+    "ok": "im Toleranzbereich",
+    "bad": "außerhalb der Toleranz",
+    "info": "Info",
+    "uncertain": "unsicher"
+  },
+  "uncertain": {
+    "title": "Nicht sicher geprüft",
+    "intro": "Diese Punkte gehören zu deinem Schlag, ließen sich in diesem Video aber nicht sicher messen:"
+  },
+  "metric": {
+    "shoulder_turn": "Schulterdrehung",
+    "hip_turn": "Hüftdrehung",
+    "x_factor": "X-Faktor",
+    "spine_angle": "Vorneigung",
+    "spine_angle_change": "Änderung der Vorneigung",
+    "side_bend": "Seitneigung",
+    "head_shift_x": "Kopf seitlich",
+    "head_shift_y": "Kopf hoch/runter",
+    "hip_shift_x": "Hüfte seitlich",
+    "hip_depth_change": "Hüfte Richtung Ball",
+    "lead_arm_angle": "Winkel linker Arm",
+    "trail_arm_angle": "Winkel rechter Arm",
+    "lead_wrist_hinge": "Handgelenkwinkel",
+    "hand_height": "Handhöhe",
+    "hand_depth": "Handtiefe",
+    "hands_ahead": "Hände vor dem Ball",
+    "shaft_plane_dev": "Schaft zur neutralen Linie",
+    "shaft_lean": "Schaftneigung",
+    "knee_flex": "Kniebeugung",
+    "stance_width": "Standbreite",
+    "tempo_ratio": "Tempo",
+    "backswing_ms": "Dauer Aufschwung",
+    "downswing_ms": "Dauer Abschwung",
+    "putter_wrist_change": "Handgelenk-Änderung",
+    "body_motion": "Körperbewegung",
+    "swing_length": "Schwunglänge",
+    "lead_arm_post_impact": "Linker Arm nach dem Treffmoment",
+    "hand_path_shift": "Handweg (runter vs. hoch)"
+  },
+  "unit": { "deg": "°", "pct_torso": " % Rumpf", "ms": " ms", "ratio": " : 1" },
+  "atSwing": "ganzer Schwung"
+}
