@@ -17,7 +17,7 @@
       "whole": "Your whole body must be in the picture – and the club above your head at the top."
     },
     "face_on": "Stand facing the phone, the phone opposite your chest.",
-    "down_the_line": "Phone behind your hands, on a line parallel to where you aim (the target line). You stand on the left of the picture."
+    "down_the_line": "Phone behind your hands, on a line parallel to where you aim (the target line). You stand on the {left} of the picture."
   },
   "startCamera": "Start camera",
   "upload": "Upload a video",

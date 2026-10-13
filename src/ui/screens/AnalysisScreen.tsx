@@ -171,7 +171,7 @@ export function AnalysisScreen({ route }: { route: Route }) {
             <>
               <div className="fx-muted">{t('analysis.faults.count', { n: swing.faults.length, m: swing.checkedFaultIds.length })}</div>
               {shown.map((f, i) => (
-                <FaultCard key={f.defId} fault={f} rank={i + 1} onShow={seek} onTrain={train} />
+                <FaultCard key={f.defId} fault={f} rank={i + 1} onShow={seek} onTrain={train} handedness={swing.handedness} />
               ))}
             </>
           )}

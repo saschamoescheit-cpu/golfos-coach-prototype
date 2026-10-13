@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { keysOf, loc, num, t } from './i18n';
+import { keysOf, loc, num, sides, SIDE_TOKEN, t } from './i18n';
 
 /**
  * Completeness of all translation files that exist (every agent's namespace is checked automatically):
@@ -70,8 +70,9 @@ function missingLocalized(v: unknown, path: string, out: string[]) {
     const o = v as Record<string, unknown>;
     if (typeof o.en === 'string' || typeof o.de === 'string') {
       for (const l of ['en', 'de']) if (typeof o[l] !== 'string' || !(o[l] as string).trim()) out.push(`${path}.${l}`);
-      const pe = placeholders(String(o.en ?? '')).join();
-      if (pe !== placeholders(String(o.de ?? '')).join()) out.push(`${path} (placeholders)`);
+      // side tokens ({lead}, {right} …) are per language (English often says "lead arm" without a token)
+      const pe = placeholders(String(o.en ?? '').replace(SIDE_TOKEN, '')).join();
+      if (pe !== placeholders(String(o.de ?? '').replace(SIDE_TOKEN, '')).join()) out.push(`${path} (placeholders)`);
     } else for (const [k, x] of Object.entries(o)) missingLocalized(x, `${path}.${k}`, out);
   }
 }
@@ -87,6 +88,17 @@ describe('catalog texts (Localized {en, de})', () => {
 });
 
 describe('i18n helpers', () => {
+  it('sides() resolves side tokens for both hands (review W4)', () => {
+    expect(sides('die {lead}e Schulter, den {trail}en Fuß, nach {left}s, {Right}skurve', 'de', 'right')).toBe(
+      'die linke Schulter, den rechten Fuß, nach links, Rechtskurve',
+    );
+    expect(sides('die {lead}e Schulter, den {trail}en Fuß, nach {left}s, {Right}skurve', 'de', 'left')).toBe(
+      'die rechte Schulter, den linken Fuß, nach rechts, Linkskurve',
+    );
+    expect(sides('{Lead} arm, curves {right}', 'en', 'left')).toBe('Right arm, curves left');
+    expect(loc({ en: 'pulls {left}', de: 'zieht nach {left}s' }, 'de', 'left')).toBe('zieht nach rechts');
+    expect(sides('{name} stays', 'en', 'left')).toBe('{name} stays');
+  });
   it('t() replaces placeholders and falls back to the key', () => {
     expect(t('common.appName', { app: 'GolfOS' }, 'de')).toBe('GolfOS Coach');
     expect(t('nope.missing')).toBe('nope.missing');

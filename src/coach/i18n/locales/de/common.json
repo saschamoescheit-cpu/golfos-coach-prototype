@@ -23,7 +23,7 @@
     "history": "Meine Schwünge",
     "historySub": "Verlauf, Vergleich, Fortschritt",
     "diagnose": "Mein Fehlschlag",
-    "diagnoseSub": "Ball geht links? Ursache finden",
+    "diagnoseSub": "Ball geht {left}s? Ursache finden",
     "settings": "Einstellungen",
     "prototype": "Prototyp – Ideengebung für die Produktentwicklung",
     "latest": "Dein letzter Schwung",

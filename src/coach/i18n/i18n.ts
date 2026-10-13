@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import type { Lang, Localized } from '../model/types';
+import type { Handedness, Lang, Localized } from '../model/types';
 
 /**
  * i18n (work package G). English is the base language, German the second one.
@@ -47,17 +47,53 @@ export function detectLang(): Lang {
   return navigator.language?.toLowerCase().startsWith('de') ? 'de' : 'en';
 }
 
-/** Translate a key; {name} placeholders are replaced from params. */
-export function t(key: string, params?: Record<string, string | number>, lang: Lang = current): string {
-  let s = dicts[lang][key] ?? dicts.en[key] ?? key;
-  if (params) for (const [k, v] of Object.entries(params)) s = s.split(`{${k}}`).join(String(v));
-  return s;
+// ------------------------------------------------------------------ side words (review W4)
+
+/**
+ * Texts never hard-code left/right. They use side tokens that are resolved with the player's handedness:
+ *   {lead} {trail}  body side: lead = target side (left arm of a right-hander), trail = the other one
+ *   {left} {right}  directions as a RIGHT-hander sees them (ball flight, aim); swapped for a left-hander
+ *   capitalised ({Lead}, {Right} …) at the start of a sentence or in a German compound noun.
+ * English resolves to the word ("left"/"right"). German resolves to the STEM ("link"/"recht") and the text writes the
+ * ending: "die {lead}e Schulter", "den {trail}en Ellbogen", "nach {left}s", "{Right}skurve" – so every case and gender
+ * stays correct for both hands.
+ */
+export const SIDE_TOKEN = /\{(lead|trail|left|right|Lead|Trail|Left|Right)\}/g;
+const SIDE_WORDS: Record<Lang, [left: string, right: string]> = { en: ['left', 'right'], de: ['link', 'recht'] };
+let hand: Handedness = 'right';
+
+/** Default handedness for side tokens (from the settings; a screen showing one swing passes the swing's own). */
+export function setHandedness(h: Handedness) {
+  hand = h;
+}
+export function getHandedness(): Handedness {
+  return hand;
 }
 
-/** Pick the current language from a catalog text ({en, de}). */
-export function loc(text: Localized | undefined, lang: Lang = current): string {
+/** Resolve the side tokens of a text for a handedness. */
+export function sides(s: string, lang: Lang = current, handedness: Handedness = hand): string {
+  if (!s.includes('{')) return s;
+  const [l, r] = SIDE_WORDS[lang];
+  return s.replace(SIDE_TOKEN, (_m, tok: string) => {
+    const lower = tok.toLowerCase();
+    const leftForRightHander = lower === 'lead' || lower === 'left';
+    const w = leftForRightHander === (handedness === 'right') ? l : r;
+    return tok[0] === lower[0] ? w : w[0].toUpperCase() + w.slice(1);
+  });
+}
+
+/** Translate a key; {name} placeholders are replaced from params, side tokens with the handedness (default: settings). */
+export function t(key: string, params?: Record<string, string | number>, lang: Lang = current, handedness: Handedness = hand): string {
+  const own = dicts[lang][key];
+  let s = own ?? dicts.en[key] ?? key;
+  if (params) for (const [k, v] of Object.entries(params)) s = s.split(`{${k}}`).join(String(v));
+  return sides(s, own !== undefined ? lang : 'en', handedness);
+}
+
+/** Pick the current language from a catalog text ({en, de}) and resolve its side tokens (default: settings handedness). */
+export function loc(text: Localized | undefined, lang: Lang = current, handedness: Handedness = hand): string {
   if (!text) return '';
-  return text[lang] || text.en;
+  return text[lang] ? sides(text[lang], lang, handedness) : sides(text.en, 'en', handedness);
 }
 
 /** Format a number in the current language (decimal comma in German). */

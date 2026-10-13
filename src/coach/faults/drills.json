@@ -6,8 +6,8 @@
     "equipment": { "en": "A wall or a golf bag, a club", "de": "Eine Wand oder ein Golfbag, ein Schläger" },
     "steps": [
       { "en": "Take your address with your backside just touching the wall behind you.", "de": "Geh in die Ansprechhaltung, das Gesäß berührt gerade die Wand hinter dir." },
-      { "en": "Swing slowly to the top – the trail side of your backside stays on the wall.", "de": "Schwing langsam ins Top – die rechte Gesäßhälfte bleibt an der Wand." },
-      { "en": "Swing down slowly to impact: now the lead side of your backside touches the wall.", "de": "Schwing langsam bis zum Treffmoment: jetzt berührt die linke Gesäßhälfte die Wand." },
+      { "en": "Swing slowly to the top – the trail side of your backside stays on the wall.", "de": "Schwing langsam ins Top – die {trail}e Gesäßhälfte bleibt an der Wand." },
+      { "en": "Swing down slowly to impact: now the lead side of your backside touches the wall.", "de": "Schwing langsam bis zum Treffmoment: jetzt berührt die {lead}e Gesäßhälfte die Wand." },
       { "en": "Hold the impact position for two seconds and feel your forward bend.", "de": "Halte die Treffmoment-Position zwei Sekunden und spür deine Vorneigung." }
     ],
     "reps": { "en": "3 × 10 slow swings", "de": "3 × 10 langsame Schwünge" }
@@ -19,7 +19,7 @@
     "equipment": { "en": "Alignment stick, range balls, 7-iron", "de": "Ausrichtungsstab, Rangebälle, Eisen 7" },
     "steps": [
       { "en": "Stick the alignment stick into the ground just behind your backside at address.", "de": "Steck den Stab direkt hinter deinem Gesäß in den Boden." },
-      { "en": "Hit half shots: your lead hip should touch the stick at impact.", "de": "Spiel halbe Schläge: im Treffmoment berührt deine linke Hüfte den Stab." },
+      { "en": "Hit half shots: your lead hip should touch the stick at impact.", "de": "Spiel halbe Schläge: im Treffmoment berührt deine {lead}e Hüfte den Stab." },
       { "en": "Build up to three-quarter and full swings with the same feeling.", "de": "Steigere auf Dreiviertel- und volle Schwünge mit demselben Gefühl." }
     ],
     "reps": { "en": "15 balls, then 5 without the stick", "de": "15 Bälle, danach 5 ohne Stab" }
@@ -56,20 +56,20 @@
     "steps": [
       { "en": "Lay a towel on the ground about a hand's width behind the ball.", "de": "Leg ein Handtuch etwa eine Handbreit hinter den Ball." },
       { "en": "Start with small swings: hit the ball without touching the towel.", "de": "Beginne mit kleinen Schwüngen: triff den Ball, ohne das Handtuch zu berühren." },
-      { "en": "Feel the weight on the lead foot and the hands ahead at impact.", "de": "Spür das Gewicht auf dem linken Fuß und die Hände vor dem Ball im Treffmoment." },
+      { "en": "Feel the weight on the lead foot and the hands ahead at impact.", "de": "Spür das Gewicht auf dem {lead}en Fuß und die Hände vor dem Ball im Treffmoment." },
       { "en": "Gradually make the swings longer.", "de": "Mach die Schwünge nach und nach länger." }
     ],
     "reps": { "en": "3 × 10 balls", "de": "3 × 10 Bälle" }
   },
   {
     "id": "sway_stick", "kind": "feel", "draft": true,
-    "name": { "en": "Stick outside the trail hip", "de": "Stab außen an der rechten Hüfte" },
+    "name": { "en": "Stick outside the trail hip", "de": "Stab außen an der {trail}en Hüfte" },
     "goal": { "en": "Turn the hips without sliding sideways.", "de": "Die Hüfte drehen, ohne seitlich wegzurutschen." },
     "equipment": { "en": "Alignment stick (or golf bag), a club", "de": "Ausrichtungsstab (oder Golfbag), ein Schläger" },
     "steps": [
-      { "en": "Stick the alignment stick into the ground just outside your trail hip.", "de": "Steck den Stab direkt außen neben deine rechte Hüfte in den Boden." },
+      { "en": "Stick the alignment stick into the ground just outside your trail hip.", "de": "Steck den Stab direkt außen neben deine {trail}e Hüfte in den Boden." },
       { "en": "Make slow backswings: the hip turns away from the stick and must not touch it.", "de": "Mach langsame Rückschwünge: die Hüfte dreht vom Stab weg und berührt ihn nicht." },
-      { "en": "Feel the pressure on the inside of your trail foot at the top.", "de": "Spür im Top den Druck auf der Innenseite des rechten Fußes." }
+      { "en": "Feel the pressure on the inside of your trail foot at the top.", "de": "Spür im Top den Druck auf der Innenseite des {trail}en Fußes." }
     ],
     "reps": { "en": "3 × 10 backswings", "de": "3 × 10 Rückschwünge" }
   },
@@ -79,7 +79,7 @@
     "goal": { "en": "Keep the turn without sway when hitting balls.", "de": "Die Drehung ohne Sway auch beim Schlagen halten." },
     "equipment": { "en": "Alignment stick, range balls, 7-iron", "de": "Ausrichtungsstab, Rangebälle, Eisen 7" },
     "steps": [
-      { "en": "Keep the stick outside your trail hip as in the feel drill.", "de": "Lass den Stab wie in der Gefühlsübung außen an der rechten Hüfte stecken." },
+      { "en": "Keep the stick outside your trail hip as in the feel drill.", "de": "Lass den Stab wie in der Gefühlsübung außen an der {trail}en Hüfte stecken." },
       { "en": "Hit three-quarter shots without touching the stick in the backswing.", "de": "Spiel Dreiviertel-Schläge, ohne den Stab im Rückschwung zu berühren." },
       { "en": "Every fifth ball: remove the stick and keep the same feeling.", "de": "Jeden fünften Ball: Stab weg und dasselbe Gefühl halten." }
     ],
@@ -91,7 +91,7 @@
     "goal": { "en": "Feel your upper body stay behind the ball at the top.", "de": "Spüren, dass dein Oberkörper im Top hinter dem Ball bleibt." },
     "equipment": { "en": "A club, a mirror or phone camera face-on", "de": "Ein Schläger, ein Spiegel oder die Handykamera von vorne" },
     "steps": [
-      { "en": "At address tilt your upper body slightly away from the target (trail shoulder lower).", "de": "Neig beim Ansprechen den Oberkörper leicht vom Ziel weg (rechte Schulter tiefer)." },
+      { "en": "At address tilt your upper body slightly away from the target (trail shoulder lower).", "de": "Neig beim Ansprechen den Oberkörper leicht vom Ziel weg ({trail}e Schulter tiefer)." },
       { "en": "Turn to the top and stop: your head and sternum are still behind the ball.", "de": "Dreh ins Top und stopp: Kopf und Brustbein sind noch hinter dem Ball." },
       { "en": "Check in the mirror that you do not lean towards the target; then swing through slowly.", "de": "Prüf im Spiegel, dass du dich nicht zum Ziel lehnst; dann langsam durchschwingen." }
     ],
@@ -100,11 +100,11 @@
   {
     "id": "step_through", "kind": "real", "draft": true,
     "name": { "en": "Step-through drill", "de": "Durchschreit-Übung" },
-    "goal": { "en": "Shift your weight to the lead side in every swing.", "de": "In jedem Schwung das Gewicht nach links bringen." },
+    "goal": { "en": "Shift your weight to the lead side in every swing.", "de": "In jedem Schwung das Gewicht nach {lead}s bringen." },
     "equipment": { "en": "Range balls, 7-iron", "de": "Rangebälle, Eisen 7" },
     "steps": [
       { "en": "Hit a three-quarter shot.", "de": "Spiel einen Dreiviertel-Schlag." },
-      { "en": "As you finish, step forward with your trail foot past your lead foot, like walking after the ball.", "de": "Im Finish gehst du mit dem rechten Fuß einen Schritt nach vorne, an deinem linken vorbei – als würdest du dem Ball hinterherlaufen." },
+      { "en": "As you finish, step forward with your trail foot past your lead foot, like walking after the ball.", "de": "Im Finish gehst du mit dem {trail}en Fuß einen Schritt nach vorne, an deinem {lead}en vorbei – als würdest du dem Ball hinterherlaufen." },
       { "en": "If you cannot step, your weight stayed back – try again more slowly.", "de": "Kannst du nicht losgehen, ist dein Gewicht hinten geblieben – noch mal langsamer." }
     ],
     "reps": { "en": "15 balls", "de": "15 Bälle" }
@@ -116,7 +116,7 @@
     "equipment": { "en": "A club", "de": "Ein Schläger" },
     "steps": [
       { "en": "Swing to the top.", "de": "Schwing ins Top." },
-      { "en": "Start down with a small step of pressure into the lead foot and let your trail elbow drop towards your trail hip – stop at hip height.", "de": "Starte mit Druck auf den linken Fuß und lass den rechten Ellbogen Richtung rechte Hüfte fallen – stopp auf Hüfthöhe." },
+      { "en": "Start down with a small step of pressure into the lead foot and let your trail elbow drop towards your trail hip – stop at hip height.", "de": "Starte mit Druck auf den {lead}en Fuß und lass den {trail}en Ellbogen Richtung {trail}e Hüfte fallen – stopp auf Hüfthöhe." },
       { "en": "Pump back up to the top and repeat twice, then swing through.", "de": "Wieder hoch ins Top, zweimal wiederholen, dann durchschwingen." }
     ],
     "reps": { "en": "10 × (2 pumps + swing)", "de": "10 × (2 Pumps + Schwung)" }
@@ -141,7 +141,7 @@
     "steps": [
       { "en": "Put a towel across your chest and clamp it under both armpits.", "de": "Leg ein Handtuch quer über die Brust und klemm es unter beiden Achseln ein." },
       { "en": "Make half swings (9 o'clock to 3 o'clock) without dropping the towel.", "de": "Mach halbe Schwünge (9 bis 3 Uhr), ohne dass das Handtuch fällt." },
-      { "en": "Feel how the chest turn moves the arms – and how the lead arm stays long after impact.", "de": "Spür, wie die Brustdrehung die Arme bewegt – und der linke Arm nach dem Treffmoment lang bleibt." }
+      { "en": "Feel how the chest turn moves the arms – and how the lead arm stays long after impact.", "de": "Spür, wie die Brustdrehung die Arme bewegt – und der {lead}e Arm nach dem Treffmoment lang bleibt." }
     ],
     "reps": { "en": "3 × 10 half swings (with balls once it feels easy)", "de": "3 × 10 halbe Schwünge (mit Ball, sobald es leicht fällt)" }
   },
@@ -187,7 +187,7 @@
     "goal": { "en": "Feel the wrist angle stay set early in the downswing.", "de": "Spüren, wie der Handgelenkwinkel im frühen Abschwung erhalten bleibt." },
     "equipment": { "en": "A club", "de": "Ein Schläger" },
     "steps": [
-      { "en": "Swing to the top, with the lead arm and shaft forming an L.", "de": "Schwing ins Top, linker Arm und Schaft bilden ein L." },
+      { "en": "Swing to the top, with the lead arm and shaft forming an L.", "de": "Schwing ins Top, {lead}er Arm und Schaft bilden ein L." },
       { "en": "Turn your hips and pull the hands down to hip height – keep the L.", "de": "Dreh die Hüfte und zieh die Hände bis auf Hüfthöhe – das L bleibt." },
       { "en": "Stop there and check: the club head is still behind your hands.", "de": "Stopp dort und prüf: der Schlägerkopf ist noch hinter deinen Händen." },
       { "en": "Then release slowly to the finish.", "de": "Dann langsam bis ins Finish lösen." }
@@ -294,12 +294,12 @@
   {
     "id": "wide_takeaway", "kind": "feel", "draft": true,
     "name": { "en": "Wide and short", "de": "Breit und kurz" },
-    "goal": { "en": "Feel a wide arc with a long lead arm.", "de": "Einen breiten Bogen mit langem linken Arm spüren." },
+    "goal": { "en": "Feel a wide arc with a long lead arm.", "de": "Einen breiten Bogen mit langem {lead}en Arm spüren." },
     "equipment": { "en": "A club", "de": "Ein Schläger" },
     "steps": [
       { "en": "Swing back pushing the hands away from your chest.", "de": "Schwing zurück und schieb dabei die Hände von der Brust weg." },
       { "en": "Stop where your turn stops – even if the club does not reach parallel.", "de": "Stopp dort, wo deine Drehung aufhört – auch wenn der Schläger nicht waagerecht wird." },
-      { "en": "Check that the lead arm is long; repeat with a ball at 70 %.", "de": "Prüf, dass der linke Arm lang ist; wiederhole mit Ball bei 70 %." }
+      { "en": "Check that the lead arm is long; repeat with a ball at 70 %.", "de": "Prüf, dass der {lead}e Arm lang ist; wiederhole mit Ball bei 70 %." }
     ],
     "reps": { "en": "2 × 10", "de": "2 × 10" }
   },
@@ -323,18 +323,18 @@
     "equipment": { "en": "A club (optional: impact bag or old cushion)", "de": "Ein Schläger (optional: Impact-Bag oder altes Kissen)" },
     "steps": [
       { "en": "Set up to a ball (or the bag).", "de": "Sprich einen Ball (oder das Kissen) an." },
-      { "en": "Swing slowly to impact and stop: hands over your lead thigh, lead wrist flat, weight on the lead foot.", "de": "Schwing langsam bis zum Treffmoment und stopp: Hände über dem linken Oberschenkel, linkes Handgelenk flach, Gewicht links." },
+      { "en": "Swing slowly to impact and stop: hands over your lead thigh, lead wrist flat, weight on the lead foot.", "de": "Schwing langsam bis zum Treffmoment und stopp: Hände über dem {lead}en Oberschenkel, {lead}es Handgelenk flach, Gewicht {lead}s." },
       { "en": "Hold for 3 seconds, then swing back and repeat.", "de": "3 Sekunden halten, zurückschwingen, wiederholen." }
     ],
     "reps": { "en": "3 × 8 holds", "de": "3 × 8 Mal halten" }
   },
   {
     "id": "chip_trail_toe", "kind": "feel", "draft": true,
-    "name": { "en": "Chip with the trail foot on its toe", "de": "Chip mit rechtem Fuß auf der Spitze" },
-    "goal": { "en": "Keep the weight on the lead foot during the chip.", "de": "Beim Chip das Gewicht auf dem linken Fuß halten." },
+    "name": { "en": "Chip with the trail foot on its toe", "de": "Chip mit {trail}em Fuß auf der Spitze" },
+    "goal": { "en": "Keep the weight on the lead foot during the chip.", "de": "Beim Chip das Gewicht auf dem {lead}en Fuß halten." },
     "equipment": { "en": "Wedge, a few balls near a green", "de": "Wedge, ein paar Bälle am Grün" },
     "steps": [
-      { "en": "Set up for a chip and pull your trail foot back so only its toe touches the ground.", "de": "Sprich den Chip an und zieh den rechten Fuß zurück, sodass nur die Spitze den Boden berührt." },
+      { "en": "Set up for a chip and pull your trail foot back so only its toe touches the ground.", "de": "Sprich den Chip an und zieh den {trail}en Fuß zurück, sodass nur die Spitze den Boden berührt." },
       { "en": "Chip with just a shoulder rock – you cannot lean back without losing balance.", "de": "Chip nur mit einer Schulterbewegung – nach hinten lehnen geht nicht, ohne das Gleichgewicht zu verlieren." },
       { "en": "Then chip with a normal stance and keep the same feeling.", "de": "Dann mit normalem Stand chippen und das Gefühl behalten." }
     ],
@@ -346,7 +346,7 @@
     "goal": { "en": "Control distance with backswing length, not by braking.", "de": "Die Länge über die Rückschwunglänge steuern, nicht übers Bremsen." },
     "equipment": { "en": "Wedge, 10 balls, 3 targets at different distances", "de": "Wedge, 10 Bälle, 3 Ziele in unterschiedlicher Entfernung" },
     "steps": [
-      { "en": "Picture a clock: chip = hands to 7–8 o'clock, pitch = lead arm to 9 o'clock.", "de": "Stell dir eine Uhr vor: Chip = Hände bis 7–8 Uhr, Pitch = linker Arm bis 9 Uhr." },
+      { "en": "Picture a clock: chip = hands to 7–8 o'clock, pitch = lead arm to 9 o'clock.", "de": "Stell dir eine Uhr vor: Chip = Hände bis 7–8 Uhr, Pitch = {lead}er Arm bis 9 Uhr." },
       { "en": "The follow-through is at least as long as the backswing.", "de": "Der Durchschwung ist mindestens so lang wie der Rückschwung." },
       { "en": "Hit 3 balls per length and note how far each one flies.", "de": "Spiel 3 Bälle pro Länge und merk dir, wie weit jeder fliegt." }
     ],
@@ -382,7 +382,7 @@
     "goal": { "en": "Make a quiet, centred stroke.", "de": "Einen ruhigen, mittigen Stroke machen." },
     "equipment": { "en": "Putter, two tees, balls", "de": "Putter, zwei Tees, Bälle" },
     "steps": [
-      { "en": "Put two tees just wider than the putter head on either side of the ball.", "de": "Steck zwei Tees knapp breiter als der Putterkopf links und rechts vom Ball." },
+      { "en": "Put two tees just wider than the putter head on either side of the ball.", "de": "Steck zwei Tees knapp breiter als der Putterkopf {left}s und {right}s vom Ball." },
       { "en": "Putt to a hole 1.5 m away without touching the tees.", "de": "Putte auf ein Loch in 1,5 m, ohne die Tees zu berühren." },
       { "en": "Keep hips and knees quiet – only the shoulders rock.", "de": "Hüfte und Knie bleiben ruhig – nur die Schultern schaukeln." }
     ],

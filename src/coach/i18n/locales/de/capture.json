@@ -17,7 +17,7 @@
       "whole": "Dein ganzer Körper muss im Bild sein – und oben im Schwung auch der Schläger über dem Kopf."
     },
     "face_on": "Stell dich mit dem Gesicht zum Handy, das Handy gegenüber deiner Brust.",
-    "down_the_line": "Handy hinter deinen Händen, auf einer Linie parallel zu deiner Ziellinie. Du stehst links im Bild."
+    "down_the_line": "Handy hinter deinen Händen, auf einer Linie parallel zu deiner Ziellinie. Du stehst {left}s im Bild."
   },
   "startCamera": "Kamera starten",
   "upload": "Video hochladen",

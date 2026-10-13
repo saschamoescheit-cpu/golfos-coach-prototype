@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { loc, t } from '../../coach/i18n/i18n';
 import { getFaultDef } from '../../coach/faults/catalog';
 import { formatValue, metricName, positionName, unitOf } from '../../coach/faults/format';
-import type { Fault } from '../../coach/model/types';
+import type { Fault, Handedness } from '../../coach/model/types';
 import { isTrainable } from '../../coach/training/targets';
 import { DrillSheet } from './DrillSheet';
 import '../styles/faults.css';
@@ -16,35 +16,39 @@ export function FaultCard({
   rank,
   onShow,
   onTrain,
+  handedness,
 }: {
   fault: Fault;
   rank?: number;
   onShow?: (fault: Fault) => void;
   onTrain?: (fault: Fault) => void;
+  /** the swing's handedness for side words in the texts (default: settings) */
+  handedness?: Handedness;
 }) {
+  const L = (x: Parameters<typeof loc>[0]) => loc(x, undefined, handedness);
   const [drills, setDrills] = useState(false);
   const def = getFaultDef(fault.defId);
   if (!def) return null;
   return (
     <div className="fx-fault">
-      <button className="fx-fault-head" onClick={() => onShow?.(fault)} aria-label={`${loc(def.name)} – ${t('faults.card.show')}`}>
+      <button className="fx-fault-head" onClick={() => onShow?.(fault)} aria-label={`${L(def.name)} – ${t('faults.card.show')}`}>
         {rank !== undefined && <span className="rank">{rank}</span>}
-        <h3>{loc(def.name)}</h3>
+        <h3>{L(def.name)}</h3>
         <span className="fx-muted">▶ {positionName(def.marker)}</span>
       </button>
-      <div className="fx-benefit">{loc(def.benefit)}</div>
+      <div className="fx-benefit">{L(def.benefit)}</div>
       <div className="fx-dl">
         <div>
           <span className="lbl">{t('faults.card.effect')}</span>
-          {loc(def.ballEffect)}
+          {L(def.ballEffect)}
         </div>
         <div>
           <span className="lbl">{t('faults.card.cause')}</span>
-          {loc(def.cause)}
+          {L(def.cause)}
         </div>
         <div>
           <span className="lbl">{t('faults.card.correction')}</span>
-          {loc(def.correction)}
+          {L(def.correction)}
         </div>
         {fault.measured.length > 0 && (
           <div className="fx-muted">
@@ -67,7 +71,7 @@ export function FaultCard({
           </button>
         )}
       </div>
-      {drills && <DrillSheet faultId={fault.defId} onClose={() => setDrills(false)} />}
+      {drills && <DrillSheet faultId={fault.defId} onClose={() => setDrills(false)} handedness={handedness} />}
     </div>
   );
 }

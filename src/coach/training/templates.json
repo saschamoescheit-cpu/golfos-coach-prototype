@@ -1,7 +1,7 @@
 [
   {
     "id": "tpl_top_lead_arm",
-    "label": { "en": "Top: lead arm straight", "de": "Top: linker Arm gestreckt" },
+    "label": { "en": "Top: lead arm straight", "de": "Top: {lead}er Arm gestreckt" },
     "shotType": "iron",
     "view": "face_on",
     "position": "top",

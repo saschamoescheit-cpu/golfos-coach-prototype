@@ -305,19 +305,19 @@
     ],
     "ballEffect": {
       "en": "You have to slide back to the ball in the downswing – if you don't make it, the shot is fat; if you overdo it, it is thin or pushed.",
-      "de": "Im Abschwung musst du zurück zum Ball rutschen – schaffst du es nicht, wird der Schlag fett, übertreibst du, wird er dünn oder geht rechts raus."
+      "de": "Im Abschwung musst du zurück zum Ball rutschen – schaffst du es nicht, wird der Schlag fett, übertreibst du, wird er dünn oder geht {right}s raus."
     },
     "cause": {
       "en": "Your hips slide sideways away from the target instead of turning; often the trail knee straightens or gives way outwards.",
-      "de": "Dein Becken rutscht seitlich vom Ziel weg, statt sich zu drehen; oft gibt das rechte Knie nach außen nach oder streckt sich."
+      "de": "Dein Becken rutscht seitlich vom Ziel weg, statt sich zu drehen; oft gibt das {trail}e Knie nach außen nach oder streckt sich."
     },
     "correction": {
       "en": "Turn your trail hip back behind you while the trail knee stays flexed and the pressure stays on the inside of your trail foot.",
-      "de": "Dreh die rechte Hüfte nach hinten, während das rechte Knie gebeugt bleibt und der Druck auf der Innenseite des rechten Fußes."
+      "de": "Dreh die {trail}e Hüfte nach hinten, während das {trail}e Knie gebeugt bleibt und der Druck auf der Innenseite des {trail}en Fußes."
     },
     "benefit": {
       "en": "You load against your trail leg instead of drifting – more power from the turn and a much more reliable strike.",
-      "de": "Du baust Spannung gegen das rechte Bein auf, statt wegzurutschen – mehr Kraft aus der Drehung und ein viel verlässlicherer Treffer."
+      "de": "Du baust Spannung gegen das {trail}e Bein auf, statt wegzurutschen – mehr Kraft aus der Drehung und ein viel verlässlicherer Treffer."
     },
     "drillIds": [
       "sway_stick",
@@ -440,11 +440,11 @@
     },
     "cause": {
       "en": "Your weight stays on the trail foot – often because you try to lift the ball into the air.",
-      "de": "Dein Gewicht bleibt auf dem rechten Fuß – oft, weil du den Ball in die Luft heben willst."
+      "de": "Dein Gewicht bleibt auf dem {trail}en Fuß – oft, weil du den Ball in die Luft heben willst."
     },
     "correction": {
       "en": "Start the downswing by shifting pressure into your lead foot, then turn; finish with almost all weight on the lead foot and the trail heel up.",
-      "de": "Beginne den Abschwung mit Druck auf den linken Fuß, dann drehen; im Finish steht fast dein ganzes Gewicht links, die rechte Ferse ist oben."
+      "de": "Beginne den Abschwung mit Druck auf den {lead}en Fuß, dann drehen; im Finish steht fast dein ganzes Gewicht {lead}s, die {trail}e Ferse ist oben."
     },
     "benefit": {
       "en": "Ball first, then turf: compressed iron shots that fly further and hold their line.",
@@ -496,8 +496,8 @@
       "ballooning"
     ],
     "ballEffect": {
-      "en": "The club comes from outside across the ball: pulls left or slices that curve hard right.",
-      "de": "Der Schläger kommt von außen quer über den Ball: Bälle links raus (Pull) oder Slices mit starker Rechtskurve."
+      "en": "The club comes from outside across the ball: pulls {left} or slices that curve hard {right}.",
+      "de": "Der Schläger kommt von außen quer über den Ball: Bälle {left}s raus (Pull) oder Slices mit starker {Right}skurve."
     },
     "cause": {
       "en": "Your shoulders and arms start the downswing and throw the club outwards, instead of the lower body leading.",
@@ -505,7 +505,7 @@
     },
     "correction": {
       "en": "Start down with your lower body and let your trail elbow drop towards your hip – the hands come down inside the line they went up.",
-      "de": "Starte den Abschwung mit dem Unterkörper und lass den rechten Ellbogen Richtung Hüfte fallen – die Hände kommen innerhalb ihrer Aufschwung-Linie herunter."
+      "de": "Starte den Abschwung mit dem Unterkörper und lass den {trail}en Ellbogen Richtung Hüfte fallen – die Hände kommen innerhalb ihrer Aufschwung-Linie herunter."
     },
     "benefit": {
       "en": "The club approaches from the inside – the slice turns into a straight shot or a gentle draw, and you gain real distance.",
@@ -526,7 +526,7 @@
     "id": "chicken_wing",
     "name": {
       "en": "Chicken wing",
-      "de": "Chicken Wing (linker Ellbogen knickt)"
+      "de": "Chicken Wing ({lead}er Ellbogen knickt)"
     },
     "shotTypes": [
       "driver",
@@ -558,11 +558,11 @@
     ],
     "ballEffect": {
       "en": "The lead arm folds and the face stays open: weak slices, thin shots and lost distance.",
-      "de": "Der linke Arm knickt ein und die Schlagfläche bleibt offen: schwache Slices, dünne Bälle und weniger Länge."
+      "de": "Der {lead}e Arm knickt ein und die Schlagfläche bleibt offen: schwache Slices, dünne Bälle und weniger Länge."
     },
     "cause": {
       "en": "Your body stops turning through the ball, so the arms have nowhere to go and the lead elbow bends away.",
-      "de": "Dein Körper hört im Treffmoment auf zu drehen, die Arme haben keinen Platz mehr und der linke Ellbogen knickt weg."
+      "de": "Dein Körper hört im Treffmoment auf zu drehen, die Arme haben keinen Platz mehr und der {lead}e Ellbogen knickt weg."
     },
     "correction": {
       "en": "Keep turning your chest to the target and let both arms extend long after the ball, the forearms rotating over.",
@@ -625,7 +625,7 @@
     },
     "correction": {
       "en": "Turn your back to the target until your lead shoulder is under your chin; let the lead heel come up slightly if you need more turn.",
-      "de": "Dreh den Rücken zum Ziel, bis die linke Schulter unter dem Kinn ist; wenn nötig, darf die linke Ferse leicht abheben."
+      "de": "Dreh den Rücken zum Ziel, bis die {lead}e Schulter unter dem Kinn ist; wenn nötig, darf die {lead}e Ferse leicht abheben."
     },
     "benefit": {
       "en": "A full turn stores energy like a spring – more clubhead speed and distance without swinging harder.",
@@ -689,7 +689,7 @@
     },
     "correction": {
       "en": "Keep the angle between lead arm and shaft until your hands are at hip height; let the body turn pull the club down.",
-      "de": "Halte den Winkel zwischen linkem Arm und Schaft, bis die Hände auf Hüfthöhe sind; die Körperdrehung zieht den Schläger nach unten."
+      "de": "Halte den Winkel zwischen {lead}em Arm und Schaft, bis die Hände auf Hüfthöhe sind; die Körperdrehung zieht den Schläger nach unten."
     },
     "benefit": {
       "en": "You release the energy at the ball instead of before it – crisp ball-then-turf contact and noticeably more distance.",
@@ -805,7 +805,7 @@
       "de": "Bei einem sehr langsamen Aufschwung geht die aufgebaute Spannung verloren; viele schlagen dann mit den Armen hart aus dem Top – weniger Länge, unsauberere Treffer."
     },
     "cause": {
-      "en": "You take the club back very slowly and carefully – often from wanting to do everything right.",
+      "en": "You take the club back very slowly and carefully – often from wanting to get everything perfect.",
       "de": "Du nimmst den Schläger sehr langsam und vorsichtig zurück – oft, weil du alles richtig machen willst."
     },
     "correction": {
@@ -866,7 +866,7 @@
       "de": "Der Schläger geht zu weit nach innen hinter dich: Pushes, Hooks und fette Schläge beim Versuch, ihn zurückzubringen."
     },
     "cause": {
-      "en": "You roll the forearms and pull the club inside right at the start of the backswing.",
+      "en": "You roll the forearms and pull the club inside at the very start of the backswing.",
       "de": "Du rollst gleich zu Beginn des Rückschwungs die Unterarme und ziehst den Schläger nach innen."
     },
     "correction": {
@@ -1048,8 +1048,8 @@
       "fat"
     ],
     "ballEffect": {
-      "en": "The club gets stuck behind you and comes too much from the inside: pushes right – or hooks when the hands flip to save it.",
-      "de": "Der Schläger bleibt hinter dir stecken und kommt zu sehr von innen: Pushes nach rechts – oder Hooks, wenn die Hände ihn retten."
+      "en": "The club gets stuck behind you and comes too much from the inside: pushes {right} – or hooks when the hands flip to save it.",
+      "de": "Der Schläger bleibt hinter dir stecken und kommt zu sehr von innen: Pushes nach {right}s – oder Hooks, wenn die Hände ihn retten."
     },
     "cause": {
       "en": "Your hips turn fast while the arms stay passive behind you, so the club drops too far under the plane.",
@@ -1078,7 +1078,7 @@
     "id": "bent_lead_arm",
     "name": {
       "en": "Bent lead arm at the top",
-      "de": "Gebeugter linker Arm im Top"
+      "de": "Gebeugter {lead}er Arm im Top"
     },
     "shotTypes": [
       "driver",
@@ -1113,11 +1113,11 @@
     },
     "cause": {
       "en": "You try to make a longer backswing with the arms instead of the turn, and the lead elbow folds.",
-      "de": "Du willst mit den Armen einen längeren Rückschwung machen statt mit der Drehung, und der linke Ellbogen knickt ein."
+      "de": "Du willst mit den Armen einen längeren Rückschwung machen statt mit der Drehung, und der {lead}e Ellbogen knickt ein."
     },
     "correction": {
       "en": "Keep the lead arm comfortably long and stop the backswing when the turn stops – a shorter, wider top is better.",
-      "de": "Halte den linken Arm angenehm lang und beende den Rückschwung, wenn die Drehung aufhört – lieber kürzer und breiter."
+      "de": "Halte den {lead}en Arm angenehm lang und beende den Rückschwung, wenn die Drehung aufhört – lieber kürzer und breiter."
     },
     "benefit": {
       "en": "A wide, constant arc returns the club to the ball the same way every time – more consistent contact.",
@@ -1139,7 +1139,7 @@
     "id": "flying_elbow",
     "name": {
       "en": "Flying trail elbow",
-      "de": "Fliegender rechter Ellbogen"
+      "de": "Fliegender {trail}er Ellbogen"
     },
     "shotTypes": [
       "driver",
@@ -1173,14 +1173,14 @@
     },
     "cause": {
       "en": "You lift the club with the trail arm and the elbow moves away from the body.",
-      "de": "Du hebst den Schläger mit dem rechten Arm, und der Ellbogen entfernt sich vom Körper."
+      "de": "Du hebst den Schläger mit dem {trail}en Arm, und der Ellbogen entfernt sich vom Körper."
     },
     "correction": {
       "en": "Let the trail elbow fold and point roughly at the ground at the top, as if you were carrying a tray.",
-      "de": "Lass den rechten Ellbogen im Top einknicken und ungefähr zum Boden zeigen – wie beim Tragen eines Tabletts."
+      "de": "Lass den {trail}en Ellbogen im Top einknicken und ungefähr zum Boden zeigen – wie beim Tragen eines Tabletts."
     },
     "benefit": {
-      "en": "A compact top lets the club drop onto the right path by itself – straighter shots with less effort.",
+      "en": "A compact top lets the club drop onto the correct path by itself – straighter shots with less effort.",
       "de": "Ein kompaktes Top lässt den Schläger von selbst in die richtige Bahn fallen – geradere Bälle mit weniger Aufwand."
     },
     "drillIds": [
@@ -1383,7 +1383,7 @@
     },
     "correction": {
       "en": "At impact your hands are slightly ahead of the ball and the lead wrist is flat – hit down, the loft sends the ball up.",
-      "de": "Im Treffmoment sind deine Hände leicht vor dem Ball und das linke Handgelenk ist flach – schlag nach unten, der Loft bringt den Ball nach oben."
+      "de": "Im Treffmoment sind deine Hände leicht vor dem Ball und das {lead}e Handgelenk ist flach – schlag nach unten, der Loft bringt den Ball nach oben."
     },
     "benefit": {
       "en": "Real compression: the ball flies further, flatter and with spin you can stop on the green.",
@@ -1448,7 +1448,7 @@
     },
     "correction": {
       "en": "Set up with about two thirds of your weight on the lead foot and keep it there – just rock the shoulders.",
-      "de": "Steh mit etwa zwei Dritteln des Gewichts auf dem linken Fuß und bleib dort – nur die Schultern schaukeln."
+      "de": "Steh mit etwa zwei Dritteln des Gewichts auf dem {lead}en Fuß und bleib dort – nur die Schultern schaukeln."
     },
     "benefit": {
       "en": "Ball first, every time – chips that land where you want and roll out like a putt.",
@@ -1515,7 +1515,7 @@
     },
     "correction": {
       "en": "Keep your hands ahead of the club head through the ball and the lead wrist firm – the chest turns the club through.",
-      "de": "Halte die Hände durch den Ball vor dem Schlägerkopf und das linke Handgelenk fest – die Brust dreht den Schläger durch."
+      "de": "Halte die Hände durch den Ball vor dem Schlägerkopf und das {lead}e Handgelenk fest – die Brust dreht den Schläger durch."
     },
     "benefit": {
       "en": "Predictable height and spin – you start getting chips close instead of hoping.",
@@ -1631,7 +1631,7 @@
     },
     "correction": {
       "en": "Use a fixed backswing length (e.g. lead arm to 9 o'clock) and accelerate to a full finish.",
-      "de": "Nutze feste Rückschwunglängen (z. B. linker Arm bis 9 Uhr) und beschleunige bis ins volle Finish."
+      "de": "Nutze feste Rückschwunglängen (z. B. {lead}er Arm bis 9 Uhr) und beschleunige bis ins volle Finish."
     },
     "benefit": {
       "en": "Repeatable distances – you know how far each pitch goes and stop leaving them short.",
@@ -1922,8 +1922,8 @@
       "yips"
     ],
     "ballEffect": {
-      "en": "Active wrists twist the putter face and change the loft: putts go left and right and the speed varies.",
-      "de": "Aktive Handgelenke drehen die Schlagfläche und ändern den Loft: Putts gehen links und rechts vorbei und die Länge schwankt."
+      "en": "Active wrists twist the putter face and change the loft: putts go {left} and {right} and the speed varies.",
+      "de": "Aktive Handgelenke drehen die Schlagfläche und ändern den Loft: Putts gehen {left}s und {right}s vorbei und die Länge schwankt."
     },
     "cause": {
       "en": "You steer the ball with your hands instead of rocking the shoulders – often from tension on short putts.",

@@ -56,7 +56,7 @@ export function CaptureGuide({ view, mirror }: { view: CameraView; mirror?: bool
     <div className="card capture-guide">
       <CaptureSilhouette view={view} mirror={mirror} />
       <ul>
-        <li>{t(`capture.guide.${view}`)}</li>
+        <li>{t(`capture.guide.${view}`, undefined, undefined, mirror ? 'left' : 'right')}</li>
         <li>{t('capture.guide.common.distance')}</li>
         <li>{t('capture.guide.common.height')}</li>
         <li>{t('capture.guide.common.upright')}</li>

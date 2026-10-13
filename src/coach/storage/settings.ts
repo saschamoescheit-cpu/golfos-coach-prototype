@@ -1,6 +1,7 @@
 import { setScoreLevel } from '../analysis/analyze';
 import { levelFromSettings } from '../faults/score';
 import { useSyncExternalStore } from 'react';
+import { setHandedness } from '../i18n/i18n';
 import type { Settings } from '../model/types';
 import { getStore } from './index';
 import { defaultSettings } from './memory';
@@ -39,6 +40,7 @@ export async function updateSettings(patch: Partial<Settings>): Promise<Settings
   await loadSettings();
   current = { ...current, ...patch };
   setScoreLevel(levelFromSettings(current));
+  setHandedness(current.handedness);
   emit();
   const store = await getStore();
   await store.saveSettings(current);

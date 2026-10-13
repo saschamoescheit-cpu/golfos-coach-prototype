@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { ALL_POSITIONS, ALL_SHOT_TYPES, ALL_VIEWS } from '../model/constants';
 import type { BallFlight, Localized } from '../model/types';
-import { BALL_FLIGHTS, DRILLS, FAULTS, getDrill, getFaultDef } from './catalog';
+import { loc, sides, SIDE_TOKEN } from '../i18n/i18n';
+import templatesJson from '../training/templates.json';
+import { BALL_FLIGHTS, DRILLS, FAULTS, getBallFlight, getDrill, getFaultDef } from './catalog';
 import { METRIC_CONTRACT, metricAvailable } from './metricContract';
 
 const ALL_FLIGHTS: BallFlight[] = [
@@ -95,5 +97,51 @@ describe('ball flights', () => {
         else expect(c.faultId).toBeUndefined();
       }
     }
+  });
+});
+
+describe('left/right only via side tokens (review W4)', () => {
+  type Txt = { path: string; lang: 'en' | 'de'; s: string };
+  const texts: Txt[] = [];
+  const walk = (o: unknown, path: string) => {
+    if (Array.isArray(o)) o.forEach((x, i) => walk(x, `${path}[${i}]`));
+    else if (o && typeof o === 'object') {
+      const r = o as Record<string, unknown>;
+      if (typeof r.en === 'string' && typeof r.de === 'string') {
+        texts.push({ path, lang: 'en', s: r.en }, { path, lang: 'de', s: r.de });
+        return;
+      }
+      for (const [k, v] of Object.entries(r)) if (k !== 'review') walk(v, `${path}.${k}`);
+    }
+  };
+  walk(FAULTS, 'catalog');
+  walk(DRILLS, 'drills');
+  walk(BALL_FLIGHTS, 'ballflights');
+  walk(templatesJson, 'templates');
+  const RAW = /\b(left|right|links|rechts|linke[nmrs]?|rechte[nmrs]?|linker|rechter)\b/i;
+
+  it('collects all catalog texts', () => expect(texts.length).toBeGreaterThan(500));
+
+  it('no hard-coded side words remain (en + de)', () => {
+    const bad = texts.filter((x) => RAW.test(x.s.replace(SIDE_TOKEN, ''))).map((x) => `${x.path} (${x.lang}): ${x.s}`);
+    expect(bad).toEqual([]);
+  });
+
+  it('every token resolves for both hands, sides swap for left-handers', () => {
+    for (const x of texts)
+      for (const h of ['right', 'left'] as const) {
+        const out = sides(x.s, x.lang, h);
+        expect(out, `${x.path} ${x.lang} ${h}`).not.toMatch(/\{\w+\}/);
+      }
+    const hip = getFaultDef('hip_sway')!.correction;
+    expect(loc(hip, 'de', 'right')).toContain('die rechte Hüfte');
+    expect(loc(hip, 'de', 'left')).toContain('die linke Hüfte');
+    expect(loc(hip, 'de', 'left')).toContain('des linken Fußes');
+    const ott = getFaultDef('over_the_top')!.ballEffect;
+    expect(loc(ott, 'de', 'right')).toContain('Bälle links raus (Pull) oder Slices mit starker Rechtskurve');
+    expect(loc(ott, 'de', 'left')).toContain('Bälle rechts raus (Pull) oder Slices mit starker Linkskurve');
+    expect(loc(ott, 'en', 'left')).toContain('pulls right or slices that curve hard left');
+    expect(loc(getBallFlight('hook')!.what, 'en', 'left')).toBe('Starts straight or left, then curves hard to the right.');
+    expect(loc(getFaultDef('chicken_wing')!.name, 'de', 'left')).toBe('Chicken Wing (rechter Ellbogen knickt)');
   });
 });

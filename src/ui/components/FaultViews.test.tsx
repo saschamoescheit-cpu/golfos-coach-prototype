@@ -15,11 +15,21 @@ describe('fault UI (static render)', () => {
       <FaultCard
         fault={{ defId: 'over_the_top', severity: 0.5, priority: 2, confidence: 0.9, marker: 'downswing9', frameIndex: 10, measured: [{ metric: 'hand_path_shift', at: 'downswing9', value: 14, threshold: 8 }] }}
         rank={1}
+        onTrain={() => {}}
       />,
     );
     expect(html).toContain('Over the Top');
     expect(html).toContain('Slice');
     expect(html).toContain('Das trainieren');
+    // not measurable (flying_elbow) → no Train button (review W2)
+    const fe = renderToStaticMarkup(
+      <FaultCard fault={{ defId: 'flying_elbow', severity: 0.5, priority: 2, confidence: 0.9, marker: 'top', frameIndex: 10, measured: [] }} onTrain={() => {}} />,
+    );
+    expect(fe).not.toContain('Das trainieren');
+    // left-handed swing: side words swap (review W4)
+    const cw = { defId: 'chicken_wing', severity: 0.5, priority: 2, confidence: 0.9, marker: 'impact' as const, frameIndex: 10, measured: [] };
+    expect(renderToStaticMarkup(<FaultCard fault={cw} />)).toContain('linker Ellbogen');
+    expect(renderToStaticMarkup(<FaultCard fault={cw} handedness="left" />)).toContain('rechter Ellbogen');
     setLang('en');
   });
 

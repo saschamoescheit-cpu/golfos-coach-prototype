@@ -1,5 +1,5 @@
 import { useEffect, type ReactNode } from 'react';
-import { detectLang, setLang, useLang } from './coach/i18n/i18n';
+import { detectLang, setHandedness, setLang, useLang } from './coach/i18n/i18n';
 import { loadSettings } from './coach/storage/settings';
 import { setScoreLevel } from './coach/analysis/analyze';
 import { levelFromSettings } from './coach/faults/score';
@@ -25,6 +25,7 @@ export function App() {
     // saved language wins; a player who never chose one gets the phone language (defaultSettings)
     void loadSettings().then((st) => {
       setLang(st.lang);
+      setHandedness(st.handedness); // side words ({lead}, {right} …) in coaching texts
       setScoreLevel(levelFromSettings(st)); // swing score tolerance from handicap / chosen level
     });
   }, []);

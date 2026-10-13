@@ -23,7 +23,7 @@
     "history": "My swings",
     "historySub": "History, compare, progress",
     "diagnose": "My miss",
-    "diagnoseSub": "Ball goes left? Find the cause",
+    "diagnoseSub": "Ball goes {left}? Find the cause",
     "settings": "Settings",
     "prototype": "Prototype – ideas for product development",
     "latest": "Your last swing",
