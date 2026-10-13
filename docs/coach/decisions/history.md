@@ -77,7 +77,7 @@ Format: Nummer · Entscheidung · Begründung. Stand 13.10.2026.
 - **H20 `registerType: 'prompt'` statt `autoUpdate`.** Ein automatisches Neuladen könnte mitten in einer Aufnahme oder
   Ball-Serie passieren. Stattdessen Toast „Eine neue Version ist da – Neu laden“; außerdem einmalig „Bereit für offline“,
   sobald alles gecacht ist. Beim Zurückkehren in den Vordergrund prüft die App auf Updates (Home-Bildschirm-Apps werden selten neu geladen).
-- **H21 Precache geprüft (Build 13.10.):** 17 Einträge, **28 588 KiB ≈ 29,3 MB**: `mediapipe/vision_wasm_internal.wasm` (13,0 MB),
+- **H21 Precache geprüft (Build 13.10.):** 17 Einträge, **28 681 KiB ≈ 29,4 MB** (nach Merge von club + training): `mediapipe/vision_wasm_internal.wasm` (13,0 MB),
   `vision_wasm_internal.js`, `models/pose_landmarker_full.task` (9,4 MB), `pose_landmarker_lite.task` (5,8 MB), App-JS/CSS,
   Schriften (woff2), Icons, Manifest. Größte Einzeldatei 13 MB < Limit 16 MB. Doppelte Icon-Einträge entfernt
   (`includeManifestIcons: false`, `includeAssets` weg – die Glob-Muster erfassen sie schon).
