@@ -53,6 +53,25 @@ export function evaluateLiveFrame(
   return evaluateCriteria(mirrorCriteria(target), liveMetricValues(target, addressFrame, frame, dims, ctx), toleranceScale);
 }
 
+let available: boolean | null = null;
+/**
+ * Does metricsAtFrame deliver values at all? (false while the phases-metrics package is still a stub – the UI then
+ * explains why everything stays grey instead of pretending the player is out of position.) Probed once on a
+ * synthetic face-on top position.
+ */
+export function liveMetricsAvailable(probe: () => { seq: PoseSequence; top: number; address: number }): boolean {
+  if (available != null) return available;
+  try {
+    const { seq, top, address } = probe();
+    const ctx: AnalysisContext = { shotType: 'iron', view: 'face_on', handedness: 'right' };
+    const { club, neutralLine } = trackClub(seq, undefined, ctx);
+    available = metricsAtFrame(seq, top, address, 'top', club, neutralLine, ctx).length > 0;
+  } catch {
+    available = false;
+  }
+  return available;
+}
+
 // ------------------------------------------------------------------ address capture (mirror mode reference)
 
 /**

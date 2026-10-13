@@ -329,6 +329,11 @@ export function shiftSequence(seq: PoseSequence, dtMs: number): PoseSequence {
   return { ...seq, frames: seq.frames.map((f) => ({ ...f, t: f.t + dtMs })) };
 }
 
+/** Shift an analysis result into video time (pose frames and key frame times). */
+export function shiftResult(r: AnalysisResult, dtMs: number): AnalysisResult {
+  return { ...r, pose: shiftSequence(r.pose, dtMs), keyframes: r.keyframes.map((k) => ({ ...k, t: k.t + dtMs })) };
+}
+
 /** "7 of 10" share 0..1, null without judged swings. */
 export function hitRate(t: SeriesTally): number | null {
   return t.judged ? t.hits / t.judged : null;
