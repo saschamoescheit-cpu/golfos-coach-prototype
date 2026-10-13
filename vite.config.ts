@@ -2,7 +2,11 @@ import { readFileSync } from 'node:fs';
 import { defineConfig, type Plugin } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import basicSsl from '@vitejs/plugin-basic-ssl';
 import { APP_NAME, MODULE_NAME } from './src/coach/model/constants';
+
+/** npm run dev:https → self-signed HTTPS in the local Wi-Fi: Safari only allows the camera on secure pages. */
+const https = process.argv.includes('https') || process.env.HTTPS === '1';
 
 const pkg = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf8')) as { version: string };
 /** Home-screen / window title, e.g. "GolfOS Coach" – the brand name comes from APP_NAME (still a working title). */
@@ -23,6 +27,7 @@ export default defineConfig({
   },
   test: { environment: 'node', include: ['src/**/*.test.ts', 'src/**/*.test.tsx'] },
   plugins: [
+    ...(https ? [basicSsl()] : []),
     react(),
     appTitleInHtml(),
     VitePWA({

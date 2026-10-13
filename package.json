@@ -6,6 +6,7 @@
   "description": "GolfOS – Prototyp Modul Coach (Schwunganalyse mit Korrektur). Ideengebung für die Produktentwicklung.",
   "scripts": {
     "dev": "vite --host",
+    "dev:https": "vite --host --mode https",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host",
     "test": "vitest run",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
     "@vitejs/plugin-react": "^4.3.4",
     "fake-indexeddb": "^6.2.5",
     "typescript": "^5.6.3",
