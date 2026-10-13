@@ -1,0 +1,23 @@
+{
+  "card": {
+    "effect": "What it does to your ball",
+    "cause": "Why it happens",
+    "correction": "How to fix it",
+    "drills": "Drills",
+    "train": "Train this",
+    "show": "Show in video",
+    "measured": "Measured {v} · limit {t}"
+  },
+  "drills": {
+    "title": "Drills",
+    "feel": "Get the feel",
+    "real": "Make it real",
+    "goal": "Goal",
+    "equipment": "You need",
+    "steps": "Steps",
+    "reps": "Repetitions",
+    "placeholder": "Video / tutorial follows",
+    "draft": "Draft – text not yet approved by our golf pro",
+    "close": "Close"
+  }
+}

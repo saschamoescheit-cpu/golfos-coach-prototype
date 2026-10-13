@@ -1,0 +1,66 @@
+{
+  "version": "1.0",
+  "_source": "Swing-Score rules 12.10.2026 (features/015-coach/swing-score-regeln.md) on top of the concept of 08.10.2026. All numbers are start values – REVIEW(golf), Chris calibrates them with the 50–70 rated amateur swings.",
+  "shotTypes": ["driver", "iron"],
+  "minCoverage": 0.8,
+  "defaultLevel": 3,
+  "levels": [
+    { "level": 1, "maxHandicap": 4.0, "factor": 1.0 },
+    { "level": 2, "maxHandicap": 12.0, "factor": 1.25 },
+    { "level": 3, "maxHandicap": 20.0, "factor": 1.5 },
+    { "level": 4, "maxHandicap": 36.0, "factor": 1.75 },
+    { "level": 5, "maxHandicap": 54.0, "factor": 2.0 }
+  ],
+  "parts": [
+    {
+      "id": "downswing9", "weight": 0.30,
+      "criteria": [
+        { "metric": "shaft_plane_dev", "at": "downswing9", "mode": "abs", "target": 0, "tolerance": 5, "floor": 3,
+          "review": "REVIEW(golf): concept T = 5° (placeholder, no public reference values); measurement floor 3° until Chris/Ben have measured." }
+      ]
+    },
+    {
+      "id": "tempo", "weight": 0.20,
+      "criteria": [
+        { "metric": "tempo_ratio", "at": "swing", "mode": "abs", "target": "shotTypeTempo", "tolerance": 0.3, "floor": "tempoFrames",
+          "review": "REVIEW(golf): target 3 : 1 from SHOT_TYPES (tour measurements ~21/7 to 27/9 frames), T = 0.3 (green 2.7–3.3). Floor = target × (1000/fps) / downswing_ms (one frame of uncertainty)." }
+      ]
+    },
+    {
+      "id": "body", "weight": 0.18,
+      "criteria": [
+        { "metric": "shoulder_turn", "at": "top", "mode": "min", "target": 85, "tolerance": 10,
+          "review": "REVIEW(golf): concept chest turn ≥ 85° (tour ~98°), T = 10°. shoulder_turn is a 2D image value (real 90° ≈ 64° in the image per Ben) – the target must be recalibrated to the measuring method of metrics.ts." },
+        { "metric": "hip_shift_x", "at": "top", "mode": "abs", "target": 0, "tolerance": 8,
+          "review": "REVIEW(golf): pelvis sway at the top, concept 0 cm, T = 4 cm ≈ 8 % torso." },
+        { "metric": "spine_angle_change", "at": "impact", "mode": "abs", "target": 0, "tolerance": 5,
+          "review": "REVIEW(golf): hold the forward bend from address to impact, concept change 0°, T = 5°." },
+        { "metric": "hip_turn", "at": "impact", "mode": "abs", "target": -35, "tolerance": 10,
+          "review": "REVIEW(golf): pelvis open at impact, concept 35° (negative = open per score rules 12.10.), T = 10°. 2D proxy – check sign/scale against metrics.ts." }
+      ]
+    },
+    {
+      "id": "top", "weight": 0.14,
+      "criteria": [
+        { "metric": "shaft_plane_dev", "at": "top", "mode": "abs", "target": 0, "tolerance": 10, "floor": 3,
+          "review": "REVIEW(golf): concept T = 10° (placeholder); floor 3°." }
+      ]
+    },
+    {
+      "id": "backswing9", "weight": 0.10,
+      "criteria": [
+        { "metric": "shaft_plane_dev", "at": "backswing9", "mode": "abs", "target": 0, "tolerance": 7, "floor": 3,
+          "review": "REVIEW(golf): concept T = 7° (placeholder); floor 3°." }
+      ]
+    },
+    {
+      "id": "setup", "weight": 0.08,
+      "criteria": [
+        { "metric": "spine_angle", "at": "address", "mode": "abs", "target": 30, "tolerance": 5,
+          "review": "REVIEW(golf): forward bend at address, concept 30° (tour ~30°), T = 5°." },
+        { "metric": "side_bend", "at": "address", "mode": "abs", "target": 15, "tolerance": 5,
+          "review": "REVIEW(golf): side bend away from the target at address, concept 15°, T = 5°. types.ts defines side_bend as tilt AWAY from the target, so +15 is correct; the synthetic generator uses the opposite sign (see decisions)." }
+      ]
+    }
+  ]
+}

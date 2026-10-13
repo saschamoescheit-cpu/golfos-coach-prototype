@@ -1,0 +1,126 @@
+{
+  "title": "Your swing",
+  "loading": "Loading swing…",
+  "notFound": "This swing could not be found.",
+  "noVideo": "Video not stored – showing the skeleton only.",
+  "quality": {
+    "title": "Not reliably detectable",
+    "intro": "The video is not clear enough for a reliable diagnosis. We show what we saw, but no faults and no score.",
+    "reasons": "Why",
+    "tipsTitle": "Tips for the next video",
+    "tips": {
+      "t1": "Whole body in the picture – from the head to the feet, with some space around.",
+      "t2": "Phone on a stand at hip height, not hand-held.",
+      "t3": "Good light from the front or the side, no bright sky behind you.",
+      "t4": "Face-on: camera in front of you. Down-the-line: camera behind you, looking at the target.",
+      "t5": "Use slow motion or 60 fps if your phone offers it."
+    },
+    "issue": {
+      "no_person": "No person was found in the video.",
+      "body_cut_off": "Head or feet are outside the picture.",
+      "low_visibility": "Important joints were hard to see (light, clothing, background).",
+      "low_fps": "Frame rate below 30 fps – tempo and impact are uncertain.",
+      "too_short": "The clip does not contain a full swing.",
+      "no_swing_found": "No swing was found in the clip.",
+      "camera_moving": "The camera moved during the swing.",
+      "too_far": "You are too small in the picture – move the camera closer.",
+      "mirrored_suspected": "The movement does not match the chosen handedness.",
+      "club_not_found": "The club could not be found in the picture – club values are estimated or missing."
+    }
+  },
+  "score": {
+    "title": "Swing score",
+    "level": "Level {n}",
+    "tour": "Tour scale: {n}",
+    "tapHint": "Tap a bar for measured value and target",
+    "noTotal": {
+      "coverage": "Not enough measured for a total score – film down-the-line for the shaft positions.",
+      "shot_type": "The score is only calculated for full swings (driver and iron).",
+      "quality": "No score – the video was not clear enough."
+    },
+    "word": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "solid": "Solid",
+      "work": "Work in progress",
+      "potential": "Lots of potential"
+    },
+    "part": {
+      "downswing9": "9 o'clock down",
+      "tempo": "Rhythm",
+      "body": "Body",
+      "top": "Top",
+      "backswing9": "9 o'clock back",
+      "setup": "Setup"
+    },
+    "notMeasured": "not measured",
+    "measured": "Measured",
+    "target": "Target",
+    "points": "{n} points",
+    "atLeast": "at least {v}",
+    "reason": {
+      "view": "not measurable from this camera view",
+      "missing": "not found in this video",
+      "low_confidence": "not measured reliably",
+      "below_measurement_floor": "measuring error too large for this tolerance"
+    }
+  },
+  "tempo": {
+    "line": "Tempo {v} : 1",
+    "ref": "(Tour {t} : 1)",
+    "refShort": "(target {t} : 1)",
+    "fast": "Your backswing is quick compared to your downswing – take it back more calmly.",
+    "slow": "Your downswing is slow compared to your backswing – let it accelerate.",
+    "ok": "Good rhythm."
+  },
+  "faults": {
+    "title": "What to work on",
+    "none": "No clear fault found in what we could check. Nice!",
+    "count": "{n} of {m} checked points need work"
+  },
+  "values": {
+    "title": "All measured values",
+    "show": "Show all measured values",
+    "hide": "Hide measured values",
+    "ok": "in tolerance",
+    "bad": "out of tolerance",
+    "info": "info",
+    "uncertain": "uncertain"
+  },
+  "uncertain": {
+    "title": "Not checked reliably",
+    "intro": "These points apply to your shot but could not be measured reliably in this video:"
+  },
+  "metric": {
+    "shoulder_turn": "Shoulder turn",
+    "hip_turn": "Hip turn",
+    "x_factor": "X-factor",
+    "spine_angle": "Forward bend",
+    "spine_angle_change": "Change of forward bend",
+    "side_bend": "Side bend",
+    "head_shift_x": "Head sideways",
+    "head_shift_y": "Head up/down",
+    "hip_shift_x": "Hips sideways",
+    "hip_depth_change": "Hips towards the ball",
+    "lead_arm_angle": "Lead arm angle",
+    "trail_arm_angle": "Trail arm angle",
+    "lead_wrist_hinge": "Wrist hinge",
+    "hand_height": "Hand height",
+    "hand_depth": "Hand depth",
+    "hands_ahead": "Hands ahead of the ball",
+    "shaft_plane_dev": "Shaft vs. neutral line",
+    "shaft_lean": "Shaft lean",
+    "knee_flex": "Knee flex",
+    "stance_width": "Stance width",
+    "tempo_ratio": "Tempo",
+    "backswing_ms": "Backswing time",
+    "downswing_ms": "Downswing time",
+    "putter_wrist_change": "Wrist change",
+    "body_motion": "Body movement",
+    "swing_length": "Swing length",
+    "lead_arm_post_impact": "Lead arm after impact",
+    "hand_path_shift": "Hand path (down vs. back)"
+  },
+  "unit": { "deg": "°", "pct_torso": "% torso", "ms": " ms", "ratio": " : 1" },
+  "atSwing": "whole swing"
+}
