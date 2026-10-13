@@ -3,13 +3,12 @@ import type { AnalysisContext } from '../analysis/context';
 import { metricsAtFrame } from '../analysis/metrics';
 import { trackClub } from '../club/track';
 import { LM } from '../model/constants';
-import type { PoseFrame } from '../model/types';
+import type { PoseFrame, TrainingTarget } from '../model/types';
 import { synthSwing } from '../testing/synth';
 import { alignGhost, ghostToRaw } from './ghost';
 import { evaluateLiveFrame, isAddressLike, mirrorCriteria, StillnessDetector, torsoLength } from './live';
 import { MirrorMachine } from './mirror';
-import { getFaultDef } from '../faults/catalog';
-import { targetFromFault, targetFromTemplate, TEMPLATES } from './targets';
+import { targetFromTemplate, TEMPLATES } from './targets';
 
 const ASPECT = 1080 / 1920;
 
@@ -83,25 +82,37 @@ const metricsImplemented = (() => {
 describe.skipIf(!metricsImplemented)('live mirror evaluation with real metrics', () => {
   const dims = { width: 1080, height: 1920, fps: 30 };
 
-  it('straight lead arm at the top is a hit, a bent one is not', () => {
-    const tpl = TEMPLATES.find((x) => x.id === 'tpl_top_lead_arm')!;
-    const target = targetFromTemplate(tpl, { withGhost: false });
-    const judge = (leadElbowTop: number) => {
-      const s = synthSwing({ view: 'face_on', leadElbowTop });
-      const a = s.seq.frames[s.truth.keyframes.address!];
-      const top = s.seq.frames[s.truth.keyframes.top!];
-      return evaluateLiveFrame(target, a, top, dims, probeCtx, 1);
-    };
-    expect(judge(5).hit).toBe(true);
-    const bent = judge(45);
+  // The synthetic face-on top hides an elbow bend (the bend happens out of the image plane: 45° bend still measures
+  // 176°, see phases-metrics PM4) – the lead-arm tests therefore run down-the-line, where the bend is visible.
+  const dtlCtx: AnalysisContext = { shotType: 'iron', view: 'down_the_line', handedness: 'right' };
+  const armTarget = (): TrainingTarget => ({ ...targetFromTemplate(TEMPLATES.find((x) => x.id === 'tpl_top_lead_arm')!, { withGhost: false }), view: 'down_the_line' as const });
+  const judgeAt = (view: 'face_on' | 'down_the_line', target: TrainingTarget, p: Parameters<typeof synthSwing>[0]) => {
+    const s = synthSwing({ view, ...p });
+    const a = s.seq.frames[s.truth.keyframes.address!];
+    const top = s.seq.frames[s.truth.keyframes.top!];
+    return evaluateLiveFrame(target, a, top, dims, view === 'face_on' ? probeCtx : dtlCtx, 1);
+  };
+
+  it('straight lead arm at the top is a hit, a bent one is not (2-frame live sequence)', () => {
+    const good = judgeAt('down_the_line', armTarget(), { leadElbowTop: 5 });
+    const bent = judgeAt('down_the_line', armTarget(), { leadElbowTop: 45 });
+    expect(good.hit).toBe(true);
     expect(bent.hit).toBe(false);
-    expect(bent.proximity!).toBeLessThan(judge(5).proximity!);
+    expect(bent.proximity!).toBeLessThan(good.proximity!);
+  });
+
+  it('face-on: full shoulder turn at the top is a hit, a short turn is not', () => {
+    const target = targetFromTemplate(TEMPLATES.find((x) => x.id === 'tpl_top_turn')!, { withGhost: false });
+    expect(judgeAt('face_on', target, { shoulderTurnTop: 90 }).hit).toBe(true);
+    const short = judgeAt('face_on', target, { shoulderTurnTop: 50 });
+    expect(short.hit).toBe(false);
+    expect(short.criteria[0].direction).toBe(-1);
   });
 
   it('slow motion into the top position: reach tone, held after holding 2 s', () => {
     // the player moves slowly into the top and holds it: frames of the synthetic top, repeated over 3 s
-    const target = targetFromFault(getFaultDef('bent_lead_arm')!, { view: 'face_on', withGhost: false })!;
-    const s = synthSwing({ view: 'face_on', backswingMs: 3000, leadElbowTop: 5 });
+    const target = armTarget();
+    const s = synthSwing({ view: 'down_the_line', backswingMs: 3000, leadElbowTop: 5 });
     const addr = s.seq.frames[s.truth.keyframes.address!];
     const m = new MirrorMachine();
     const events: string[] = [];
@@ -109,10 +120,22 @@ describe.skipIf(!metricsImplemented)('live mirror evaluation with real metrics',
     const top = frames[frames.length - 1];
     for (let k = 1; k <= 90; k++) frames.push({ ...top, t: top.t + k * 33 });
     for (const f of frames) {
-      const ev = evaluateLiveFrame(target, addr, f, dims, probeCtx, 1);
+      const ev = evaluateLiveFrame(target, addr, f, dims, dtlCtx, 1);
       events.push(...m.update(f.t, ev.maxDistance).events);
     }
     expect(events).toContain('reach');
     expect(events[events.length - 1]).toBe('held');
+    expect(m.current).toBe('held');
+  });
+
+  it('templates: the synthetic ideal swing reaches every template position criterion it can measure live', () => {
+    for (const tpl of TEMPLATES) {
+      const target = targetFromTemplate(tpl, { withGhost: false });
+      const ctx: AnalysisContext = { shotType: tpl.shotType, view: tpl.view, handedness: 'right' };
+      const s = synthSwing({ view: tpl.view, shotType: tpl.shotType });
+      const i = s.truth.keyframes[tpl.position]!;
+      const ev = evaluateLiveFrame(target, s.seq.frames[s.truth.keyframes.address!], s.seq.frames[i], dims, ctx, 1);
+      for (const c of ev.criteria) if (c.distance != null) expect(c.within, `${tpl.id} ${c.criterion.metric}=${c.value}`).toBe(true);
+    }
   });
 });

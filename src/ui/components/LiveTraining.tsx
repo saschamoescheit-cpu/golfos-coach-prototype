@@ -10,11 +10,11 @@ import { SwingTrigger, type TriggerState } from '../../coach/live/swingTrigger';
 import type { Landmark, PoseFrame, TrainingTarget } from '../../coach/model/types';
 import { getPoseProviderFor } from '../../coach/pose/mediapipe';
 import { newId, persistSwing } from '../../coach/storage/save';
-import { synthSwing } from '../../coach/testing/synth';
 import { getTrainingAudio } from '../../coach/training/audio';
 import { alignGhost, ghostToRaw } from '../../coach/training/ghost';
 import { evaluateLiveFrame, liveMetricsAvailable, mirrorCriteria, StillnessDetector } from '../../coach/training/live';
 import { MirrorMachine, type MirrorState } from '../../coach/training/mirror';
+import { modelGhost } from '../../coach/training/modelGhost';
 import { colorForProximity, COLORS, type Evaluation } from '../../coach/training/proximity';
 import { SeriesSession, shiftResult, type SeriesOutcome, type SeriesTally } from '../../coach/training/series';
 import { drawTrainingOverlay } from './LiveOverlay';
@@ -70,11 +70,22 @@ interface MirrorUi {
   ev: Evaluation | null;
 }
 
+// probe with the precomputed model ghosts (address + top) – no synthetic generator in the bundle
 const metricsReady = () =>
-  liveMetricsAvailable(() => {
-    const s = synthSwing({ fps: 30 });
-    return { seq: s.seq, top: s.truth.keyframes.top!, address: s.truth.keyframes.address! };
-  });
+  liveMetricsAvailable(() => ({
+    seq: {
+      width: 1080,
+      height: 1920,
+      fps: 30,
+      mirrored: false,
+      frames: [
+        { t: 0, lm: modelGhost('iron', 'face_on', 'address') },
+        { t: 800, lm: modelGhost('iron', 'face_on', 'top') },
+      ],
+    },
+    top: 1,
+    address: 0,
+  }));
 
 export function LiveTraining({ target, mode, ctx, toleranceScale, sound, ballGoal, sessionId, onProgress, onEnd }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
