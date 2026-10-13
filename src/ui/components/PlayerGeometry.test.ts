@@ -25,7 +25,7 @@ describe('player geometry', () => {
   });
 
   it('frame ↔ video time incl. slow-motion scale and trimmed clips (t does not start at 0)', () => {
-    const seq = { frames };
+    const seq: { frames: typeof frames; videoTimeScale?: number } = { frames };
     expect(videoTimeOfFrame(seq, 2)).toBeCloseTo(0.5667, 2);
     expect(frameAtTime(frames, poseTimeOfVideo(seq, videoTimeOfFrame(seq, 3)))).toBe(3);
     const slow = { frames: frames.map((f) => ({ ...f, t: f.t / 8 })), videoTimeScale: 8 };
