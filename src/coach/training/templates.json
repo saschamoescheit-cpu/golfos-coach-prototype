@@ -1,0 +1,86 @@
+[
+  {
+    "id": "tpl_top_lead_arm",
+    "label": { "en": "Top: lead arm straight", "de": "Top: linker Arm gestreckt" },
+    "shotType": "iron",
+    "view": "face_on",
+    "position": "top",
+    "criteria": [
+      { "metric": "lead_arm_angle", "at": "top", "target": 170, "tolerance": 10, "review": "REVIEW(golf): 170° ± 10° = 'fairly straight, not locked'; catalog bent_lead_arm uses 168 ± 10" }
+    ]
+  },
+  {
+    "id": "tpl_top_turn",
+    "label": { "en": "Top: full shoulder turn", "de": "Top: volle Schulterdrehung" },
+    "shotType": "iron",
+    "view": "face_on",
+    "position": "top",
+    "criteria": [
+      { "metric": "shoulder_turn", "at": "top", "target": 75, "tolerance": 12, "review": "REVIEW(golf): 2D 'image' shoulder turn proxy; catalog short_shoulder_turn uses 64 ± 8 as the minimum – 75 ± 12 is a guess for a full turn" },
+      { "metric": "head_shift_x", "at": "top", "target": 0, "tolerance": 10, "review": "REVIEW(golf): turn without swaying, same as catalog head_sway (0 ± 10 % torso)" }
+    ]
+  },
+  {
+    "id": "tpl_ds9_plane",
+    "label": { "en": "9 o'clock down: on plane", "de": "9 Uhr Abschwung: auf der Linie" },
+    "shotType": "iron",
+    "view": "down_the_line",
+    "position": "downswing9",
+    "criteria": [
+      { "metric": "shaft_plane_dev", "at": "downswing9", "target": 0, "tolerance": 5, "review": "REVIEW(golf): shaft on the neutral line ± 5°, same as catalog shaft_steep/flat_downswing9; live without club detection only a rough hand estimate" }
+    ]
+  },
+  {
+    "id": "tpl_bs9_plane",
+    "label": { "en": "9 o'clock back: on plane", "de": "9 Uhr Aufschwung: auf der Linie" },
+    "shotType": "iron",
+    "view": "down_the_line",
+    "position": "backswing9",
+    "criteria": [
+      { "metric": "shaft_plane_dev", "at": "backswing9", "target": 0, "tolerance": 7, "review": "REVIEW(golf): shaft on the neutral line ± 7°, same as catalog shaft_flat/steep_backswing9" }
+    ]
+  },
+  {
+    "id": "tpl_impact_posture",
+    "label": { "en": "Impact: keep your posture", "de": "Treffmoment: Haltung behalten" },
+    "shotType": "iron",
+    "view": "down_the_line",
+    "position": "impact",
+    "criteria": [
+      { "metric": "hip_depth_change", "at": "impact", "target": 0, "tolerance": 6, "review": "REVIEW(golf): hips do not move towards the ball (early extension), catalog early_extension 0 ± 6 % torso" },
+      { "metric": "spine_angle_change", "at": "impact", "target": 0, "tolerance": 6, "review": "REVIEW(golf): forward bend kept within ± 6° of address" }
+    ]
+  },
+  {
+    "id": "tpl_finish",
+    "label": { "en": "Finish: weight forward, balanced", "de": "Finish: Gewicht vorne, im Gleichgewicht" },
+    "shotType": "iron",
+    "view": "face_on",
+    "position": "finish",
+    "criteria": [
+      { "metric": "hip_shift_x", "at": "finish", "target": 20, "tolerance": 10, "review": "REVIEW(golf): hips clearly over the lead foot in the finish (~20 % torso towards the target) – guess, no source value" }
+    ]
+  },
+  {
+    "id": "tpl_putt_head",
+    "label": { "en": "Putt: head still", "de": "Putt: Kopf ruhig" },
+    "shotType": "putt",
+    "view": "face_on",
+    "position": "impact",
+    "criteria": [
+      { "metric": "head_shift_x", "at": "impact", "target": 0, "tolerance": 3, "review": "REVIEW(golf): head within ± 3 % torso (≈ 1.5 cm) of address at impact, same as catalog putt_head_movement" },
+      { "metric": "body_motion", "at": "swing", "target": 0, "tolerance": 4, "review": "REVIEW(golf): body sway during the stroke, catalog putt_body_movement 0 ± 4 – series only" }
+    ]
+  },
+  {
+    "id": "tpl_address_posture",
+    "label": { "en": "Address posture", "de": "Ansprechhaltung" },
+    "shotType": "iron",
+    "view": "down_the_line",
+    "position": "address",
+    "criteria": [
+      { "metric": "spine_angle", "at": "address", "target": 32, "tolerance": 6, "review": "REVIEW(golf): forward bend ~30–35° for irons; catalog setup_upright/crouched uses 30 ± 5" },
+      { "metric": "knee_flex", "at": "address", "target": 25, "tolerance": 10, "review": "REVIEW(golf): 'soft knees' ~20–30° flex – guess" }
+    ]
+  }
+]

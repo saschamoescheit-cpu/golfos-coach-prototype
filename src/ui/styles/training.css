@@ -1,0 +1,104 @@
+/* Training mode (OWNER: agent "training"). Uses the tokens of src/styles.css.
+   Live view must be readable from 3–4 m: big type, strong colours, status always with symbol + text. */
+:root {
+  --tr-green: #30d158;
+  --tr-yellow: #ffd60a;
+  --tr-red: #ff3b30;
+  --tr-grey: #8e9aa3;
+}
+
+/* ---------------- pick / setup / summary ---------------- */
+.training-pick, .training-setup, .training-summary { display: flex; flex-direction: column; gap: 18px; }
+.training-section { display: flex; flex-direction: column; gap: 8px; }
+.training-section > h2 { font-size: 15px; color: var(--text-2); }
+.training-row { display: flex; gap: 8px; align-items: center; }
+.training-row .list-item { flex: 1; min-width: 0; }
+.training-ref { display: flex; flex-direction: column; gap: 12px; }
+.training-target { display: flex; flex-direction: column; gap: 4px; }
+.training-target .btn-ghost { align-self: flex-start; padding: 0; }
+.training-target-title { font: 600 20px var(--display); }
+.training-crit { display: flex; align-items: center; gap: 12px; }
+.training-crit .grow { flex: 1; min-width: 0; }
+.training-crit .title { font-weight: 600; }
+.training-crit-val { font: 600 20px var(--display); font-variant-numeric: tabular-nums; margin-top: 2px; }
+.training-steps { display: flex; gap: 8px; }
+.training-steps .btn-secondary { width: 56px; min-height: 56px; font-size: 26px; padding: 0; }
+.training-guide { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+.training-note { border-left: 3px solid var(--warn); padding: 8px 12px; background: var(--surface); border-radius: 8px; font-size: 15px; }
+.training-start { min-height: 64px; font-size: 20px; }
+.choice small { margin-top: 2px; }
+
+.training-rate { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 0; text-align: center; }
+.training-rate .big { font: 700 72px/1 var(--display); font-variant-numeric: tabular-nums; }
+.training-rate .txt { font: 600 22px var(--display); }
+.training-shot .mark {
+  width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center;
+  font: 700 22px var(--display); flex: none; background: var(--surface-2); color: var(--tr-grey);
+}
+.training-shot.hit .mark { background: var(--tr-green); color: #04210f; }
+.training-shot.miss .mark { background: var(--tr-red); color: #fff; }
+
+/* ---------------- live ---------------- */
+.training-live {
+  position: fixed; inset: 0; z-index: 20; background: #000; display: flex; flex-direction: column;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+.training-view { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.training-stage { position: absolute; }
+.training-stage video, .training-stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
+.training-view.mirror .training-stage { transform: scaleX(-1); }
+.training-hud {
+  position: absolute; left: 10px; right: 10px; top: 10px; bottom: 10px; display: flex; flex-direction: column; gap: 8px;
+  pointer-events: none;
+}
+.training-status {
+  display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px;
+  background: rgba(14, 20, 24, 0.86); font: 700 clamp(26px, 8vw, 44px)/1.05 var(--display);
+  box-shadow: inset 8px 0 0 var(--tr-grey);
+}
+.training-status .sym { font-size: 1.2em; width: 1.1em; text-align: center; }
+.training-status .txt { display: flex; flex-direction: column; }
+.training-status small { font: 600 clamp(16px, 4.5vw, 22px)/1.2 var(--body); color: var(--text-2); margin-top: 4px; }
+.training-status.ok { box-shadow: inset 8px 0 0 var(--tr-green); background: rgba(10, 60, 28, 0.9); }
+.training-status.ok .sym { color: var(--tr-green); }
+.training-status.bad { box-shadow: inset 8px 0 0 var(--tr-red); }
+.training-status.bad .sym { color: var(--tr-red); }
+.training-status.warn { box-shadow: inset 8px 0 0 var(--tr-yellow); }
+.training-status.warn .sym { color: var(--tr-yellow); }
+.training-status.unknown .sym { color: var(--tr-grey); }
+
+.training-meter {
+  position: relative; height: 22px; border-radius: 11px; background: rgba(14, 20, 24, 0.8); overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+.training-meter span { display: block; height: 100%; transition: width 0.1s linear; }
+.training-meter i { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; }
+.training-hold { height: 12px; border-radius: 6px; background: rgba(14, 20, 24, 0.8); overflow: hidden; }
+.training-hold span { display: block; height: 100%; background: var(--tr-green); }
+
+.training-values { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.training-values li {
+  align-self: flex-start; display: flex; align-items: baseline; gap: 10px; padding: 8px 12px; border-radius: 12px;
+  background: rgba(14, 20, 24, 0.82); border-left: 6px solid var(--tr-grey); font-size: 17px;
+}
+.training-values b { font: 700 26px var(--display); font-variant-numeric: tabular-nums; }
+.training-values .tgt { color: var(--text-2); font-size: 15px; }
+
+.training-count {
+  margin-top: auto; align-self: center; display: flex; align-items: baseline; gap: 8px; padding: 6px 24px;
+  border-radius: 28px; background: rgba(14, 20, 24, 0.82); font: 700 clamp(72px, 26vw, 150px)/1 var(--display);
+  font-variant-numeric: tabular-nums;
+}
+.training-count span { color: var(--muted); font-weight: 400; }
+.training-count small { font-size: 0.25em; color: var(--muted); }
+.training-hint { align-self: flex-start; padding: 8px 12px; border-radius: 12px; background: rgba(14, 20, 24, 0.85); font: 600 17px var(--body); }
+.training-hint.small { font-size: 14px; }
+
+.training-bar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 10px 12px; background: rgba(14, 20, 24, 0.95); }
+.training-bar button {
+  min-height: 64px; border-radius: 16px; border: 1px solid var(--line-strong); background: var(--surface);
+  font: 600 15px var(--display); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px;
+}
+.training-bar button .ico { font-size: 22px; line-height: 1; }
+.training-bar button[aria-pressed='false'] { color: var(--muted); }
+.training-sub { padding: 0 12px 10px; background: rgba(14, 20, 24, 0.95); text-align: center; color: var(--text-2); font: 600 16px var(--body); }
