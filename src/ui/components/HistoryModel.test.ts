@@ -3,7 +3,7 @@ import { levelFromHandicap } from '../../coach/faults/score';
 import type { PhaseKeyframe } from '../../coach/model/types';
 import { faultProgress } from '../../coach/storage/progress';
 import { fakeFault, fakeSwing, rowsFromPattern } from '../../coach/storage/testFixtures';
-import { approxCm, commonPositions, compareRows, faultName, formatWhen, groupByShotType, progressSentence, shotTypeCounts, syncedFrame, topFault } from './HistoryModel';
+import { approxCm, commonPositions, compareRows, faultName, faultStatus, formatWhen, groupByShotType, progressSentence, shotTypeCounts, syncedFrame, topFault } from './HistoryModel';
 import { clampTolerance, handicapInput, levelInfos, parseHandicap } from './SettingsModel';
 
 const kf = (position: PhaseKeyframe['position'], frameIndex: number): PhaseKeyframe => ({ position, frameIndex, t: frameIndex * 33, confidence: 1, method: 'test' });
@@ -30,6 +30,12 @@ describe('history helpers', () => {
     expect(topFault(s)?.defId).toBe('y');
     expect(topFault(fakeSwing('b'))).toBeUndefined();
     expect(faultName('some_new_fault', 'en')).toBe('Some new fault');
+  });
+
+  it('fault status: clean only when faults were checked, otherwise unsure (review W5)', () => {
+    expect(faultStatus(fakeSwing('a', { faults: [fakeFault('x', 0.5)] })).kind).toBe('fault');
+    expect(faultStatus(fakeSwing('b', { checkedFaultIds: ['x'] })).kind).toBe('clean');
+    expect(faultStatus(fakeSwing('c', { checkedFaultIds: [] })).kind).toBe('unsure');
   });
 
   it('progress sentence: "6 of 10 before → 3 of the last 10"', () => {

@@ -5,7 +5,7 @@ import { t } from '../../coach/i18n/i18n';
 import type { MetricUnit, Swing } from '../../coach/model/types';
 import { getStore } from '../../coach/storage';
 import { useSettings } from '../../coach/storage/settings';
-import { approxCm, commonPositions, compareRows, faultName, formatWhen, syncedFrame, topFault } from '../components/HistoryModel';
+import { approxCm, commonPositions, compareRows, faultName, faultStatus, formatWhen, syncedFrame } from '../components/HistoryModel';
 import { SwingPlayer } from '../components/SwingPlayer';
 import { TopBar } from '../components/TopBar';
 import type { Route } from '../nav';
@@ -171,10 +171,10 @@ export function CompareScreen({ route }: { route: Route }) {
             <tr>
               <td>{t('history.compareScreen.topFault')}</td>
               {[A, B].map((s) => {
-                const f = topFault(s.swing);
+                const st = faultStatus(s.swing);
                 return (
-                  <td key={s.swing.id} className={f ? 'status-bad' : 'status-ok'}>
-                    {f ? `✕ ${faultName(f.defId)}` : t('history.noFault')}
+                  <td key={s.swing.id} className={st.kind === 'fault' ? 'status-bad' : st.kind === 'clean' ? 'status-ok' : 'muted'}>
+                    {st.kind === 'fault' ? `✕ ${faultName(st.fault.defId)}` : st.kind === 'clean' ? t('history.noFault') : t('history.notReliable')}
                   </td>
                 );
               })}

@@ -18,6 +18,16 @@ export function topFault(swing: Swing): Fault | undefined {
   return topFaults(swing.faults, 1)[0];
 }
 
+/**
+ * Fault line of a swing: its top fault, "clean" only when faults were actually checked, otherwise "unsure"
+ * (bad video – nothing could be judged). Same rule on Home, History and Compare (review W5).
+ */
+export function faultStatus(swing: Swing): { kind: 'fault'; fault: Fault } | { kind: 'clean' } | { kind: 'unsure' } {
+  const fault = topFault(swing);
+  if (fault) return { kind: 'fault', fault };
+  return swing.checkedFaultIds.length > 0 ? { kind: 'clean' } : { kind: 'unsure' };
+}
+
 export interface ShotGroup {
   shotType: ShotType;
   swings: Swing[];
