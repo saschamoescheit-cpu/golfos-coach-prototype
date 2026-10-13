@@ -49,7 +49,7 @@ Stand 12.10.2026. Alle Golf-Schwellen sind Startwerte (`REVIEW(golf)`), vollstä
 - **V1 – side_bend:** types.ts definiert „Neigung **weg** vom Ziel“ → positiv = weg. Reverse Pivot = `side_bend@top < −3`, Setup-Ziel +15°.
   **Der Synth-Generator nutzt das umgekehrte Vorzeichen** (`sideBendTop` + = zum Ziel, `sideBendImpact` normal −15). Wenn metrics.ts dem
   Generator folgt, müssen Reverse-Pivot-Regel und Setup-Ziel gespiegelt werden.
-  **Erledigt (Review K6):** metrics.ts misst nach types.ts; Reverse Pivot misst im Test −8 und kleiner, Regel  passt.
+  **Erledigt (Review K6):** metrics.ts misst nach types.ts; Reverse Pivot misst im Test −8 und kleiner, die Regel „< −3“ passt.
 - **V2 – lead_wrist_hinge:** angenommen wie im Generator: 0 = Schaft in Verlängerung des Arms, ~90 = „L“. Casting = `< 60` bei 9 Uhr Abschwung.
   Falls metrics.ts den Innenwinkel misst (180 = gestreckt), dreht sich die Regel um.
   **Erledigt (Review K6):** Schwelle nach Messung am Synth auf **< 28°** gesenkt und nur noch Face-on (DECISIONS L4); „< 60“ ist überholt.
