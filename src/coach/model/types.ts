@@ -245,7 +245,7 @@ export interface FaultDef {
   benefit: Localized;
   drillIds: string[];
   /** target for the training mode derived from this correction */
-  trainingTarget?: { metric: MetricId; at: KeyPosition | 'swing'; target: number; tolerance: number; mode?: TargetMode };
+  trainingTarget?: { metric: MetricId; at: KeyPosition | 'swing'; target: number; tolerance: number; mode?: TargetMode; review?: string };
 }
 
 /** A fault found in one swing. */

@@ -68,7 +68,8 @@
       "metric": "hip_depth_change",
       "at": "impact",
       "target": 0,
-      "tolerance": 6
+      "tolerance": 6,
+      "review": "REVIEW(golf): training goal hip_depth_change@impact 0 ± 6; the fault fires at > 8; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -138,7 +139,8 @@
       "metric": "head_shift_x",
       "at": "top",
       "target": -10,
-      "tolerance": 12
+      "tolerance": 12,
+      "review": "REVIEW(golf): training goal head_shift_x@top -10 ± 12; the fault fires at < -25 / > 10; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -202,7 +204,8 @@
       "metric": "head_shift_y",
       "at": "impact",
       "target": 0,
-      "tolerance": 5
+      "tolerance": 5,
+      "review": "REVIEW(golf): training goal head_shift_y@impact 0 ± 5; the fault fires at > 8; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -265,7 +268,8 @@
       "metric": "head_shift_y",
       "at": "impact",
       "target": 0,
-      "tolerance": 5
+      "tolerance": 5,
+      "review": "REVIEW(golf): training goal head_shift_y@impact 0 ± 5; the fault fires at < -8; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -327,7 +331,8 @@
       "metric": "hip_shift_x",
       "at": "top",
       "target": 0,
-      "tolerance": 8
+      "tolerance": 8,
+      "review": "REVIEW(golf): training goal hip_shift_x@top 0 ± 8; the fault fires at < -12; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -395,7 +400,8 @@
       "metric": "side_bend",
       "at": "top",
       "target": 5,
-      "tolerance": 6
+      "tolerance": 6,
+      "review": "REVIEW(golf): training goal side_bend@top 5 ± 6; the fault fires at < -3; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -458,7 +464,8 @@
       "metric": "hip_shift_x",
       "at": "impact",
       "target": 12,
-      "tolerance": 6
+      "tolerance": 6,
+      "review": "REVIEW(golf): training goal hip_shift_x@impact 12 ± 6; the fault fires at < 3; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -519,7 +526,8 @@
       "metric": "hand_path_shift",
       "at": "downswing9",
       "target": 0,
-      "tolerance": 6
+      "tolerance": 6,
+      "review": "REVIEW(golf): training goal hand_path_shift@downswing9 0 ± 6; the fault fires at > 8; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -580,7 +588,8 @@
       "metric": "lead_arm_post_impact",
       "at": "swing",
       "target": 170,
-      "tolerance": 12
+      "tolerance": 12,
+      "review": "REVIEW(golf): training goal lead_arm_post_impact@swing 170 ± 12; the fault fires at < 150; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -640,7 +649,8 @@
       "at": "top",
       "target": 85,
       "tolerance": 15,
-      "mode": "min"
+      "mode": "min",
+      "review": "REVIEW(golf): training goal shoulder_turn@top at least 85 (hit from 70); the fault fires at < 50; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -703,7 +713,8 @@
       "metric": "lead_wrist_hinge",
       "at": "downswing9",
       "target": 40,
-      "tolerance": 10
+      "tolerance": 10,
+      "review": "REVIEW(golf): training goal lead_wrist_hinge@downswing9 40 ± 10; the fault fires at < 28; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -765,7 +776,8 @@
       "metric": "tempo_ratio",
       "at": "swing",
       "target": 3,
-      "tolerance": 0.3
+      "tolerance": 0.3,
+      "review": "REVIEW(golf): training goal tempo_ratio@swing 3 ± 0.3; the fault fires at < 2.4; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -824,7 +836,8 @@
       "metric": "tempo_ratio",
       "at": "swing",
       "target": 3,
-      "tolerance": 0.3
+      "tolerance": 0.3,
+      "review": "REVIEW(golf): training goal tempo_ratio@swing 3 ± 0.3; the fault fires at > 3.6; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -885,7 +898,8 @@
       "metric": "shaft_plane_dev",
       "at": "backswing9",
       "target": 0,
-      "tolerance": 7
+      "tolerance": 7,
+      "review": "REVIEW(golf): training goal shaft_plane_dev@backswing9 0 ± 7; the fault fires at < -7; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -946,7 +960,8 @@
       "metric": "shaft_plane_dev",
       "at": "backswing9",
       "target": 0,
-      "tolerance": 7
+      "tolerance": 7,
+      "review": "REVIEW(golf): training goal shaft_plane_dev@backswing9 0 ± 7; the fault fires at > 7; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1009,7 +1024,8 @@
       "metric": "shaft_plane_dev",
       "at": "downswing9",
       "target": 0,
-      "tolerance": 5
+      "tolerance": 5,
+      "review": "REVIEW(golf): training goal shaft_plane_dev@downswing9 0 ± 5; the fault fires at > 5; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1071,7 +1087,8 @@
       "metric": "shaft_plane_dev",
       "at": "downswing9",
       "target": 0,
-      "tolerance": 5
+      "tolerance": 5,
+      "review": "REVIEW(golf): training goal shaft_plane_dev@downswing9 0 ± 5; the fault fires at < -5; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1132,7 +1149,8 @@
       "at": "top",
       "target": 175,
       "tolerance": 10,
-      "mode": "min"
+      "mode": "min",
+      "review": "REVIEW(golf): training goal lead_arm_angle@top at least 175 (hit from 165); the fault fires at < 150; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1191,7 +1209,8 @@
       "metric": "trail_arm_angle",
       "at": "top",
       "target": 90,
-      "tolerance": 15
+      "tolerance": 15,
+      "review": "REVIEW(golf): training goal trail_arm_angle@top 90 ± 15; the fault fires at > 120; not trainable yet (rule not measurable in 2D, hidden from training)."
     }
   },
   {
@@ -1260,7 +1279,8 @@
       "metric": "spine_angle",
       "at": "address",
       "target": 36,
-      "tolerance": 8
+      "tolerance": 8,
+      "review": "REVIEW(golf): training goal spine_angle@address 36 ± 8; the fault fires at < 24; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1328,7 +1348,8 @@
       "metric": "spine_angle",
       "at": "address",
       "target": 36,
-      "tolerance": 8
+      "tolerance": 8,
+      "review": "REVIEW(golf): training goal spine_angle@address 36 ± 8; the fault fires at > 46; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1397,7 +1418,8 @@
       "metric": "shaft_lean",
       "at": "impact",
       "target": 6,
-      "tolerance": 5
+      "tolerance": 5,
+      "review": "REVIEW(golf): training goal shaft_lean@impact 6 ± 5; the fault fires at < 0; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1462,7 +1484,8 @@
       "metric": "hip_shift_x",
       "at": "impact",
       "target": 3,
-      "tolerance": 4
+      "tolerance": 4,
+      "review": "REVIEW(golf): training goal hip_shift_x@impact 3 ± 4; the fault fires at < -3 / < -6; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1529,7 +1552,8 @@
       "metric": "hands_ahead",
       "at": "impact",
       "target": 5,
-      "tolerance": 5
+      "tolerance": 5,
+      "review": "REVIEW(golf): training goal hands_ahead@impact 5 ± 5; the fault fires at < 0; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1587,7 +1611,8 @@
       "metric": "swing_length",
       "at": "top",
       "target": 35,
-      "tolerance": 12
+      "tolerance": 12,
+      "review": "REVIEW(golf): training goal swing_length@top 35 ± 12; the fault fires at > 55; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1644,7 +1669,8 @@
       "metric": "swing_length",
       "at": "top",
       "target": 90,
-      "tolerance": 15
+      "tolerance": 15,
+      "review": "REVIEW(golf): training goal swing_length@top 90 ± 15; the fault fires at > 125; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1704,7 +1730,8 @@
       "metric": "tempo_ratio",
       "at": "swing",
       "target": 2,
-      "tolerance": 0.4
+      "tolerance": 0.4,
+      "review": "REVIEW(golf): training goal tempo_ratio@swing 2 ± 0.4; the fault fires at outside 1.4–2.8; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1761,7 +1788,8 @@
       "at": "top",
       "target": 95,
       "tolerance": 15,
-      "mode": "min"
+      "mode": "min",
+      "review": "REVIEW(golf): training goal swing_length@top at least 95 (hit from 80); the fault fires at < 70; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1827,7 +1855,8 @@
       "metric": "head_shift_x",
       "at": "impact",
       "target": 0,
-      "tolerance": 3
+      "tolerance": 3,
+      "review": "REVIEW(golf): training goal head_shift_x@impact 0 ± 3; the fault fires at abs> 4; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1885,7 +1914,8 @@
       "metric": "body_motion",
       "at": "swing",
       "target": 0,
-      "tolerance": 4
+      "tolerance": 4,
+      "review": "REVIEW(golf): training goal body_motion@swing 0 ± 4; the fault fires at > 6; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -1945,7 +1975,8 @@
       "metric": "putter_wrist_change",
       "at": "swing",
       "target": 12,
-      "tolerance": 10
+      "tolerance": 10,
+      "review": "REVIEW(golf): training goal putter_wrist_change@swing 12 ± 10; the fault fires at > 22; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   },
   {
@@ -2004,7 +2035,8 @@
       "metric": "tempo_ratio",
       "at": "swing",
       "target": 2,
-      "tolerance": 0.4
+      "tolerance": 0.4,
+      "review": "REVIEW(golf): training goal tempo_ratio@swing 2 ± 0.4; the fault fires at outside 1.5–2.6; the synthetic ideal swing is a hit (training/faultTargets.test.ts)."
     }
   }
 ]

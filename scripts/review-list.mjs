@@ -32,12 +32,12 @@ for (const f of catalog)
     );
 
 out.push('', '## Trainingsziele aus Korrekturen', '');
-out.push('| Fehler | Messwert | Position | Ziel | Toleranz |', '|---|---|---|---|---|');
+out.push('| Fehler | Messwert | Position | Ziel | Toleranz | Grundlage |', '|---|---|---|---|---|---|');
 for (const f of catalog)
   if (f.trainingTarget) {
     const t = f.trainingTarget;
     const mode = t.mode === 'min' ? 'mindestens ' : t.mode === 'max' ? 'höchstens ' : '';
-    out.push(`| ${cell(f.name.de)} | ${t.metric} | ${t.at} | ${mode}${t.target} | ±${t.tolerance} |`);
+    out.push(`| ${cell(f.name.de)} | ${t.metric} | ${t.at} | ${mode}${t.target} | ±${t.tolerance} | ${cell(t.review ?? '–')} |`);
   }
 
 out.push('', `## Swing-Score (Version ${score.version})`, '');
