@@ -354,6 +354,36 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
     }
   }
 
+  // ---- 5b. with a confident club: impact = club head back at its address position (it moves ~20° per frame here,
+  // so club values at impact are only meaningful at this exact moment)
+  if (takeX !== undefined) {
+    const ai = Math.max(0, Math.round(takeX) - 1);
+    const ok = (c: ClubEstimate | null | undefined): c is ClubEstimate => !!c && c.confidence >= 0.5 && c.source !== 'hands';
+    let c0: ClubEstimate | undefined;
+    for (let i = ai; i >= Math.max(0, ai - F(0.2)) && !c0; i--) if (ok(club[i])) c0 = club[i]!;
+    if (c0) {
+      const lo = Math.max(0, Math.floor(impX) - F(0.06));
+      const hi = Math.min(n - 2, Math.ceil(impX) + F(0.06));
+      let best: number | undefined;
+      for (let i = lo; i <= hi; i++) {
+        const a = club[i];
+        const b = club[i + 1];
+        if (!ok(a) || !ok(b)) continue;
+        // face-on: head passes its address x towards the target; from behind: head passes its address height
+        const da = ctx.view === 'face_on' ? a.head.x - c0.head.x : c0.head.y - a.head.y;
+        const db = ctx.view === 'face_on' ? b.head.x - c0.head.x : c0.head.y - b.head.y;
+        const crossing = ctx.view === 'face_on' ? da < 0 && db >= 0 : (da > 0 && db <= 0) || (da <= 0 && db > 0);
+        if (!crossing) continue;
+        const x = i + (da === db ? 0.5 : da / (da - db));
+        if (best === undefined || Math.abs(x - impX) < Math.abs(best - impX)) best = x;
+      }
+      if (best !== undefined) {
+        impX = best;
+        impMethod = 'club-at-ball';
+      }
+    }
+  }
+
   // ---- 6. finish: first still window after impact, far from the impact position
   const impI = Math.round(impX);
   let finX: number | undefined;
