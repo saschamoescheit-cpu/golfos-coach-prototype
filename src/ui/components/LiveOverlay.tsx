@@ -1,5 +1,6 @@
 import { SKELETON } from '../../coach/model/constants';
 import type { Landmark, TargetCriterion } from '../../coach/model/types';
+import { mirrorIndex } from '../../coach/pose/mirror';
 import { METRIC_SEGMENTS } from '../../coach/training/metricInfo';
 import { colorForProximity, type CriterionResult } from '../../coach/training/proximity';
 
@@ -16,16 +17,24 @@ export interface OverlayInput {
   criteria: TargetCriterion[];
   results: CriterionResult[] | null;
   toleranceScale: number;
+  /** left-hander: live/ghost landmarks are raw (as filmed), the metric segments canonical → swap sides (review W3) */
+  mirrored?: boolean;
+}
+
+/** Segments of a metric in the indices of the drawn (raw) landmarks. */
+function segmentsOf(metric: TargetCriterion['metric'], mirrored = false): [number, number][] {
+  const segs = METRIC_SEGMENTS[metric] ?? [];
+  return mirrored ? segs.map(([a, b]) => [mirrorIndex(a), mirrorIndex(b)] as [number, number]) : segs;
 }
 
 const key = (a: number, b: number) => (a < b ? `${a}-${b}` : `${b}-${a}`);
 
-export function segmentColors(criteria: TargetCriterion[], results: CriterionResult[] | null): Map<string, string> {
+export function segmentColors(criteria: TargetCriterion[], results: CriterionResult[] | null, mirrored = false): Map<string, string> {
   const m = new Map<string, string>();
   criteria.forEach((c, i) => {
     const r = results?.[i];
     const color = colorForProximity(r ? r.proximity : null);
-    for (const [a, b] of METRIC_SEGMENTS[c.metric] ?? []) {
+    for (const [a, b] of segmentsOf(c.metric, mirrored)) {
       // a segment shared by two criteria shows the worse one (red wins over green)
       const k = key(a, b);
       const old = m.get(k);
@@ -56,7 +65,7 @@ export function drawTrainingOverlay(c: HTMLCanvasElement | null, inp: OverlayInp
   if (inp.ghost) {
     const gh = inp.ghost;
     for (const crit of inp.criteria) {
-      for (const [a, b] of METRIC_SEGMENTS[crit.metric] ?? []) {
+      for (const [a, b] of segmentsOf(crit.metric, inp.mirrored)) {
         const pa = P(gh[a]);
         const pb = P(gh[b]);
         const len = Math.hypot(pb.x - pa.x, pb.y - pa.y);
@@ -101,7 +110,7 @@ export function drawTrainingOverlay(c: HTMLCanvasElement | null, inp: OverlayInp
   // ---- the player: thick lines, trained lines coloured by proximity
   const lm = inp.live;
   if (!lm) return;
-  const colors = segmentColors(inp.criteria, inp.results);
+  const colors = segmentColors(inp.criteria, inp.results, inp.mirrored);
   for (const pass of [0, 1]) {
     for (const [a, b] of SKELETON) {
       if (lm[a].v < 0.35 || lm[b].v < 0.35) continue;

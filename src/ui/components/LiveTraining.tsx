@@ -266,6 +266,7 @@ export function LiveTraining({ target, mode, ctx, toleranceScale, sound, ballGoa
         criteria,
         results: showEval?.criteria ?? null,
         toleranceScale,
+        mirrored: ctx.handedness === 'left',
       });
     };
 
@@ -299,7 +300,14 @@ export function LiveTraining({ target, mode, ctx, toleranceScale, sound, ballGoa
       }
       let ghost: Landmark[] | null = null;
       if (ghostRaw && f.raw.lm) ghost = alignGhost(ghostRaw, f.raw.lm, aspect());
-      drawTrainingOverlay(canvasRef.current, { live: f.raw.lm, ghost, criteria, results: ev?.criteria ?? null, toleranceScale });
+      drawTrainingOverlay(canvasRef.current, {
+        live: f.raw.lm,
+        ghost,
+        criteria,
+        results: ev?.criteria ?? null,
+        toleranceScale,
+        mirrored: ctx.handedness === 'left',
+      });
     };
 
     const onFrame = (f: LiveFrame) => {

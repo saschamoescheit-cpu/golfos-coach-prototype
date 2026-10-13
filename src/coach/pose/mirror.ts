@@ -51,3 +51,8 @@ export function toDisplay(seq: PoseSequence): PoseSequence {
   if (!seq.mirrored) return seq;
   return { ...seq, mirrored: false, frames: seq.frames.map(mirrorFrame) };
 }
+
+/** Left/right partner of a landmark index (e.g. 11 ↔ 12); centre points (nose) map to themselves. */
+export function mirrorIndex(i: number): number {
+  return PARTNER[i] ?? i;
+}

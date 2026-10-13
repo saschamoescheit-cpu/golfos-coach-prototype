@@ -81,5 +81,9 @@ describe('training UI (static render)', () => {
     const m = segmentColors(target.criteria, [{ criterion: c, value: 170, distance: 0, proximity: 1, within: true, direction: 0 }]);
     expect([...m.values()].every((v) => v === COLORS.green)).toBe(true);
     expect(m.size).toBe(2);
+    // left-hander (raw landmarks as filmed): the lead arm is the real right arm 12-14-16 (review W3)
+    const left = segmentColors(target.criteria, null, true);
+    expect([...left.keys()].sort()).toEqual(['12-14', '14-16']);
+    expect([...m.keys()].sort()).toEqual(['11-13', '13-15']);
   });
 });

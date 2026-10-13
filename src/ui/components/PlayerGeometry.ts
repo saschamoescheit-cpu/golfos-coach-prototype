@@ -1,4 +1,5 @@
 import type { ClubEstimate, Line2, PoseFrame, PoseSequence, Vec2 } from '../../coach/model/types';
+import { mirrorIndex } from '../../coach/pose/mirror';
 
 /**
  * Pure helpers of the swing player (frame ↔ video time, display mirroring, neutral-line editing). Tested in Node.
@@ -41,6 +42,17 @@ export function lineToDisplay(line: Line2 | null | undefined, mirrored: boolean)
 }
 /** Display → canonical (inverse of lineToDisplay – mirroring is its own inverse). */
 export const lineFromDisplay = lineToDisplay;
+
+/**
+ * Status key ("a-b", canonical indices as returned by skeletonStatus) of a skeleton line drawn between DISPLAY landmarks
+ * a and b. A left-hander is shown as filmed (toDisplay swaps the sides back), so display index 11 (real left shoulder)
+ * is the canonical TRAIL shoulder 12 – without this mapping the fault colours land on the wrong arm/leg (review W3).
+ */
+export function canonicalLineKey(a: number, b: number, mirrored: boolean): [string, string] {
+  const ca = mirrored ? mirrorIndex(a) : a;
+  const cb = mirrored ? mirrorIndex(b) : b;
+  return [`${ca}-${cb}`, `${cb}-${ca}`];
+}
 
 export function clubToDisplay(c: ClubEstimate | null | undefined, mirrored: boolean): ClubEstimate | null {
   if (!c) return null;

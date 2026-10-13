@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { SKELETON } from '../../coach/model/constants';
 import type { Line2 } from '../../coach/model/types';
 import {
+  canonicalLineKey,
   clipLineToFrame,
   clubToDisplay,
   dragLine,
@@ -67,5 +69,31 @@ describe('player geometry', () => {
     const turned = dragLine(l, 'b', { x: 0, y: -0.2 });
     expect(turned.a).toEqual(h1);
     expect(turned.b.y).toBeCloseTo(h2.y - 0.2);
+  });
+});
+
+describe('skeleton status keys for left-handers (review W3)', () => {
+  const status: Record<string, string> = { '11-13': 'bad', '13-15': 'bad' }; // canonical lead arm (chicken wing …)
+  const colour = (a: number, b: number, mirrored: boolean) => {
+    const [k1, k2] = canonicalLineKey(a, b, mirrored);
+    return status[k1] ?? status[k2] ?? 'neutral';
+  };
+  it('right-hander: the lead arm is the real left arm (11-13)', () => {
+    expect(colour(11, 13, false)).toBe('bad');
+    expect(colour(12, 14, false)).toBe('neutral');
+  });
+  it('left-hander shown as filmed: the lead arm is the real RIGHT arm (12-14)', () => {
+    expect(colour(12, 14, true)).toBe('bad');
+    expect(colour(14, 16, true)).toBe('bad');
+    expect(colour(11, 13, true)).toBe('neutral');
+    expect(canonicalLineKey(23, 25, true)[0]).toBe('24-26');
+    expect(canonicalLineKey(0, 11, true)[0]).toBe('0-12');
+  });
+  it('every skeleton line maps onto a skeleton line', () => {
+    const keys = new Set(SKELETON.map(([a, b]) => `${a}-${b}`));
+    for (const [a, b] of SKELETON) {
+      const [k1, k2] = canonicalLineKey(a, b, true);
+      expect(keys.has(k1) || keys.has(k2), `${a}-${b}`).toBe(true);
+    }
   });
 });

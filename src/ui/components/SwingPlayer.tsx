@@ -5,6 +5,7 @@ import type { KeyPosition, Line2, Swing, Vec2 } from '../../coach/model/types';
 import { toDisplay } from '../../coach/pose/mirror';
 import {
   clipLineToFrame,
+  canonicalLineKey,
   clubToDisplay,
   dragLine,
   frameAtTime,
@@ -276,7 +277,9 @@ export function SwingPlayer({
       const lm = f.lm;
       for (const [a, b] of SKELETON) {
         if (lm[a].v < 0.3 || lm[b].v < 0.3) continue;
-        const s = st[`${a}-${b}`] ?? st[`${b}-${a}`] ?? 'neutral';
+        // status keys are canonical (right-handed) indices – map the display line of a left-hander back
+        const [k1, k2] = canonicalLineKey(a, b, mirrored);
+        const s = st[k1] ?? st[k2] ?? 'neutral';
         stroke([P(lm[a]), P(lm[b])], COLORS[s], 4 * scale);
       }
       // head marker
