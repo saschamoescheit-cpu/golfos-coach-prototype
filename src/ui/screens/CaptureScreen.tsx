@@ -14,6 +14,8 @@ import { CaptureLive, type CapturedClip } from '../components/CaptureLive';
 import { TopBar } from '../components/TopBar';
 import { replace, type Route } from '../nav';
 import '../styles/capture.css';
+import { setScoreLevel } from '../../coach/analysis/analyze';
+import { levelFromSettings } from '../../coach/faults/score';
 
 /**
  * Capture screen (US-1.0, brief B). OWNER: agent "capture-pose".
@@ -53,6 +55,7 @@ export function CaptureScreen({ route }: { route: Route }) {
       .then((st) => {
         if (!alive) return;
         setHand(st.handedness);
+        setScoreLevel(levelFromSettings(st));
         if (!route.params.shotType && st.defaultShotType) setShotType(st.defaultShotType);
         if (!route.params.view && st.defaultView) setView(st.defaultView);
       })

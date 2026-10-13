@@ -518,7 +518,7 @@
     "trainingTarget": {
       "metric": "hand_path_shift",
       "at": "downswing9",
-      "target": -4,
+      "target": 0,
       "tolerance": 6
     }
   },

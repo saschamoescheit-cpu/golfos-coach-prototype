@@ -351,7 +351,8 @@ function buildBody(p: SynthParams, t: number): Body3 {
     dir = rotAxis(dir, planeNormal, k.stage === 'down' || k.stage === 'follow' || k.stage === 'finish' ? wb : 0);
   }
   // plane deviation at the 9 o'clock region: rotate about the vertical axis (+ = club head outside = steep)
-  const near9 = Math.max(0, 1 - Math.abs(arc + k.hinge - 90) / 45);
+  // a plane fault persists over a good part of the swing (±90° of shaft rotation around 9 o'clock), not just one frame
+  const near9 = Math.max(0, 1 - Math.abs(arc + k.hinge - 90) / 90);
   const dev = k.stage === 'back' ? p.shaftPlaneDevBack : k.stage === 'down' ? p.shaftPlaneDevDown : 0;
   if (dev && near9 > 0) dir = rotY(dir, -dev * near9);
   const clubGrip = v3add(hands, v3scale(dir, -0.08));
