@@ -55,6 +55,8 @@ interface Candidate {
   score: number;
   hits: number;
   lengthPx: number;
+  /** [angle index, side] of the coarse line */
+  li?: [number, number];
 }
 
 function noiseSigma(img: GrayImage, x0: number, y0: number, x1: number, y1: number): number {
@@ -289,7 +291,11 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
   const nOff = Math.max(1, Math.round((OFFSET_TORSO * torso) / OFFSET_STEP));
   const fwd = [new Int8Array(nS), new Int8Array(nS)];
   const bwd = [new Int8Array(nS), new Int8Array(nS)];
-  const cands: Candidate[] = [];
+  let cands: Candidate[] = [];
+  const nAng = Math.round(180 / ANGLE_STEP);
+  const nOffs = 2 * nOff + 1;
+  const lineIdx = (ai: number, oj: number, pol: number, sgn: number) => ((ai * nOffs + oj) * 2 + pol) * 2 + sgn;
+  const oppHits = new Uint16Array(nAng * nOffs * 4);
   const sumHits = (v: Int8Array, a: number, b: number) => {
     let s = 0;
     for (let k = a; k < b; k++) if (v[k] > 0) s++;
@@ -300,7 +306,7 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
   const [thrD, thrB] = thr;
   const [fD, fB] = fwd;
   const [bD, bB] = bwd;
-  for (let ai = 0; ai < 180 / ANGLE_STEP; ai++) {
+  for (let ai = 0; ai < nAng; ai++) {
     const deg0 = ai * ANGLE_STEP;
     const th = (deg0 * Math.PI) / 180;
     const ux = Math.cos(th);
@@ -338,22 +344,42 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
       for (let pol = 0 as 0 | 1; pol < 2; pol = (pol + 1) as 0 | 1) {
         for (let sgn = 0; sgn < 2; sgn++) {
           const here = sgn === 0 ? fwd[pol] : bwd[pol];
-          const there = sgn === 0 ? bwd[pol] : fwd[pol];
+          const li = lineIdx(ai, oi + nOff, pol, sgn);
+          oppHits[li] = sumHits(here, kOppFrom, kOppTo); // evidence this side gives against the other direction
           const [best, end, hits] = maxPrefix(here, kStart, kCap);
           if (hits < 4) continue;
           const dirDeg = sgn === 0 ? deg0 : deg0 - 180;
           if (elbowDirs.some((e) => Math.abs(angleDiff(dirDeg, e)) < ELBOW_EXCLUDE_DEG)) continue;
-          const opp = sumHits(there, kOppFrom, kOppTo);
           const beyond = sumHits(here, Math.max(end, kCap), nS);
-          let score = best - 0.8 * opp - 0.5 * beyond;
+          const score = best - 0.5 * beyond;
           if (score <= 0) continue;
-          if (prevAngle !== undefined) score *= 0.7 + 0.3 * Math.exp(-((angleDiff(dirDeg, prevAngle) / 45) ** 2));
-          if (predicted !== undefined) score *= 0.7 + 0.3 * Math.exp(-((angleDiff(dirDeg, predicted) / 30) ** 2));
-          cands.push({ dirDeg, offset: o, pol, score, hits, lengthPx: end * step });
+          cands.push({ dirDeg, offset: o, pol, score, hits, lengthPx: end * step, li: [ai, sgn] });
         }
       }
     }
   }
+  // penalties needing all lines: evidence on the opposite side of the hands, taken as the max over nearby angles and
+  // all offsets (a straight line crossing the hands at a slightly different angle/offset must still count)
+  for (const c of cands) {
+    const [ai, sgn] = c.li!;
+    let opp = 0;
+    for (let da = -2; da <= 2; da++) {
+      let a = ai + da;
+      let sOpp = 1 - sgn;
+      if (a < 0) {
+        a += nAng;
+        sOpp = 1 - sOpp; // wrapping 0°/180° swaps forward and backward
+      } else if (a >= nAng) {
+        a -= nAng;
+        sOpp = 1 - sOpp;
+      }
+      for (let oj = 0; oj <= 2 * nOff; oj++) opp = Math.max(opp, oppHits[lineIdx(a, oj, c.pol, sOpp)]);
+    }
+    c.score -= 0.8 * opp;
+    if (prevAngle !== undefined) c.score *= 0.7 + 0.3 * Math.exp(-((angleDiff(c.dirDeg, prevAngle) / 45) ** 2));
+    if (predicted !== undefined) c.score *= 0.7 + 0.3 * Math.exp(-((angleDiff(c.dirDeg, predicted) / 30) ** 2));
+  }
+  cands = cands.filter((c) => c.score > 0);
   if (!cands.length) return null;
   let best = cands[0];
   for (const c of cands) if (c.score > best.score) best = c;

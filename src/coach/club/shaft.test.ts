@@ -124,6 +124,34 @@ describe('ImageShaftProvider', () => {
     }
   });
 
+  it('prefers the shaft over a long line crossing the hands (horizon, wall edge, door frame)', () => {
+    const s = swing('down_the_line');
+    const r = errors(s, (c, i) => {
+      const lm = s.seq.frames[i].lm!;
+      const h = { x: (lm[LM.LEFT_WRIST].x + lm[LM.RIGHT_WRIST].x) / 2, y: (lm[LM.LEFT_WRIST].y + lm[LM.RIGHT_WRIST].y) / 2 };
+      // a horizontal line through the hands across the whole picture, same polarity as the shaft
+      const img = drawLine(synthGrayFrame(c, { width: W, height: H }), { x: 0, y: h.y + 0.004 }, { x: 1, y: h.y + 0.004 }, 40, 3);
+      return img;
+    });
+    console.info(`[club] crossing line: n=${r.n} misses=${r.misses} p90=${pctl(r.errs, 0.9).toFixed(2)}°`);
+    expect(r.misses / r.n).toBeLessThan(0.1);
+    expect(pctl(r.errs, 0.9)).toBeLessThanOrEqual(3);
+  });
+
+  it('a shaft with a gap (hands/clubhead occlusion, blur) is still found', () => {
+    const s = swing('face_on');
+    const r = errors(s, (c) => {
+      const img = synthGrayFrame(c, { width: W, height: H });
+      // erase the middle third of the shaft
+      const a = { x: c.grip.x + (c.head.x - c.grip.x) * 0.4, y: c.grip.y + (c.head.y - c.grip.y) * 0.4 };
+      const b = { x: c.grip.x + (c.head.x - c.grip.x) * 0.6, y: c.grip.y + (c.head.y - c.grip.y) * 0.6 };
+      return drawLine(img, a, b, 170, 7);
+    });
+    console.info(`[club] gap in shaft: n=${r.n} misses=${r.misses} p90=${pctl(r.errs, 0.9).toFixed(2)}°`);
+    expect(r.misses / r.n).toBeLessThan(0.1);
+    expect(pctl(r.errs, 0.9)).toBeLessThanOrEqual(3);
+  });
+
   it('returns null or low confidence when no shaft is drawn', () => {
     const s = swing('face_on');
     let maxConf = 0;
