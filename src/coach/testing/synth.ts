@@ -83,6 +83,8 @@ export interface SynthParams {
   puttWristBreak: number;
   /** putting/chipping: extra shoulder-centre sway during the stroke (m) */
   strokeBodySway: number;
+  /** waggle before the swing: hand-arc amplitude (deg) of a club wiggle that ends 0.35 s before the takeaway (0 = none) */
+  waggle: number;
   /** Gaussian landmark noise (normalized units) and share of frames without detection */
   noise: number;
   dropout: number;
@@ -126,7 +128,7 @@ export const SYNTH_DEFAULTS: SynthParams = {
   hipShiftTop: -0.01, hipShiftImpact: 0.06, headShiftTopX: 0, headShiftImpactX: 0, headLiftImpact: 0,
   sideBendTop: -5, sideBendImpact: -15,
   leadElbowTop: 8, leadElbowImpact: 5, leadElbowFollow: 15, trailElbowTop: 90,
-  overTheTop: 0, shaftPlaneDevBack: 0, shaftPlaneDevDown: 0, puttWristBreak: 0, strokeBodySway: 0,
+  overTheTop: 0, shaftPlaneDevBack: 0, shaftPlaneDevDown: 0, puttWristBreak: 0, strokeBodySway: 0, waggle: 0,
   noise: 0, dropout: 0, visibility: 1, zoom: 1, seed: 1,
 };
 
@@ -197,7 +199,15 @@ function kinematics(p: SynthParams, t: number): Kin {
   const B = A + p.backswingMs;
   const D = B + p.downswingMs;
   const F = D + p.followMs;
-  if (t < A) return { stage: 'address', arc: 0, hinge: 0, s: 0 };
+  if (t < A) {
+    // optional waggle (arms and wrists only), then a still address of 0.35 s before the takeaway
+    const wEnd = A - 350;
+    if (p.waggle > 0 && t < wEnd) {
+      const w = p.waggle * Math.sin((2 * Math.PI * t) / 500) * Math.sin((Math.PI * t) / wEnd);
+      return { stage: 'address', arc: w, hinge: 1.5 * w, s: 0 };
+    }
+    return { stage: 'address', arc: 0, hinge: 0, s: 0 };
+  }
   if (t < B) {
     const s = (t - A) / p.backswingMs;
     const e = (1 - Math.cos(Math.PI * s)) / 2; // slow start, slow arrival at the top

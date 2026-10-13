@@ -43,7 +43,10 @@ export const NINE_OCLOCK_PROXY: Record<'full' | 'half', { back: number; down: nu
 
 /** Body points used for stillness / onset detection. */
 const POSE_POINTS = [LM.LEFT_WRIST, LM.RIGHT_WRIST, LM.LEFT_ELBOW, LM.RIGHT_ELBOW, LM.LEFT_SHOULDER, LM.RIGHT_SHOULDER, LM.LEFT_HIP, LM.RIGHT_HIP];
-/** Face-on: time impact as the moment the hands pass their address position (else: hands lowest). */
+/**
+ * Face-on full swings: time impact as the moment the hands pass their address position (else: hands lowest).
+ * Always used for the putt, where the hands hardly drop and the lowest point is too flat to time.
+ */
 const IMPACT_HANDS_RETURN = false;
 
 /** Share of the motion used for the [onset, settle] fit (tuned on synthetic swings, see decisions). */
@@ -154,7 +157,8 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
   const dw = F(0.1);
   let anchor = -1;
   for (let i = dw; i < n; i++) {
-    if (sy[i] - sy[i - dw] <= 0) continue; // image y grows downward → hands lower than 0.1 s ago
+    // image y grows downward → hands lower than 0.1 s ago (not for the putt: the hands hardly drop)
+    if (shot.motion !== 'stroke' && sy[i] - sy[i - dw] <= 0) continue;
     if (anchor < 0 || speed[i] > speed[anchor]) anchor = i;
   }
   if (anchor < 0) anchor = argExt(speed, 0, n - 1, true);
@@ -163,8 +167,8 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
 
   // ---- 2. rough impact: hands lowest near the anchor (valley fit on the lightly smoothed y)
   const iLow = argExt(sy, anchor - F(0.15), anchor + F(0.2), true);
-  const vw = Math.max(3, F(0.06));
-  const vfit = kinkFit(fy, iLow - vw, iLow + vw, { left: true, right: true, t0Lo: iLow - 1.5, t0Hi: iLow + 1.5 });
+  const vw = Math.max(4, F(0.08));
+  const vfit = kinkFit(fy, iLow - vw, iLow + vw, { left: true, right: true, t0Lo: iLow - 2.5, t0Hi: iLow + 2.5 });
   const impY = vfit && vfit.cl < 0 && vfit.cr < 0 ? vfit.t0 : iLow;
   const hImp = posAt(impY);
 
@@ -218,6 +222,21 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
       const ok = p && p.v >= SIGNAL_MIN_VIS && Number.isFinite(p.x) && Number.isFinite(p.y);
       pRaw[2 * k].push(ok ? (p!.x * aspect) / T : NaN);
       pRaw[2 * k + 1].push(ok ? p!.y / T : NaN);
+    });
+  }
+  // short strokes: weight every coordinate by how much it moves between top and impact (signal-to-noise: in a putt
+  // only the arms move, still points would only add noise); weights have mean square 1 (noise thresholds keep scale)
+  if (shot.motion === 'stroke' || shot.motion === 'short') {
+    const ti = Math.round(topX);
+    const ii = Math.round(impY);
+    const amp = pRaw.map((v) => {
+      const g = fillGaps(v);
+      return Math.abs(gaussSmooth(g, sigDet)[ti] - gaussSmooth(g, sigDet)[ii]);
+    });
+    const ms = Math.sqrt(amp.reduce((acc, x) => acc + x * x, 0) / amp.length) || 1;
+    pRaw.forEach((v, k) => {
+      const w = Math.max(0.2, amp[k] / ms);
+      for (let i = 0; i < v.length; i++) v[i] *= w;
     });
   }
   const pNoise = median(pRaw.map(noiseLevel));
@@ -290,7 +309,7 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
     let fit: ReturnType<typeof kinkFit> = null;
     for (const power of ONSET_POWERS) {
       const f = kinkFit(q, lo, hi, { left: dir === -1, right: dir === 1, t0Lo: lo + 1, t0Hi: hi - 1, power });
-      if (f && (dir === 1 ? f.cr > 0 : f.cl > 0) && (!fit || f.rms < 0.9 * fit.rms)) fit = f;
+      if (f && (dir === 1 ? f.cr > 0 : f.cl > 0) && (!fit || f.rms < 0.75 * fit.rms)) fit = f;
     }
     if (fit) return { x: fit.t0, ok: true };
     return { x: dir === 1 ? e0 + 1 : a0, ok: false };
@@ -311,10 +330,19 @@ export function detectPhases(seq: PoseSequence, club: (ClubEstimate | null)[], c
   // ---- 5. final impact
   let impX = impY;
   let impMethod = 'hands-lowest';
-  if (IMPACT_HANDS_RETURN && hAddr && ctx.view === 'face_on') {
+  if ((IMPACT_HANDS_RETURN || shot.motion === 'stroke') && hAddr && ctx.view === 'face_on') {
     const r = F(0.1);
     let bestX: number | undefined;
-    for (let i = Math.max(0, Math.floor(impY) - r); i < Math.min(n - 1, Math.ceil(impY) + r); i++) {
+    if (shot.motion === 'stroke') {
+      // putt: first time the (smoothed) hands pass their address position after the top
+      for (let i = Math.round(topX); i < Math.min(n - 1, Math.round(topX) + F(0.8)); i++) {
+        if (sx[i] - hAddr.x < 0 && sx[i + 1] - hAddr.x >= 0) {
+          bestX = crossAt(sx, i, hAddr.x);
+          break;
+        }
+      }
+    }
+    for (let i = Math.max(0, Math.floor(impY) - r); bestX === undefined && i < Math.min(n - 1, Math.ceil(impY) + r); i++) {
       if (fx[i] - hAddr.x < 0 && fx[i + 1] - hAddr.x >= 0) {
         const x = crossAt(fx, i, hAddr.x);
         if (bestX === undefined || Math.abs(x - impY) < Math.abs(bestX - impY)) bestX = x;
