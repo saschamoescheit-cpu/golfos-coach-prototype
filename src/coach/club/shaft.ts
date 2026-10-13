@@ -42,6 +42,8 @@ export interface ShaftDetection {
 const R0_TORSO = 0.2; // skip the hand blob
 const OPP_FROM_TORSO = 0.35; // butt end sticks out ≈ 0.15 torso beyond the hands
 const OFFSET_TORSO = 0.08;
+const OFFSET_STEP = 3; // px between parallel candidate lines (ridge band is ~5 px wide after dilation)
+const ANGLE_STEP = 1.5; // deg, coarse search; refined to 0.2°
 const ELBOW_EXCLUDE_DEG = 30;
 const MISS_PENALTY = 0.5;
 const MIN_CONFIDENCE = 0.15;
@@ -56,12 +58,22 @@ interface Candidate {
 }
 
 function noiseSigma(img: GrayImage, x0: number, y0: number, x1: number, y1: number): number {
-  const diffs: number[] = [];
+  // median of horizontal neighbour differences (histogram, no sort) ≈ 0.954 σ for Gaussian noise
+  const hist = new Uint32Array(256);
   const { data, width: w } = img;
-  for (let y = y0; y <= y1; y += 3) for (let x = x0; x < x1; x += 3) diffs.push(Math.abs(data[y * w + x + 1] - data[y * w + x]));
-  if (!diffs.length) return 0;
-  diffs.sort((a, b) => a - b);
-  return diffs[diffs.length >> 1] / 0.954;
+  let n = 0;
+  for (let y = y0; y <= y1; y += 3)
+    for (let x = x0; x < x1; x += 3) {
+      hist[Math.abs(data[y * w + x + 1] - data[y * w + x])]++;
+      n++;
+    }
+  if (!n) return 0;
+  let acc = 0;
+  for (let v = 0; v < 256; v++) {
+    acc += hist[v];
+    if (acc >= n / 2) return v / 0.954;
+  }
+  return 255;
 }
 
 function percentile(arr: Uint8Array, idx: Int32Array, n: number, p: number): number {
@@ -178,7 +190,7 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
   const r0 = R0_TORSO * torso;
   const rOpp = OPP_FROM_TORSO * torso;
 
-  // ---- ridge maps in the region of interest
+  // ---- ridge maps in the region of interest (disc around the hands)
   const side = Math.max(2, Math.round(Math.min(W, H) / 70));
   const diag = Math.max(1, Math.round(side / Math.SQRT2));
   const x0 = Math.max(side, Math.floor(hx - rMax));
@@ -188,24 +200,47 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
   if (x1 <= x0 || y1 <= y0) return null;
   const dark = new Uint8Array(W * H);
   const bright = new Uint8Array(W * H);
-  const offs = [side, side * W, diag + diag * W, diag - diag * W];
+  const o0 = side;
+  const o1 = side * W;
+  const o2 = diag + diag * W;
+  const o3 = diag - diag * W;
   const d = img.data;
   for (let y = y0; y <= y1; y++) {
-    for (let x = x0; x <= x1; x++) {
-      const i = y * W + x;
+    // only the disc of radius rMax around the hands
+    const dy = y - hy;
+    const half = rMax * rMax - dy * dy;
+    if (half < 0) continue;
+    const hw = Math.sqrt(half);
+    const xa = Math.max(x0, Math.floor(hx - hw));
+    const xb = Math.min(x1, Math.ceil(hx + hw));
+    for (let x = xa, i = y * W + xa; x <= xb; x++, i++) {
       const c = d[i];
-      let dk = 0;
-      let br = 0;
-      for (let k = 0; k < 4; k++) {
-        const a = d[i + offs[k]];
-        const b = d[i - offs[k]];
-        const lo = a < b ? a : b;
-        const hi = a < b ? b : a;
-        if (lo - c > dk) dk = lo - c;
-        if (c - hi > br) br = c - hi;
-      }
-      dark[i] = dk;
-      bright[i] = br;
+      let a = d[i + o0];
+      let b = d[i - o0];
+      let lo = a < b ? a : b;
+      let hi = a < b ? b : a;
+      let dk = lo - c;
+      let br = c - hi;
+      a = d[i + o1];
+      b = d[i - o1];
+      lo = a < b ? a : b;
+      hi = a < b ? b : a;
+      if (lo - c > dk) dk = lo - c;
+      if (c - hi > br) br = c - hi;
+      a = d[i + o2];
+      b = d[i - o2];
+      lo = a < b ? a : b;
+      hi = a < b ? b : a;
+      if (lo - c > dk) dk = lo - c;
+      if (c - hi > br) br = c - hi;
+      a = d[i + o3];
+      b = d[i - o3];
+      lo = a < b ? a : b;
+      hi = a < b ? b : a;
+      if (lo - c > dk) dk = lo - c;
+      if (c - hi > br) br = c - hi;
+      dark[i] = dk > 0 ? dk : 0;
+      bright[i] = br > 0 ? br : 0;
     }
   }
   const maps = [dilate3(dark, W, x0, y0, x1, y1), dilate3(bright, W, x0, y0, x1, y1)];
@@ -251,7 +286,7 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
   const kCap = Math.min(nS, Math.ceil(capLen / step));
   const kOppFrom = Math.floor(rOpp / step);
   const kOppTo = Math.min(nS, Math.ceil(fullLen / step));
-  const nOff = Math.max(1, Math.round((OFFSET_TORSO * torso) / 2));
+  const nOff = Math.max(1, Math.round((OFFSET_TORSO * torso) / OFFSET_STEP));
   const fwd = [new Int8Array(nS), new Int8Array(nS)];
   const bwd = [new Int8Array(nS), new Int8Array(nS)];
   const cands: Candidate[] = [];
@@ -261,31 +296,43 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
     return s;
   };
 
-  for (let deg0 = 0; deg0 < 180; deg0++) {
+  const [mapD, mapB] = maps;
+  const [thrD, thrB] = thr;
+  const [fD, fB] = fwd;
+  const [bD, bB] = bwd;
+  for (let ai = 0; ai < 180 / ANGLE_STEP; ai++) {
+    const deg0 = ai * ANGLE_STEP;
     const th = (deg0 * Math.PI) / 180;
     const ux = Math.cos(th);
     const uy = Math.sin(th);
     const nx = -uy;
     const ny = ux;
     for (let oi = -nOff; oi <= nOff; oi++) {
-      const o = oi * 2;
-      const ox = hx + nx * o;
-      const oy = hy + ny * o;
+      const o = oi * OFFSET_STEP;
+      const ox = hx + nx * o + 0.5; // +0.5: floor() below rounds
+      const oy = hy + ny * o + 0.5;
+      const sx = ux * step;
+      const sy = uy * step;
       for (let k = 0; k < nS; k++) {
-        const t = k * step;
-        for (let sgn = 0; sgn < 2; sgn++) {
-          const s = sgn === 0 ? t : -t;
-          const x = Math.round(ox + ux * s);
-          const y = Math.round(oy + uy * s);
-          const arrs = sgn === 0 ? fwd : bwd;
-          if (x < x0 || x > x1 || y < y0 || y > y1) {
-            arrs[0][k] = 0;
-            arrs[1][k] = 0;
-          } else {
-            const i = y * W + x;
-            arrs[0][k] = maps[0][i] >= thr[0] ? 1 : -1;
-            arrs[1][k] = maps[1][i] >= thr[1] ? 1 : -1;
-          }
+        let x = Math.floor(ox + sx * k);
+        let y = Math.floor(oy + sy * k);
+        if (x < x0 || x > x1 || y < y0 || y > y1) {
+          fD[k] = 0;
+          fB[k] = 0;
+        } else {
+          const i = y * W + x;
+          fD[k] = mapD[i] >= thrD ? 1 : -1;
+          fB[k] = mapB[i] >= thrB ? 1 : -1;
+        }
+        x = Math.floor(ox - sx * k);
+        y = Math.floor(oy - sy * k);
+        if (x < x0 || x > x1 || y < y0 || y > y1) {
+          bD[k] = 0;
+          bB[k] = 0;
+        } else {
+          const i = y * W + x;
+          bD[k] = mapD[i] >= thrD ? 1 : -1;
+          bB[k] = mapB[i] >= thrB ? 1 : -1;
         }
       }
       for (let pol = 0 as 0 | 1; pol < 2; pol = (pol + 1) as 0 | 1) {
@@ -320,7 +367,7 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
   const th0 = (((best.dirDeg % 180) + 180) % 180) * (Math.PI / 180);
   const n0x = -Math.sin(th0);
   const n0y = Math.cos(th0);
-  const refine = (a0: number, o0: number, aRange: number, aStep: number, oRange: number, oStep: number) => {
+  const refine = (a0: number, o0: number, aRange: number, aStep: number, oRange: number, oStep: number, tStep: number) => {
     let bestRef = -Infinity;
     const grid: { a: number; o: number; s: number }[] = [];
     for (let da = -aRange; da <= aRange + 1e-6; da += aStep) {
@@ -332,7 +379,7 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
         const ox = hx + n0x * o;
         const oy = hy + n0y * o;
         let s = 0;
-        for (let t = r0; t <= best.lengthPx; t += 1) {
+        for (let t = r0; t <= best.lengthPx; t += tStep) {
           const c = lineContrast(img, ox + ux * t, oy + uy * t, -uy, ux, side, best.pol);
           if (c > 0) s += c < cap ? c : cap;
         }
@@ -352,8 +399,8 @@ export function detectShaft(input: ClubFrameInput): ShaftDetection | null {
     return wsum > 0 ? { a: wa / wsum, o: wo / wsum } : { a: a0, o: o0 };
   };
   const shortSeg = best.lengthPx < 0.6 * fullLen;
-  const stage1 = refine(best.dirDeg, best.offset, shortSeg ? 10 : 4, 1, nOff * 2 + 2, 1);
-  const stage2 = refine(stage1.a, stage1.o, 1, 0.2, 1.5, 0.25);
+  const stage1 = refine(best.dirDeg, best.offset, shortSeg ? 10 : 4, 1, OFFSET_STEP + 2, 1, 2);
+  const stage2 = refine(stage1.a, stage1.o, 1, 0.2, 1, 0.25, 1);
   const dirDeg = stage2.a;
   const offset = stage2.o;
   const ox = hx - Math.sin(th0) * offset;

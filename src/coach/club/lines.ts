@@ -38,16 +38,24 @@ export function undirectedDiff(a: number, b: number): number {
 
 /**
  * Signed angle of the shaft against the neutral line (canonical down-the-line view), degrees in (−90, 90].
- * + = steep (shaft rotated clockwise on screen: the upper part moves right of / above the line),
- * − = flat (shaft rotated anticlockwise: left of / below the line). Direction of the shaft does not matter.
+ * Magnitude = angle between the two lines. Sign = where the CLUB HEAD ends up when the shaft is turned about the hands
+ * away from the neutral line: + = steep (head right of / above the line), − = flat (head left of / below the line).
+ * The head can be on the upper half (P6, top) or the lower half (early backswing, P2) of the line through the hands,
+ * therefore the shaft direction grip → head matters (a pure line rotation would flip the sign between the halves).
+ * Verified against the synthetic plane deviation (+ = club head outside = steep), see track.test.ts.
  */
 export function shaftVsNeutralDeg(club: ClubEstimate, neutral: Line2, aspect: number): number {
-  return undirectedDiff(club.angleDeg, lineAngleDeg(neutral, aspect));
+  return angleVsNeutralDeg(club.angleDeg, neutral, aspect);
 }
 
-/** Same for a raw shaft angle (degrees, pixel space). */
+/** Same for a raw directed shaft angle grip → head (degrees, pixel space). */
 export function angleVsNeutralDeg(shaftAngleDeg: number, neutral: Line2, aspect: number): number {
-  return undirectedDiff(shaftAngleDeg, lineAngleDeg(neutral, aspect));
+  let up = lineAngleDeg(neutral, aspect);
+  if (Math.sin((up * Math.PI) / 180) > 0) up = angleDiff(up + 180, 0); // neutral direction pointing up the screen
+  const d = undirectedDiff(shaftAngleDeg, up); // + = line turned clockwise on screen
+  const headUp = Math.abs(angleDiff(shaftAngleDeg, up)) <= 90; // head on the upper half of the line
+  const v = headUp ? d : -d;
+  return v === 0 ? 0 : v; // no −0
 }
 
 /** Angle between the shaft and the horizontal, 0 = parallel to the ground ("9 o'clock"), 90 = vertical. */
