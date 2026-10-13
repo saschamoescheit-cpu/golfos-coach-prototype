@@ -217,8 +217,10 @@ export class IdbStore implements CoachStore {
         await this.put('videos', { kind: 'blob', blob } satisfies VideoRecord, key);
         if (this.blobsWork === null) this.blobsWork = await this.verifyBlob(key, blob.size);
         if (this.blobsWork) return;
-      } catch {
-        this.blobsWork = false; // DataCloneError on old Safari
+      } catch (e) {
+        // storage full → bytes would not fit either; let the caller keep the analysis without the video
+        if ((e as DOMException)?.name === 'QuotaExceededError') throw e;
+        this.blobsWork = false; // DataCloneError / UnknownError on old Safari
       }
     }
     const bytes = await blobToBytes(blob);

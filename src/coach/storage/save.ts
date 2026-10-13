@@ -1,4 +1,5 @@
 import type { Swing } from '../model/types';
+import { requestPersist, storageInfo } from './device';
 import { getStore } from './index';
 import { progressRecordsFor } from './progress';
 
@@ -17,7 +18,18 @@ export async function persistSwing(swing: Swing, video?: Blob): Promise<Swing> {
   }
   await store.saveSwing(s);
   await store.addProgress(progressRecordsFor(s));
+  if (store.kind === 'indexeddb') askPersistOnce();
   return s;
+}
+
+let persistAsked = false;
+/** The first stored swing is the moment the data becomes worth keeping → ask the browser once to protect it (no prompt in Safari). */
+function askPersistOnce() {
+  if (persistAsked) return;
+  persistAsked = true;
+  void storageInfo()
+    .then((i) => (i.persisted === false ? requestPersist() : undefined))
+    .catch(() => {});
 }
 
 export function newId(prefix = ''): string {
