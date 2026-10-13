@@ -1,4 +1,5 @@
 /** Device checks for the shipped MediaPipe build (review K5). No MediaPipe import – testable in Node. */
+
 /** Thrown when the device cannot run the shipped (SIMD) MediaPipe build – e.g. iOS older than 16.4. */
 export class PoseUnsupportedError extends Error {
   constructor() {
