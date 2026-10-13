@@ -51,6 +51,13 @@ export interface PoseSequence {
   frames: PoseFrame[];
   /** true when the sequence was mirrored to the canonical right-handed frame */
   mirrored: boolean;
+  /** share of frames (0..1) in which more than one person was detected (set by the video pipeline; added by capture-pose) */
+  multiPersonRatio?: number;
+  /**
+   * frame t × videoTimeScale = time in the stored video (ms). 1 / absent for normal videos; 8 for an 8× slow-motion
+   * video whose timestamps were converted back to real time (added by capture-pose).
+   */
+  videoTimeScale?: number;
 }
 
 // ---------------------------------------------------------------- club
@@ -149,7 +156,8 @@ export type QualityIssue =
   | 'camera_moving'
   | 'too_far' // player too small in the frame
   | 'mirrored_suspected' // movement direction does not match the chosen handedness
-  | 'club_not_found'; // shaft could not be found in the image (club values estimated or missing)
+  | 'club_not_found' // shaft could not be found in the image (club values estimated or missing)
+  | 'multiple_people'; // more than one person in the picture for a large part of the clip (added by capture-pose)
 
 export interface AnalysisQuality {
   /** overall 0..1; below QUALITY_MIN no faults are diagnosed ("not reliably detectable") */

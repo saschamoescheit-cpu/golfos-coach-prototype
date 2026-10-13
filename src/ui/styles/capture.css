@@ -1,0 +1,113 @@
+/* Capture screen + swing player (OWNER: agent "capture-pose"). Uses the tokens of src/styles.css.
+   Big tap targets (gloves, sun); status always with text/symbol, never colour alone. */
+
+/* ---------------- player ---------------- */
+.player { display: flex; flex-direction: column; gap: 10px; }
+.player-stage {
+  position: relative; width: 100%; max-height: 70vh; margin: 0 auto; background: #0b1013;
+  border-radius: 14px; overflow: hidden;
+}
+.player-stage .player-video, .player-stage .player-canvas, .player-stage .player-novideo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+}
+.player-video { object-fit: fill; background: #000; }
+.player-novideo { display: flex; align-items: flex-end; justify-content: center; padding: 10px; color: var(--muted); font-size: 12px; }
+.player-badge {
+  position: absolute; left: 10px; top: 10px; padding: 4px 10px; border-radius: 10px;
+  background: rgba(14, 20, 24, 0.8); font: 600 14px var(--display); pointer-events: none;
+}
+.player-scrub { display: flex; align-items: center; gap: 10px; }
+.player-scrub input[type='range'] { flex: 1; height: 36px; accent-color: var(--brand); }
+.player-time { font-variant-numeric: tabular-nums; color: var(--text-2); font-size: 14px; min-width: 64px; text-align: right; }
+.player-controls { display: flex; gap: 8px; align-items: stretch; }
+.player-btn {
+  min-width: 52px; min-height: 52px; border-radius: 14px; border: 1px solid var(--line-strong);
+  background: var(--surface); font: 600 18px var(--display); display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.player-btn.primary { flex: 1; background: var(--brand); color: var(--bg); border: 0; }
+.player-rates { display: grid; grid-auto-flow: column; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.player-rates button { min-width: 46px; border: 0; background: var(--surface); font: 600 16px var(--display); }
+.player-rates button + button { border-left: 1px solid var(--line); }
+.player-rates button[aria-pressed='true'] { background: var(--brand-soft); color: var(--brand-text); box-shadow: inset 0 -3px 0 var(--brand); }
+.player-keybar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.player-key {
+  min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface);
+  font: 600 14px var(--display); padding: 4px 6px; line-height: 1.15;
+}
+.player-key[aria-pressed='true'] { border: 2px solid var(--brand); background: var(--brand-soft); }
+.player-toggles { display: flex; flex-wrap: wrap; gap: 8px; }
+.player-toggle {
+  min-height: 46px; padding: 0 14px; border-radius: 12px; border: 1px solid var(--line-strong);
+  background: transparent; font: 600 15px var(--body);
+}
+.player-toggle[aria-pressed='false'] { color: var(--muted); }
+.player-hint { margin: 0; color: var(--muted); font-size: 13px; }
+.player-hint:empty { display: none; }
+.player.compact .player-btn { min-width: 44px; min-height: 44px; font-size: 15px; }
+.player.compact .player-btn .lbl { display: none; }
+.player.compact .player-rates button { min-width: 36px; font-size: 13px; }
+.player.compact .player-keybar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.player.compact .player-key { min-height: 40px; font-size: 12px; }
+.player.compact .player-time { display: none; }
+
+/* ---------------- capture: setup ---------------- */
+.capture-section { display: flex; flex-direction: column; gap: 8px; }
+.capture-section > h2 { font-size: 15px; color: var(--text-2); }
+.capture-choice-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.capture-choice-grid .choice { text-align: center; min-height: 56px; }
+.capture-guide { display: flex; gap: 14px; align-items: flex-start; }
+.capture-guide svg { flex: none; width: 92px; height: auto; }
+.capture-guide ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 15px; }
+.capture-note { border-left: 3px solid var(--warn); padding: 8px 12px; background: var(--surface); border-radius: 8px; font-size: 15px; }
+.capture-actions { display: flex; flex-direction: column; gap: 10px; }
+.capture-file { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.capture-switch { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; }
+.capture-switch button { min-width: 96px; }
+
+/* ---------------- capture: live viewfinder ---------------- */
+.capture-live {
+  position: fixed; inset: 0; z-index: 20; background: #000; display: flex; flex-direction: column;
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+}
+.capture-view { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.capture-view video, .capture-view canvas, .capture-view .capture-guide-overlay {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+}
+.capture-view.mirror video, .capture-view.mirror canvas, .capture-view.mirror .capture-guide-overlay { transform: scaleX(-1); }
+.capture-guide-overlay { pointer-events: none; color: rgba(255, 255, 255, 0.6); }
+.capture-status {
+  position: absolute; left: 12px; right: 12px; top: 12px; z-index: 2; display: flex; flex-direction: column; gap: 6px;
+}
+.capture-pill {
+  align-self: flex-start; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 14px;
+  background: rgba(14, 20, 24, 0.85); font: 600 18px var(--display); max-width: 100%;
+}
+.capture-pill .sym { font-size: 20px; width: 22px; text-align: center; }
+.capture-pill.ok { box-shadow: inset 4px 0 0 var(--ok); }
+.capture-pill.warn { box-shadow: inset 4px 0 0 var(--warn); }
+.capture-pill.bad { box-shadow: inset 4px 0 0 var(--bad); }
+.capture-pill.rec { box-shadow: inset 4px 0 0 var(--bad); }
+.capture-pill.rec .sym { color: var(--bad); animation: capture-blink 1s steps(2) infinite; }
+.capture-pill.small { font: 600 15px var(--body); padding: 8px 12px; }
+@keyframes capture-blink { 50% { opacity: 0.2; } }
+.capture-bar {
+  display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; padding: 10px 12px; background: rgba(14, 20, 24, 0.95);
+}
+.capture-bar button {
+  min-height: 64px; border-radius: 16px; border: 1px solid var(--line-strong); background: var(--surface);
+  font: 600 15px var(--display); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px;
+}
+.capture-bar button .ico { font-size: 22px; line-height: 1; }
+.capture-bar button.rec { background: var(--bad); color: #fff; border: 0; }
+.capture-bar button.rec-on { background: #fff; color: var(--bad); border: 0; }
+.capture-sub { display: flex; gap: 8px; padding: 0 12px 10px; background: rgba(14, 20, 24, 0.95); }
+.capture-sub button {
+  flex: 1; min-height: 48px; border-radius: 12px; border: 1px solid var(--line); background: transparent; font: 600 14px var(--body);
+}
+
+/* ---------------- capture: analysing ---------------- */
+.capture-progress { display: flex; flex-direction: column; gap: 12px; padding: 24px 0; }
+.capture-progress .bar { height: 14px; border-radius: 7px; background: var(--surface-2); overflow: hidden; }
+.capture-progress .bar > span { display: block; height: 100%; background: var(--brand); transition: width 0.2s; }
+.capture-progress .stage { font: 600 18px var(--display); }
+.capture-dialog { display: flex; flex-direction: column; gap: 10px; }
