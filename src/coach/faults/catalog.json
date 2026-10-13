@@ -708,8 +708,8 @@
   {
     "id": "tempo_fast",
     "name": {
-      "en": "Rushed backswing (tempo too fast)",
-      "de": "Hastiger Aufschwung (Tempo zu schnell)"
+      "en": "Rushed rhythm (hurrying from the top)",
+      "de": "Hastiger Rhythmus (Eile aus dem Top)"
     },
     "shotTypes": [
       "driver",
@@ -728,7 +728,7 @@
         "op": "<",
         "threshold": 2.4,
         "fullSeverityAt": 0.6,
-        "review": "REVIEW(golf): backswing:downswing below 2.4 : 1. Tour tempo ≈ 3 : 1 (Swing-Score concept, T = 0.3 → 2.4 = edge of yellow/red). Full at 1.8 : 1."
+        "review": "REVIEW(golf): tempo_ratio = backswing time / downswing time below 2.4 : 1 = backswing too quick for the downswing (rushing back and hurrying from the top; amateurs typically ≈ 2 : 1). Tour tempo ≈ 3 : 1 (Swing-Score concept, T = 0.3 → 2.4 = edge of yellow/red). Full at 1.8 : 1."
       }
     ],
     "marker": "top",
@@ -741,24 +741,24 @@
       "loss_of_distance"
     ],
     "ballEffect": {
-      "en": "A rushed backswing leaves no time to set the club: the transition gets jerky and the arms take over.",
-      "de": "Ein hastiger Aufschwung lässt keine Zeit, den Schläger zu setzen: der Übergang wird ruckartig und die Arme übernehmen."
+      "en": "A rushed rhythm leaves no time to set the club at the top: the transition gets jerky, the arms take over and contact gets random.",
+      "de": "Ein hastiger Rhythmus lässt keine Zeit, den Schläger im Top zu setzen: der Übergang wird ruckartig, die Arme übernehmen und der Treffer wird zufällig."
     },
     "cause": {
-      "en": "You snatch the club back quickly, often from tension or wanting to hit hard.",
-      "de": "Du reißt den Schläger schnell nach hinten, oft aus Anspannung oder weil du hart schlagen willst."
+      "en": "You snatch the club back and hit from the top straight away – often from tension or wanting to hit hard.",
+      "de": "Du reißt den Schläger zurück und schlägst sofort aus dem Top los – oft aus Anspannung oder weil du hart schlagen willst."
     },
     "correction": {
-      "en": "Take the club back smoothly – about three counts back, one count down (\"one-two-three – hit\").",
-      "de": "Nimm den Schläger ruhig zurück – etwa drei Zählzeiten hoch, eine runter („eins-zwei-drei – Schlag“)."
+      "en": "Swing back smoothly and let the club arrive at the top – about three counts back, one count down (\"one-two-three – hit\").",
+      "de": "Schwing ruhig zurück und lass den Schläger im Top ankommen – etwa drei Zählzeiten hoch, eine runter („eins-zwei-drei – Schlag“)."
     },
     "benefit": {
-      "en": "A calm backswing gives your body time to load – more consistent contact and speed exactly where it counts, at the ball.",
-      "de": "Ein ruhiger Aufschwung gibt deinem Körper Zeit, Spannung aufzubauen – konstantere Treffer und Tempo genau dort, wo es zählt: am Ball."
+      "en": "A calm rhythm gives your body time to load – more consistent contact and speed exactly where it counts, at the ball.",
+      "de": "Ein ruhiger Rhythmus gibt deinem Körper Zeit, Spannung aufzubauen – konstantere Treffer und Tempo genau dort, wo es zählt: am Ball."
     },
     "drillIds": [
       "count_tempo",
-      "tempo_ladder"
+      "swoosh_drill"
     ],
     "trainingTarget": {
       "metric": "tempo_ratio",
@@ -770,8 +770,8 @@
   {
     "id": "tempo_slow",
     "name": {
-      "en": "Slow downswing (tempo too slow)",
-      "de": "Zu langsamer Abschwung (Tempo zu träge)"
+      "en": "Very slow backswing",
+      "de": "Sehr langsamer Aufschwung"
     },
     "shotTypes": [
       "driver",
@@ -790,36 +790,34 @@
         "op": ">",
         "threshold": 3.6,
         "fullSeverityAt": 0.9,
-        "review": "REVIEW(golf): backswing:downswing above 3.6 : 1 = downswing relatively slow / decelerating. Tour ≈ 3 : 1, T = 0.3 → 3.6 = edge of yellow/red. Full at 4.5 : 1."
+        "review": "REVIEW(golf): tempo_ratio = backswing time / downswing time above 3.6 : 1 = very slow, deliberate backswing compared with the downswing (NOT a decelerating downswing – that lowers the ratio). Tour ≈ 3 : 1, T = 0.3 → 3.6 = edge of yellow/red. Full at 4.5 : 1. Low importance: many good players swing back slowly."
       }
     ],
-    "marker": "impact",
-    "importance": 2,
+    "marker": "top",
+    "importance": 1,
     "ballFlights": [
-      "loss_of_distance",
-      "push_slice",
-      "bunker_fat",
-      "fat"
+      "inconsistent_contact",
+      "loss_of_distance"
     ],
     "ballEffect": {
-      "en": "The club slows down before the ball: short, weak shots that often drift right; in the bunker the ball stays in the sand.",
-      "de": "Der Schläger wird vor dem Ball langsamer: kurze, schwache Bälle, die oft nach rechts abdriften; im Bunker bleibt der Ball im Sand."
+      "en": "A very slow backswing lets the stored tension fade; many players then hit hard from the top with the arms – less distance, less consistent contact.",
+      "de": "Bei einem sehr langsamen Aufschwung geht die aufgebaute Spannung verloren; viele schlagen dann mit den Armen hart aus dem Top – weniger Länge, unsauberere Treffer."
     },
     "cause": {
-      "en": "You hesitate at the top or ease off in the downswing – often from fear of hitting it too far or too hard.",
-      "de": "Du zögerst im Top oder bremst im Abschwung – oft aus Angst, zu weit oder zu hart zu schlagen."
+      "en": "You take the club back very slowly and carefully – often from wanting to do everything right.",
+      "de": "Du nimmst den Schläger sehr langsam und vorsichtig zurück – oft, weil du alles richtig machen willst."
     },
     "correction": {
-      "en": "Let the downswing accelerate all the way to the finish – the fastest point is just after the ball.",
-      "de": "Lass den Abschwung bis ins Finish beschleunigen – der schnellste Punkt liegt kurz nach dem Ball."
+      "en": "Swing back in a flowing rhythm – \"one-two-three\" to the top, \"four\" at the ball, without stopping.",
+      "de": "Schwing in einem fließenden Rhythmus zurück – „eins-zwei-drei“ bis ins Top, „vier“ am Ball, ohne anzuhalten."
     },
     "benefit": {
-      "en": "Acceleration through the ball means full distance and a stable clubface – the shots stop dying to the right.",
-      "de": "Beschleunigung durch den Ball heißt volle Länge und eine stabile Schlagfläche – die Bälle hören auf, rechts wegzusterben."
+      "en": "A flowing rhythm keeps the tension in your body – the swing feels easier and the ball goes further.",
+      "de": "Ein fließender Rhythmus hält die Spannung im Körper – der Schwung fühlt sich leichter an und der Ball fliegt weiter."
     },
     "drillIds": [
       "count_tempo",
-      "swoosh_drill"
+      "tempo_ladder"
     ],
     "trainingTarget": {
       "metric": "tempo_ratio",
@@ -1670,7 +1668,7 @@
         "threshold": 1.4,
         "thresholdHigh": 2.8,
         "fullSeverityAt": 0.8,
-        "review": "REVIEW(golf): short-game tempo outside 1.4–2.8 : 1. Target ≈ 2 : 1 (SHOT_TYPES, tolerance 0.4); fires at 1.5–2 T. Above = slow/braking forward swing, below = jabbing. Full 0.8 beyond."
+        "review": "REVIEW(golf): short-game tempo (backswing time / forward-swing time) outside 1.4–2.8 : 1. Target ≈ 2 : 1 (SHOT_TYPES, tolerance 0.4); fires at 1.5–2 T. Below = rushed backswing or braking forward swing, above = very slow backswing and then a hit at the ball. Full 0.8 beyond."
       }
     ],
     "marker": "impact",
@@ -1681,12 +1679,12 @@
       "putt_distance"
     ],
     "ballEffect": {
-      "en": "A jab or a braking forward swing makes contact and distance random.",
-      "de": "Ein Zustoßen oder Abbremsen macht Kontakt und Länge zufällig."
+      "en": "A rushed or a dragging rhythm makes contact and distance random.",
+      "de": "Ein hastiger oder schleppender Rhythmus macht Kontakt und Länge zufällig."
     },
     "cause": {
-      "en": "Either you jab at the ball from a short, quick backswing or you swing back long and slow down.",
-      "de": "Entweder stößt du aus einem kurzen, schnellen Rückschwung zu, oder du holst lang aus und bremst ab."
+      "en": "Either you rush the backswing or brake coming through, or you take it back very slowly and then hit at the ball.",
+      "de": "Entweder holst du hastig aus oder bremst im Durchschwung, oder du holst sehr langsam aus und schlägst dann zu."
     },
     "correction": {
       "en": "Swing like a pendulum: \"one\" back, \"two\" through – same rhythm for every length.",
@@ -1969,7 +1967,7 @@
         "threshold": 1.5,
         "thresholdHigh": 2.6,
         "fullSeverityAt": 0.8,
-        "review": "REVIEW(golf): putting tempo outside 1.5–2.6 : 1. Commonly taught ≈ 2 : 1 (backstroke twice as long as the forward stroke; SHOT_TYPES putt tolerance 0.4). Below = jab, above = braking. Full 0.8 beyond."
+        "review": "REVIEW(golf): putting tempo (backstroke time / forward-stroke time) outside 1.5–2.6 : 1. Commonly taught ≈ 2 : 1 (SHOT_TYPES putt tolerance 0.4). Below = rushed backstroke or braking forward stroke, above = very slow backstroke and then a jab. Full 0.8 beyond."
       }
     ],
     "marker": "impact",
@@ -1984,8 +1982,8 @@
       "de": "Zustoßen oder Abbremsen macht die Ballgeschwindigkeit zufällig: Putts bleiben kurz oder schießen vorbei."
     },
     "cause": {
-      "en": "You either jab from a short backstroke or take it back too far and slow down.",
-      "de": "Du stößt aus einem kurzen Rückschwung zu oder holst zu weit aus und bremst."
+      "en": "You either rush the backstroke or brake coming through – or you take it back very slowly and then jab at the ball.",
+      "de": "Du holst entweder hastig aus oder bremst im Durchschwung – oder du holst sehr langsam aus und stößt dann zu."
     },
     "correction": {
       "en": "Same rhythm for every putt: back on \"one\", through on \"two\"; make longer putts with a longer backstroke, not a faster hit.",

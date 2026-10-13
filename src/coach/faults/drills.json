@@ -233,7 +233,7 @@
   {
     "id": "swoosh_drill", "kind": "feel", "draft": true,
     "name": { "en": "Swoosh after the ball", "de": "Swoosh nach dem Ball" },
-    "goal": { "en": "Accelerate through the ball instead of braking.", "de": "Durch den Ball beschleunigen statt abbremsen." },
+    "goal": { "en": "Save your speed for after the ball instead of spending it from the top.", "de": "Das Tempo für nach dem Ball aufheben, statt es schon aus dem Top zu verbrauchen." },
     "equipment": { "en": "A club held upside down (grip end down)", "de": "Ein umgedrehter Schläger (Griff nach unten)" },
     "steps": [
       { "en": "Hold the club at the neck and swing it like a normal swing.", "de": "Halte den Schläger am Hals und schwing ihn wie bei einem normalen Schwung." },

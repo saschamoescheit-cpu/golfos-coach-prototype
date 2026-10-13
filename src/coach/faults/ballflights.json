@@ -63,7 +63,7 @@
       { "faultId": "shaft_flat_downswing9", "measurable": true, "text": { "en": "Club stuck behind the body", "de": "Schläger bleibt hinter dem Körper stecken" } },
       { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays on the trail side", "de": "Gewicht bleibt rechts" } },
       { "faultId": "chicken_wing", "measurable": true, "text": { "en": "No forearm release (chicken wing)", "de": "Keine Unterarmrotation (Chicken Wing)" } },
-      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Club decelerates into the ball", "de": "Schläger bremst zum Ball hin ab" } },
+      { "measurable": false, "text": { "en": "Club decelerates into the ball (not reliably measurable yet)", "de": "Schläger bremst zum Ball hin ab (noch nicht sicher messbar)" } },
       { "measurable": false, "text": { "en": "Weak grip, clubface open in the backswing", "de": "Schwacher Griff, Schlagfläche im Rückschwung geöffnet" } }
     ]
   },
@@ -261,7 +261,7 @@
     "physics": { "en": "Too much sand or too little speed – the bounce of the wedge is not used.", "de": "Zu viel Sand oder zu wenig Tempo – der Bounce des Wedges wird nicht genutzt." },
     "causes": [
       { "faultId": "bunker_short_backswing", "measurable": true, "text": { "en": "Backswing too short – not enough speed", "de": "Zu kurzer Rückschwung – nicht genug Tempo" } },
-      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Decelerating, follow-through cut short", "de": "Abbremsen, Durchschwung abgebrochen" } },
+      { "measurable": false, "text": { "en": "Decelerating, follow-through cut short (not reliably measurable yet)", "de": "Abbremsen, Durchschwung abgebrochen (noch nicht sicher messbar)" } },
       { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight too far right – entry too far behind the ball", "de": "Gewicht zu weit rechts – Eintritt zu weit hinter dem Ball" } },
       { "faultId": "head_dip", "measurable": true, "text": { "en": "Body sinks – the club digs", "de": "Körper sackt ab – der Schläger gräbt sich ein" } },
       { "measurable": false, "text": { "en": "Entry point in the sand (not visible to the app)", "de": "Eintrittspunkt im Sand (für die App nicht sichtbar)" } },
@@ -330,7 +330,8 @@
       { "faultId": "head_sway", "measurable": true, "text": { "en": "Head moves sideways", "de": "Kopf bewegt sich seitlich" } },
       { "faultId": "hip_sway", "measurable": true, "text": { "en": "Hip sway", "de": "Hüft-Sway" } },
       { "faultId": "early_extension", "measurable": true, "text": { "en": "Early extension", "de": "Early Extension" } },
-      { "faultId": "tempo_fast", "measurable": true, "text": { "en": "Rushed tempo", "de": "Hastiges Tempo" } },
+      { "faultId": "tempo_fast", "measurable": true, "text": { "en": "Rushed rhythm, hurrying from the top", "de": "Hastiger Rhythmus, Eile aus dem Top" } },
+      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Very slow backswing, then a hit from the top", "de": "Sehr langsamer Aufschwung, dann ein Schlag aus dem Top" } },
       { "faultId": "bent_lead_arm", "measurable": true, "text": { "en": "Changing swing radius", "de": "Wechselnder Schwungradius" } },
       { "measurable": false, "text": { "en": "Ball position and distance to the ball change", "de": "Ballposition und Abstand zum Ball wechseln" } }
     ]
@@ -345,7 +346,7 @@
       { "faultId": "short_shoulder_turn", "measurable": true, "text": { "en": "Too little shoulder turn", "de": "Zu wenig Schulterdrehung" } },
       { "faultId": "chicken_wing", "measurable": true, "text": { "en": "Chicken wing", "de": "Chicken Wing" } },
       { "faultId": "weight_back", "measurable": true, "text": { "en": "Weight stays back", "de": "Gewicht bleibt hinten" } },
-      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Decelerating downswing", "de": "Bremsender Abschwung" } },
+      { "faultId": "tempo_slow", "measurable": true, "text": { "en": "Very slow backswing – the stored tension fades", "de": "Sehr langsamer Aufschwung – die Spannung geht verloren" } },
       { "faultId": "flip_at_impact", "measurable": true, "text": { "en": "Flip – too much loft at impact", "de": "Flip – zu viel Loft im Treffmoment" } },
       { "measurable": false, "text": { "en": "Off-centre strikes on the face; equipment (loft, shaft)", "de": "Treffer außerhalb der Mitte; Ausrüstung (Loft, Schaft)" } }
     ]
