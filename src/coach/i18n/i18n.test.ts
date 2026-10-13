@@ -42,6 +42,25 @@ describe('i18n completeness', () => {
   });
 });
 
+/** Every literal key used in the code – t('ns.key') – exists in English (otherwise the key itself shows up in the app). */
+const sources = import.meta.glob(['../../**/*.{ts,tsx}', '!../../**/*.test.{ts,tsx}'], { eager: true, query: '?raw', import: 'default' }) as Record<string, string>;
+
+describe('keys used in the code', () => {
+  it('every literal t() key exists', () => {
+    const en = new Set(keysOf('en'));
+    const missing: string[] = [];
+    let used = 0;
+    for (const [file, src] of Object.entries(sources)) {
+      for (const m of src.matchAll(/\bt\(\s*'([a-z][\w-]*\.[\w.-]+)'/g)) {
+        used++;
+        if (!en.has(m[1])) missing.push(`${m[1]} (${file.replace(/^.*\/src\//, 'src/')})`);
+      }
+    }
+    expect(used).toBeGreaterThan(50);
+    expect(missing).toEqual([]);
+  });
+});
+
 /** Catalog JSONs carry their own {en, de} texts (Localized) – every one needs both languages. */
 const catalogs = import.meta.glob('../**/*.json', { eager: true, import: 'default' }) as Record<string, unknown>;
 
