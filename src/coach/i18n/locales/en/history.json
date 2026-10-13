@@ -43,6 +43,19 @@
     "train": "Train this",
     "swingsChecked": "{n} swings checked"
   },
+  "scoreLevel": "Scores on level {n}",
+  "curve": {
+    "title": "Score per practice day",
+    "hint": "Median of each day with at least {n} scored swings – same view and shot type, on level {level}.",
+    "empty": "The curve starts after a practice day with at least {n} scored swings (full swing, filmed down-the-line).",
+    "row": "{n} swings"
+  },
+  "levelUp": {
+    "title": "Ready for level {to}?",
+    "text": "The median of your last {units} practice days is {m} on level {from}. Level {to} is stricter – your scores drop a little at first, that is normal.",
+    "accept": "Switch to level {to}",
+    "later": "Not now"
+  },
   "metric": {
     "approxCm": "≈ {cm} cm",
     "noValue": "–"

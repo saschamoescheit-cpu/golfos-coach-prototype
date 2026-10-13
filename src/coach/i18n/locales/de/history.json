@@ -43,6 +43,19 @@
     "train": "Das üben",
     "swingsChecked": "{n} Schwünge geprüft"
   },
+  "scoreLevel": "Scores auf Stufe {n}",
+  "curve": {
+    "title": "Score je Trainingstag",
+    "hint": "Median je Tag mit mindestens {n} bewerteten Schwüngen – gleiche Ansicht und Schlagart, auf Stufe {level}.",
+    "empty": "Die Kurve beginnt nach einem Trainingstag mit mindestens {n} bewerteten Schwüngen (voller Schwung, von hinten gefilmt).",
+    "row": "{n} Schwünge"
+  },
+  "levelUp": {
+    "title": "Bereit für Stufe {to}?",
+    "text": "Der Median deiner letzten {units} Trainingstage liegt auf Stufe {from} bei {m}. Stufe {to} ist strenger – deine Scores sinken anfangs etwas, das ist normal.",
+    "accept": "Auf Stufe {to} wechseln",
+    "later": "Jetzt nicht"
+  },
   "metric": {
     "approxCm": "≈ {cm} cm",
     "noValue": "–"

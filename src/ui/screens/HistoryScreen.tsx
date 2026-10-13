@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { scoreColor } from '../../coach/faults/score';
+import { levelFromSettings, scoreColor } from '../../coach/faults/score';
 import { t } from '../../coach/i18n/i18n';
 import { ALL_SHOT_TYPES } from '../../coach/model/constants';
-import type { FaultProgressRecord, ShotType, Swing } from '../../coach/model/types';
+import type { FaultProgressRecord, ScoreLevel, ShotType, Swing } from '../../coach/model/types';
 import { getStore } from '../../coach/storage';
 import { progressOverview, type FaultProgress } from '../../coach/storage/progress';
+import { displayScore } from '../../coach/storage/scoreHistory';
+import { useSettings } from '../../coach/storage/settings';
+import { LevelUpCard, ScoreCurveCard } from '../components/ScoreProgress';
 import { HistoryConfirmSheet } from '../components/HistoryConfirmSheet';
 import { faultName, formatWhen, groupByShotType, progressSentence, shotTypeCounts, topFault } from '../components/HistoryModel';
 import { ProgressBars } from '../components/ProgressBars';
@@ -25,6 +28,8 @@ export function HistoryScreen({ route }: { route: Route }) {
   const [selecting, setSelecting] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
   const [confirm, setConfirm] = useState(false);
+  // every score on the CURRENT level (rescore from the stored raw criteria, review W7)
+  const level = levelFromSettings(useSettings());
 
   const load = useCallback(async () => {
     const store = await getStore();
@@ -56,7 +61,7 @@ export function HistoryScreen({ route }: { route: Route }) {
     await load();
   };
 
-  const item = (s: Swing) => <SwingRow key={s.id} swing={s} selecting={selecting} selected={selected.includes(s.id)} onTap={() => (selecting ? toggle(s.id) : go('analysis', { swingId: s.id }))} />;
+  const item = (s: Swing) => <SwingRow key={s.id} swing={s} level={level} selecting={selecting} selected={selected.includes(s.id)} onTap={() => (selecting ? toggle(s.id) : go('analysis', { swingId: s.id }))} />;
 
   return (
     <div className="screen history">
@@ -111,7 +116,11 @@ export function HistoryScreen({ route }: { route: Route }) {
 
       {tab === 'swings' && swings && swings.length > 0 && (
         <>
-          {selecting && <p className="muted small" style={{ margin: 0 }}>{t('history.selectHint')}</p>}
+          {selecting ? (
+            <p className="muted small" style={{ margin: 0 }}>{t('history.selectHint')}</p>
+          ) : (
+            <p className="muted small" style={{ margin: 0 }}>{t('history.scoreLevel', { n: level })}</p>
+          )}
           {filter ? (
             <ul className="list">{visible.map(item)}</ul>
           ) : (
@@ -132,7 +141,13 @@ export function HistoryScreen({ route }: { route: Route }) {
         </>
       )}
 
-      {tab === 'progress' && swings && swings.length > 0 && <ProgressList faults={faults} />}
+      {tab === 'progress' && swings && swings.length > 0 && (
+        <>
+          <LevelUpCard swings={swings} level={level} />
+          <ScoreCurveCard swings={swings} level={level} shotType={filter} />
+          <ProgressList faults={faults} />
+        </>
+      )}
 
       {selecting && (
         <div className="action-bar">
@@ -171,8 +186,16 @@ export function HistoryScreen({ route }: { route: Route }) {
   );
 }
 
-export function ScoreBadge({ score }: { score: number | null | undefined }) {
+/** Score circle; with `level` the level badge ("Level 3") is shown below it. */
+export function ScoreBadge({ score, level }: { score: number | null | undefined; level?: ScoreLevel }) {
   const has = score !== null && score !== undefined && Number.isFinite(score);
+  if (level)
+    return (
+      <span className="score-with-level">
+        <ScoreBadge score={score} />
+        <span className="lvl">{t('analysis.score.level', { n: level })}</span>
+      </span>
+    );
   return (
     <span className={`score-badge score-${scoreColor(score)}`} aria-label={has ? t('history.scoreLabel', { n: Math.round(score!) }) : undefined}>
       {has ? Math.round(score!) : t('history.noScore')}
@@ -180,13 +203,13 @@ export function ScoreBadge({ score }: { score: number | null | undefined }) {
   );
 }
 
-function SwingRow({ swing, selecting, selected, onTap }: { swing: Swing; selecting: boolean; selected: boolean; onTap: () => void }) {
+function SwingRow({ swing, level, selecting, selected, onTap }: { swing: Swing; level: ScoreLevel; selecting: boolean; selected: boolean; onTap: () => void }) {
   const f = topFault(swing);
   const uncertain = !f && swing.checkedFaultIds.length === 0;
   return (
     <li>
       <button className={`list-item swing-row${selected ? ' selected' : ''}`} onClick={onTap} aria-pressed={selecting ? selected : undefined}>
-        <ScoreBadge score={swing.score?.total} />
+        <ScoreBadge score={displayScore(swing, level)?.total} />
         <span className="grow">
           <span className={`title${f ? '' : uncertain ? ' muted' : ' status-ok'}`}>{f ? faultName(f.defId) : uncertain ? t('history.notReliable') : t('history.noFault')}</span>
           <span className="small muted">

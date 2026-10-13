@@ -60,3 +60,20 @@
 .home-latest { width: 100%; text-align: left; border: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
 .home-latest .grow { flex: 1; min-width: 0; display: flex; flex-direction: column; }
 .home-latest .title { font-weight: 600; }
+
+/* swing-score curve and level-up suggestion (review W7) */
+.score-curve, .level-up { display: flex; flex-direction: column; gap: 8px; }
+.score-curve h2, .level-up h2 { margin: 0; }
+.score-curve-profile { display: flex; flex-direction: column; gap: 6px; }
+.score-curve-rows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.score-curve-rows li { display: grid; grid-template-columns: 56px 1fr 30px auto; align-items: center; gap: 8px; min-height: 28px; }
+.score-curve-rows .day { font-size: 13px; color: var(--text-2); }
+.score-curve-rows .bar { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.score-curve-rows .fill { display: block; height: 100%; border-radius: 4px; background: var(--muted); }
+.score-curve-rows .fill.score-green { background: var(--ok); }
+.score-curve-rows .fill.score-yellow { background: var(--warn); }
+.score-curve-rows .fill.score-red { background: var(--bad); }
+.score-curve-rows .val { text-align: right; font-variant-numeric: tabular-nums; }
+.level-up { border: 2px solid var(--brand); }
+.score-with-level { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; }
+.score-with-level .lvl { font-size: 11px; color: var(--muted); white-space: nowrap; }

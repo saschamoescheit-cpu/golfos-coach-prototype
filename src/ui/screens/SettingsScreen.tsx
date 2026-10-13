@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
-import { levelFromHandicap } from '../../coach/faults/score';
+import { levelFromHandicap, levelFromSettings } from '../../coach/faults/score';
 import { num, setLang, t, useLang } from '../../coach/i18n/i18n';
 import { ALL_SHOT_TYPES, ALL_VIEWS, APP_NAME, MODULE_NAME } from '../../coach/model/constants';
-import type { Handedness, Lang, ScoreLevel } from '../../coach/model/types';
+import type { Handedness, Lang, ScoreLevel, Swing } from '../../coach/model/types';
 import { getStore } from '../../coach/storage';
 import { formatBytes, isStandalone, requestPersist, storageInfo, type StorageInfo } from '../../coach/storage/device';
 import { loadSettings, resetSettingsCache, updateSettings, useSettings } from '../../coach/storage/settings';
 import { HistoryConfirmSheet } from '../components/HistoryConfirmSheet';
 import { clampHeight, clampTolerance, handicapInput, levelInfos, parseHandicap, TOLERANCE_MAX, TOLERANCE_MIN } from '../components/SettingsModel';
+import { LevelUpCard } from '../components/ScoreProgress';
 import { TopBar } from '../components/TopBar';
 import type { Route } from '../nav';
 import '../styles/history.css';
@@ -234,6 +235,18 @@ function HandicapField() {
 
 function ScoreLevelPicker() {
   const s = useSettings();
+  // level-up suggestion needs the stored swings (Swing-Score rules §3, review W7)
+  const [swings, setSwings] = useState<Swing[]>([]);
+  useEffect(() => {
+    let alive = true;
+    getStore()
+      .then((st) => st.listSwings())
+      .then((l) => alive && setSwings(l))
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
   const chosen = s.scoreLevel ?? 'auto';
   const autoLevel = levelFromHandicap(s.handicap);
   const hasHcp = s.handicap !== null && s.handicap !== undefined;
@@ -242,6 +255,7 @@ function ScoreLevelPicker() {
   return (
     <div className="field">
       <label>{t('settings.level.title')}</label>
+      <LevelUpCard swings={swings} level={levelFromSettings(s)} />
       <div className="level-grid">
         <button className="choice" aria-pressed={chosen === 'auto'} onClick={() => void updateSettings({ scoreLevel: 'auto' })}>
           {t('settings.level.auto')}

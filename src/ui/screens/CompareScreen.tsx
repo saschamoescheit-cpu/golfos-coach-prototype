@@ -5,6 +5,8 @@ import { t } from '../../coach/i18n/i18n';
 import type { MetricUnit, Swing } from '../../coach/model/types';
 import { getStore } from '../../coach/storage';
 import { useSettings } from '../../coach/storage/settings';
+import { levelFromSettings } from '../../coach/faults/score';
+import { displayScore } from '../../coach/storage/scoreHistory';
 import { approxCm, commonPositions, compareRows, faultName, faultStatus, formatWhen, syncedFrame } from '../components/HistoryModel';
 import { SwingPlayer } from '../components/SwingPlayer';
 import { TopBar } from '../components/TopBar';
@@ -39,6 +41,7 @@ export function CompareScreen({ route }: { route: Route }) {
   const [sides, setSides] = useState<[Loaded, Loaded] | null | 'missing'>(null);
   const [u, setU] = useState(0);
   const settings = useSettings();
+  const level = levelFromSettings(settings); // both scores on the current level (review W7)
 
   useEffect(() => {
     let alive = true;
@@ -162,10 +165,10 @@ export function CompareScreen({ route }: { route: Route }) {
             <tr>
               <td>{t('history.compareScreen.score')}</td>
               <td>
-                <ScoreBadge score={A.swing.score?.total} />
+                <ScoreBadge score={displayScore(A.swing, level)?.total} level={level} />
               </td>
               <td>
-                <ScoreBadge score={B.swing.score?.total} />
+                <ScoreBadge score={displayScore(B.swing, level)?.total} level={level} />
               </td>
             </tr>
             <tr>

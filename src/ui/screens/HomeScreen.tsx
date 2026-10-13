@@ -3,6 +3,9 @@ import { APP_NAME, MODULE_NAME } from '../../coach/model/constants';
 import { t } from '../../coach/i18n/i18n';
 import type { Swing } from '../../coach/model/types';
 import { getStore } from '../../coach/storage';
+import { levelFromSettings } from '../../coach/faults/score';
+import { displayScore } from '../../coach/storage/scoreHistory';
+import { useSettings } from '../../coach/storage/settings';
 import { faultName, formatWhen, topFault } from '../components/HistoryModel';
 import { go, type ScreenName } from '../nav';
 import { ScoreBadge } from './HistoryScreen';
@@ -29,6 +32,8 @@ export function HomeScreen() {
     };
   }, []);
 
+  // score on the CURRENT level, like Analysis/History/Compare (review W7)
+  const level = levelFromSettings(useSettings());
   const f = latest ? topFault(latest) : undefined;
   const uncertain = latest && !f && latest.checkedFaultIds.length === 0;
 
@@ -47,7 +52,7 @@ export function HomeScreen() {
 
       {latest && (
         <button className="card home-latest" onClick={() => go('analysis', { swingId: latest.id })}>
-          <ScoreBadge score={latest.score?.total} />
+          <ScoreBadge score={displayScore(latest, level)?.total} level={level} />
           <span className="grow">
             <span className="eyebrow">{t('common.home.latest')}</span>
             <span className={`title${f ? '' : uncertain ? ' muted' : ' status-ok'}`}>
