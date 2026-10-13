@@ -35,3 +35,17 @@ export function metricName(metric: MetricId): string {
 export function positionName(at: KeyPosition | 'swing'): string {
   return at === 'swing' ? t('analysis.atSwing') : t(`common.pos.${at}`);
 }
+
+/**
+ * Target of a training criterion as text: "64° ± 8°" (two-sided) or "≥ 70°" / "≤ 4 %" for one-sided criteria
+ * (mode 'min'/'max'), where the shown border already includes the tolerance – that is where the hit starts.
+ */
+export function criterionText(
+  c: { target: number; tolerance: number; unit: MetricUnit; mode?: 'abs' | 'min' | 'max' },
+  toleranceScale = 1,
+): string {
+  const tol = c.tolerance * (toleranceScale > 0 ? toleranceScale : 1);
+  if (c.mode === 'min') return `≥ ${formatValue(c.target - tol, c.unit)}`;
+  if (c.mode === 'max') return `≤ ${formatValue(c.target + tol, c.unit)}`;
+  return `${formatValue(c.target, c.unit)} ± ${num(tol, c.unit === 'ratio' ? 1 : 0)}`;
+}

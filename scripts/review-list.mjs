@@ -36,7 +36,8 @@ out.push('| Fehler | Messwert | Position | Ziel | Toleranz |', '|---|---|---|---
 for (const f of catalog)
   if (f.trainingTarget) {
     const t = f.trainingTarget;
-    out.push(`| ${cell(f.name.de)} | ${t.metric} | ${t.at} | ${t.target} | ±${t.tolerance} |`);
+    const mode = t.mode === 'min' ? 'mindestens ' : t.mode === 'max' ? 'höchstens ' : '';
+    out.push(`| ${cell(f.name.de)} | ${t.metric} | ${t.at} | ${mode}${t.target} | ±${t.tolerance} |`);
   }
 
 out.push('', `## Swing-Score (Version ${score.version})`, '');

@@ -6,7 +6,7 @@
     "view": "face_on",
     "position": "top",
     "criteria": [
-      { "metric": "lead_arm_angle", "at": "top", "target": 175, "tolerance": 10, "review": "REVIEW(golf): 175° ± 10° = straight or nearly straight (165–185°); synthetic ideal face-on 179° (PM3); catalog bent_lead_arm uses 168 ± 10" }
+      { "metric": "lead_arm_angle", "at": "top", "target": 175, "tolerance": 10, "review": "REVIEW(golf): 175° ± 10° = straight or nearly straight (165–185°); synthetic ideal face-on 179° (PM3); catalog bent_lead_arm trains at least 175 − 10 (one-sided, review W2)" }
     ]
   },
   {
@@ -16,7 +16,7 @@
     "view": "face_on",
     "position": "top",
     "criteria": [
-      { "metric": "shoulder_turn", "at": "top", "target": 85, "tolerance": 15, "review": "REVIEW(golf): 2D image shoulder-turn proxy; synthetic 90° turn measures 88 face-on / 76 DTL (PM3); catalog short_shoulder_turn uses 64 ± 8 as the minimum" },
+      { "metric": "shoulder_turn", "at": "top", "target": 85, "tolerance": 15, "review": "REVIEW(golf): 2D image shoulder-turn proxy; synthetic 90° turn measures 88 face-on / 76 DTL (PM3); catalog short_shoulder_turn trains at least 85 − 15 (one-sided, review W2)" },
       { "metric": "head_shift_x", "at": "top", "target": -10, "tolerance": 12, "review": "REVIEW(golf): head may drift a little away from the target while turning (synthetic ideal −18 % torso face-on, PM3/PM4); beyond ≈ −22 % = sway" }
     ]
   },

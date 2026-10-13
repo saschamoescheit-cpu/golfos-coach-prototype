@@ -21,6 +21,20 @@ describe('proximity', () => {
     expect(criterionDistance(arm, 150, 2)).toBe(1);
   });
 
+  it('one-sided criteria count only the shortfall (min = at least, max = at most)', () => {
+    const atLeast: TargetCriterion = { ...turn, target: 85, tolerance: 15, mode: 'min' };
+    expect(criterionDistance(atLeast, 120)).toBe(0);
+    expect(criterionDistance(atLeast, 70)).toBe(1);
+    expect(criterionDistance(atLeast, 55)).toBe(2);
+    const atMost: TargetCriterion = { ...turn, target: 10, tolerance: 5, mode: 'max' };
+    expect(criterionDistance(atMost, -40)).toBe(0);
+    expect(criterionDistance(atMost, 20)).toBe(2);
+    const ev = evaluateCriteria([atLeast], [mv('shoulder_turn', 95)]);
+    expect(ev.hit).toBe(true);
+    expect(ev.criteria[0].direction).toBe(0); // no "less" hint on the good side
+    expect(evaluateCriteria([atLeast], [mv('shoulder_turn', 60)]).criteria[0].direction).toBe(-1);
+  });
+
   it('proximity: 1 on target, 2/3 at the tolerance border, 0 from three tolerances on', () => {
     expect(proximityFromDistance(0)).toBe(1);
     expect(proximityFromDistance(1)).toBeCloseTo(BORDER_PROXIMITY);

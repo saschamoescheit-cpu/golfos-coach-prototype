@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { buildSwing } from '../../coach/analysis/analyze';
 import type { AnalysisContext } from '../../coach/analysis/context';
-import { formatValue, metricName } from '../../coach/faults/format';
-import { num, t } from '../../coach/i18n/i18n';
+import { criterionText, formatValue, metricName } from '../../coach/faults/format';
+import { t } from '../../coach/i18n/i18n';
 import { openCamera, type CameraHandle, type Facing } from '../../coach/live/camera';
 import { startPoseLoop, type LiveFrame } from '../../coach/live/poseLoop';
 import { ClipRecorder } from '../../coach/live/recorder';
@@ -436,7 +436,7 @@ export function LiveTraining({ target, mode, ctx, toleranceScale, sound, ballGoa
                       <span>{metricName(c.metric)}</span>
                       <b>{r?.value != null ? formatValue(r.value, c.unit) : '–'}</b>
                       <span className="tgt">
-                        → {formatValue(c.target, c.unit)} ± {num(c.tolerance * toleranceScale, c.unit === 'ratio' ? 1 : 0)}
+                        → {criterionText(c, toleranceScale)}
                       </span>
                     </li>
                   );

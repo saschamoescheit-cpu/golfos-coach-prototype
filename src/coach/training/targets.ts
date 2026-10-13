@@ -9,6 +9,7 @@ import type {
   ShotType,
   Swing,
   TargetCriterion,
+  TargetMode,
   TrainingTarget,
 } from '../model/types';
 import { newId } from '../storage/save';
@@ -43,8 +44,10 @@ export interface TargetTemplate {
 
 export const TEMPLATES: TargetTemplate[] = templatesJson as TargetTemplate[];
 
-function criterion(metric: MetricId, at: KeyPosition | 'swing', target: number, tolerance: number): TargetCriterion {
-  return { metric, at, target, tolerance, unit: unitOf(metric) };
+function criterion(metric: MetricId, at: KeyPosition | 'swing', target: number, tolerance: number, mode?: TargetMode): TargetCriterion {
+  const c: TargetCriterion = { metric, at, target, tolerance, unit: unitOf(metric) };
+  if (mode && mode !== 'abs') c.mode = mode;
+  return c;
 }
 
 /** Target from a template. The ghost is the synthetic "model swing" at that position (testing/synth.ts). */
@@ -65,9 +68,17 @@ export function targetFromTemplate(tpl: TargetTemplate, opts: { shotType?: ShotT
 
 // ------------------------------------------------------------------ from a correction (fault catalog)
 
-/** Faults whose correction can be trained (they carry a trainingTarget). */
+/**
+ * Can this fault's correction be trained? It needs a trainingTarget AND must be measurable at all: a rule with
+ * minConfidence ≥ 1 never fires (e.g. flying_elbow, not measurable in 2D – DECISIONS L4), so its target could never be hit.
+ */
+export function isTrainable(def: FaultDef | undefined): boolean {
+  return !!def?.trainingTarget && !def.rules.some((r) => (r.minConfidence ?? 0) >= 1);
+}
+
+/** Faults whose correction can be trained (see isTrainable). */
 export function trainableFaults(faults: FaultDef[]): FaultDef[] {
-  return faults.filter((f) => !!f.trainingTarget);
+  return faults.filter(isTrainable);
 }
 
 /**
@@ -88,7 +99,7 @@ export function targetFromFault(def: FaultDef, opts: { shotType?: ShotType; view
     shotType,
     view,
     position,
-    criteria: [criterion(tt.metric, tt.at, tt.target, tt.tolerance)],
+    criteria: [criterion(tt.metric, tt.at, tt.target, tt.tolerance, tt.mode)],
     ghost: opts.withGhost === false ? undefined : (synthGhost(shotType, view, position) ?? undefined),
   };
 }

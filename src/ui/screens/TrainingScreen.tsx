@@ -6,7 +6,7 @@ import { getStore } from '../../coach/storage';
 import { DEFAULT_SETTINGS } from '../../coach/storage/memory';
 import { newId } from '../../coach/storage/save';
 import { getTrainingAudio } from '../../coach/training/audio';
-import { saveTarget, supportsMirror, targetFromFault } from '../../coach/training/targets';
+import { isTrainable, saveTarget, supportsMirror, targetFromFault } from '../../coach/training/targets';
 import { LiveTraining, type LiveTrainingResult, type TrainingMode } from '../components/LiveTraining';
 import { TopBar } from '../components/TopBar';
 import { TrainingPicker } from '../components/TrainingPicker';
@@ -46,7 +46,7 @@ export function TrainingScreen({ route }: { route: Route }) {
       if (!tg && faultId) {
         const def = getFaultDef(faultId);
         const sw = swingId ? await store.getSwing(swingId) : undefined;
-        if (def) tg = targetFromFault(def, { shotType: sw?.shotType ?? st.defaultShotType, view: sw?.view ?? st.defaultView });
+        if (def && isTrainable(def)) tg = targetFromFault(def, { shotType: sw?.shotType ?? st.defaultShotType, view: sw?.view ?? st.defaultView });
       }
       if (off) return;
       if (tg) choose(tg);

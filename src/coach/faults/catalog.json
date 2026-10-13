@@ -638,8 +638,9 @@
     "trainingTarget": {
       "metric": "shoulder_turn",
       "at": "top",
-      "target": 64,
-      "tolerance": 8
+      "target": 85,
+      "tolerance": 15,
+      "mode": "min"
     }
   },
   {
@@ -1129,8 +1130,9 @@
     "trainingTarget": {
       "metric": "lead_arm_angle",
       "at": "top",
-      "target": 168,
-      "tolerance": 10
+      "target": 175,
+      "tolerance": 10,
+      "mode": "min"
     }
   },
   {
@@ -1257,8 +1259,8 @@
     "trainingTarget": {
       "metric": "spine_angle",
       "at": "address",
-      "target": 30,
-      "tolerance": 5
+      "target": 36,
+      "tolerance": 8
     }
   },
   {
@@ -1325,8 +1327,8 @@
     "trainingTarget": {
       "metric": "spine_angle",
       "at": "address",
-      "target": 30,
-      "tolerance": 5
+      "target": 36,
+      "tolerance": 8
     }
   },
   {
@@ -1758,7 +1760,8 @@
       "metric": "swing_length",
       "at": "top",
       "target": 95,
-      "tolerance": 15
+      "tolerance": 15,
+      "mode": "min"
     }
   },
   {

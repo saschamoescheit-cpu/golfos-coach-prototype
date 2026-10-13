@@ -245,7 +245,7 @@ export interface FaultDef {
   benefit: Localized;
   drillIds: string[];
   /** target for the training mode derived from this correction */
-  trainingTarget?: { metric: MetricId; at: KeyPosition | 'swing'; target: number; tolerance: number };
+  trainingTarget?: { metric: MetricId; at: KeyPosition | 'swing'; target: number; tolerance: number; mode?: TargetMode };
 }
 
 /** A fault found in one swing. */
@@ -369,6 +369,12 @@ export interface Session {
   results?: { swingId: string; hit: boolean; proximity: number }[];
 }
 
+/**
+ * How a criterion compares: 'abs' (default) = close to the target on both sides, 'min' = at least the target
+ * (more is fine, e.g. shoulder turn), 'max' = at most the target. One-sided like the swing score.
+ */
+export type TargetMode = 'abs' | 'min' | 'max';
+
 /** One measurable criterion of a training target. */
 export interface TargetCriterion {
   metric: MetricId;
@@ -376,6 +382,8 @@ export interface TargetCriterion {
   target: number;
   tolerance: number;
   unit: MetricUnit;
+  /** default 'abs' */
+  mode?: TargetMode;
 }
 
 export interface TrainingTarget {

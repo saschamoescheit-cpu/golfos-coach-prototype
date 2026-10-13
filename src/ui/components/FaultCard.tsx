@@ -3,6 +3,7 @@ import { loc, t } from '../../coach/i18n/i18n';
 import { getFaultDef } from '../../coach/faults/catalog';
 import { formatValue, metricName, positionName, unitOf } from '../../coach/faults/format';
 import type { Fault } from '../../coach/model/types';
+import { isTrainable } from '../../coach/training/targets';
 import { DrillSheet } from './DrillSheet';
 import '../styles/faults.css';
 
@@ -60,9 +61,11 @@ export function FaultCard({
         <button className="btn-secondary" onClick={() => setDrills(true)}>
           {t('faults.card.drills')}
         </button>
-        <button className="btn-primary" onClick={() => onTrain?.(fault)}>
-          {t('faults.card.train')}
-        </button>
+        {onTrain && isTrainable(def) && (
+          <button className="btn-primary" onClick={() => onTrain(fault)}>
+            {t('faults.card.train')}
+          </button>
+        )}
       </div>
       {drills && <DrillSheet faultId={fault.defId} onClose={() => setDrills(false)} />}
     </div>

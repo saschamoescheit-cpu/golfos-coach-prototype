@@ -52,6 +52,7 @@ describe('fault catalog schema', () => {
       if (f.trainingTarget) {
         expect(f.views.some((v) => f.shotTypes.some((s) => metricAvailable(f.trainingTarget!.metric, f.trainingTarget!.at, v, s)))).toBe(true);
         expect(f.trainingTarget.tolerance).toBeGreaterThan(0);
+        expect([undefined, 'abs', 'min', 'max']).toContain(f.trainingTarget.mode);
       }
     }
   });

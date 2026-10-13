@@ -1,4 +1,4 @@
-import { formatValue, metricName, positionName } from '../../coach/faults/format';
+import { criterionText, metricName, positionName } from '../../coach/faults/format';
 import { loc, num, t } from '../../coach/i18n/i18n';
 import { cameraSupported } from '../../coach/live/camera';
 import type { Settings, TrainingTarget } from '../../coach/model/types';
@@ -27,7 +27,6 @@ const STEP = 1.25;
 export function TrainingSetup({ target, settings, mode, ballGoal, onTarget, onMode, onBallGoal, onStart, onChangeTarget }: Props) {
   const mirrorOk = supportsMirror(target);
   const canCamera = cameraSupported();
-  const digits = (u: string) => (u === 'ratio' ? 1 : 0);
 
   return (
     <div className="training-setup">
@@ -79,7 +78,7 @@ export function TrainingSetup({ target, settings, mode, ballGoal, onTarget, onMo
                 <div className="title">{metricName(c.metric)}</div>
                 <div className="muted small">{positionName(c.at)}</div>
                 <div className="training-crit-val">
-                  {formatValue(c.target, c.unit)} ± {num(c.tolerance * settings.toleranceScale, digits(c.unit))}
+                  {criterionText(c, settings.toleranceScale)}
                 </div>
               </div>
               <div className="training-steps">

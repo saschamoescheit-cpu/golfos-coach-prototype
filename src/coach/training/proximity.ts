@@ -3,7 +3,8 @@ import type { KeyPosition, MetricId, MetricValue, TargetCriterion } from '../mod
 /**
  * How close is the player to a training target? Pure functions, no DOM.
  *
- * Distance of one criterion = |measured − target| / (tolerance × toleranceScale), i.e. measured in "tolerances":
+ * Distance of one criterion = |measured − target| / (tolerance × toleranceScale), i.e. measured in "tolerances"
+ * (one-sided criteria, mode 'min'/'max', count only the shortfall – a value on the good side has distance 0):
  *   0   = exactly on target
  *   ≤ 1 = inside the tolerance  → HIT
  *   3   = three tolerances away → proximity 0 (FAR_DISTANCE)
@@ -44,7 +45,10 @@ export interface Evaluation {
 
 export function criterionDistance(c: TargetCriterion, value: number, toleranceScale = 1): number {
   const tol = Math.max(1e-9, Math.abs(c.tolerance) * (toleranceScale > 0 ? toleranceScale : 1));
-  return Math.abs(value - c.target) / tol;
+  const diff = value - c.target;
+  // one-sided criteria count only the shortfall (like the swing score): 'min' = at least the target, 'max' = at most
+  const off = c.mode === 'min' ? Math.max(0, -diff) : c.mode === 'max' ? Math.max(0, diff) : Math.abs(diff);
+  return off / tol;
 }
 
 export function proximityFromDistance(d: number): number {
@@ -77,7 +81,8 @@ export function evaluateCriteria(criteria: TargetCriterion[], values: ValueSourc
       distance,
       proximity: proximityFromDistance(distance),
       within: distance <= 1,
-      direction: value > c.target ? 1 : value < c.target ? -1 : 0,
+      // no "more"/"less" hint on the good side of a one-sided target
+      direction: distance === 0 ? 0 : value > c.target ? 1 : value < c.target ? -1 : 0,
     };
   });
   const measured = results.filter((r) => r.distance != null);

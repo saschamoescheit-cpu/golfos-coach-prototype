@@ -7,6 +7,7 @@ import { ballFlightGroups, diagnose, MIN_SWINGS_FOR_DIAGNOSIS, type DiagnosisCau
 import { go, type Route } from '../nav';
 import { TopBar } from '../components/TopBar';
 import { DrillSheet } from '../components/DrillSheet';
+import { isTrainable } from '../../coach/training/targets';
 import '../styles/faults.css';
 
 /** Swings considered for the personal ranking (most recent first). */
@@ -47,9 +48,11 @@ function CauseCard({ c, rank }: { c: DiagnosisCause; rank: number }) {
         <button className="btn-secondary" onClick={() => setOpen(!open)} aria-expanded={open}>
           {open ? t('diagnose.hideCorrection') : t('diagnose.showCorrection')}
         </button>
-        <button className="btn-primary" onClick={() => go('training', { faultId: c.faultId })}>
-          {t('diagnose.train')}
-        </button>
+        {isTrainable(def) && (
+          <button className="btn-primary" onClick={() => go('training', { faultId: c.faultId })}>
+            {t('diagnose.train')}
+          </button>
+        )}
       </div>
       {open && (
         <button className="btn-ghost" onClick={() => setDrills(true)}>
