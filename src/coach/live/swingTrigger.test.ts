@@ -73,7 +73,10 @@ describe('SwingTrigger', () => {
   });
 
   const cases: [ShotType, CameraView][] = [];
-  for (const s of ['driver', 'iron', 'bunker', 'pitch', 'chip', 'putt'] as ShotType[]) for (const v of ['face_on', 'down_the_line'] as CameraView[]) cases.push([s, v]);
+  for (const s of ['driver', 'iron', 'bunker', 'pitch', 'chip', 'putt'] as ShotType[]) for (const v of ['face_on', 'down_the_line'] as CameraView[]) {
+    // putt down-the-line: the putter moves almost only along the camera axis → not timeable; the app asks for face-on (DECISIONS L3)
+    if (!(s === 'putt' && v === 'down_the_line')) cases.push([s, v]);
+  }
   for (const fps of [15, 30])
     for (const [shotType, view] of cases)
       it(`${shotType} ${view} at ${fps} fps: one swing, impact within 100 ms`, () => {

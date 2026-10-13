@@ -2,6 +2,7 @@
   "title": "Schwung aufnehmen",
   "shotType": "Was schlägst du?",
   "view": "Wo steht das Handy?",
+  "puttFaceOn": "Putts bitte von vorne filmen (Face-on): Von hinten bewegt sich der Putter auf die Kamera zu, der Schlag lässt sich dann nicht messen.",
   "viewHint": {
     "face_on": "Vor dir",
     "down_the_line": "Hinter dir, Blick zum Ziel"

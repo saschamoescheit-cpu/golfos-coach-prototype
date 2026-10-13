@@ -210,7 +210,11 @@ export function CaptureScreen({ route }: { route: Route }) {
         <h2>{t('capture.shotType')}</h2>
         <div className="capture-choice-grid">
           {ALL_SHOT_TYPES.map((s) => (
-            <button key={s} className="choice" aria-pressed={shotType === s} onClick={() => setShotType(s)}>
+            <button key={s} className="choice" aria-pressed={shotType === s} onClick={() => {
+                setShotType(s);
+                // putts can only be timed face-on (the putter moves along the camera axis from behind) – DECISIONS L3
+                if (s === 'putt') setView('face_on');
+              }}>
               {t(`common.shot.${s}`)}
             </button>
           ))}
@@ -227,6 +231,7 @@ export function CaptureScreen({ route }: { route: Route }) {
             </button>
           ))}
         </div>
+        {shotType === 'putt' && view === 'down_the_line' && <p className="muted small">⚠ {t('capture.puttFaceOn')}</p>}
       </section>
 
       <section className="capture-section">

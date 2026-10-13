@@ -2,6 +2,7 @@
   "title": "Record a swing",
   "shotType": "What are you hitting?",
   "view": "Where is the phone?",
+  "puttFaceOn": "Putts work best filmed from the front (face-on): from behind the putter moves towards the camera and the stroke cannot be timed.",
   "viewHint": {
     "face_on": "In front of you",
     "down_the_line": "Behind you, looking at the target"
